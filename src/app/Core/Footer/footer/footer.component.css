@@ -1,0 +1,38 @@
+:root{
+  --origin-blck: #000000;
+  --main-black:#1a1a1a;
+  --main-orange:#ff5f00;
+  --main-gray:#ebebf0;
+  --second-gray:#f4f4f9;
+  --third-gray:#828287;
+  --main-white:#ffffff;
+}
+
+:root {
+  --heading-font-helveticanow: 'Roboto Condensed', 'Helvetica Now', sans-serif;
+  /* --heading-font-roboto-condensed: 'Roboto Condensed', sans-serif; */
+}
+
+.font-style{
+  font-family: var( --heading-font-helveticanow)!important;
+  font-size: 16px;
+  line-height: 24px !important;
+}
+
+.copyright {
+  color:#7a7971 ;
+}
+
+.black-background {
+  background-color: var(--main-black);
+}
+
+.third-color {
+  color: var(--third-gray);
+}
+/*  */
+
+
+.white-color {
+   color: var(--main-white) !important;
+}

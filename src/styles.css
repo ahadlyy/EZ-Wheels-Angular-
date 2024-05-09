@@ -13,7 +13,7 @@
     --main-gray:#ebebf0;
     --second-gray:#f4f4f9;
     --third-gray:#828287;
-    --main-white:#ffffff;  
+    --main-white:#ffffff;
 }
 
 /*  heading font variables */
@@ -23,5 +23,7 @@
 }
 /* main font for body  */
 body {
-    font-family: 'Times New Roman', Times, serif; 
+    font-family: 'Times New Roman', Times, serif;
   }
+
+  
