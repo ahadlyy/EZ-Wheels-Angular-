@@ -1,1 +1,11 @@
-<p>vehicles works!</p>
+<h1 class="text-center">vehicles works!</h1>
+<div class="p-5">
+    <div class="row g-3">
+        @for (item of cars; track $index) {
+            <div class="col-md-6 col-lg-4">
+                <app-vehicle-item [data]="item"></app-vehicle-item>
+            </div>
+        }
+        
+    </div>
+</div>
