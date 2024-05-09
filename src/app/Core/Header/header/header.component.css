@@ -28,7 +28,7 @@
     cursor: pointer;
     margin-left: 10px;
     font-size: 14px;
-    color: var(--main-black);
+    color: var(--second-gray);
     transition: all 0.3s;
 }
 
