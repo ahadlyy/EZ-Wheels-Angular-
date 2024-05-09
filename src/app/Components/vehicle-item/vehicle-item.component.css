@@ -1,0 +1,9 @@
+.vehicle-card{
+    background-image: url("../../../assets/images/car-bg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.btn-item{
+    width: 20px;
+}

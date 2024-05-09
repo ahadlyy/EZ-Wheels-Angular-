@@ -13,18 +13,18 @@ export interface Car {
     Type:TypeEnum
 }
 
-enum StateEnum {
+export enum StateEnum {
     Available,
     Maintenance,
     Rented
 }
 
-enum TransmissionEnum {
+export enum TransmissionEnum {
     Manual,
     Automatic
 }
 
-enum TypeEnum {
+export enum TypeEnum {
     SUV,
     Sedan,
     Hatchback,

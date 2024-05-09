@@ -1,0 +1,11 @@
+.background {
+    background-image: url("../../../assets/images/homebackground.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100Vh;
+}
+
+.transparent {
+    background-color: transparent !important;
+}
