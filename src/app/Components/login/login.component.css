@@ -1,0 +1,26 @@
+.bg-color-website{
+    background-color: rgba(255, 95, 0, 1);
+}
+.text-color-website{
+    color:rgba(255, 95, 0, 1);
+}
+.g-logo{
+    width: 25px;
+}
+
+#imgDiv{
+    background-image: url('../../../assets/images/DODGE-TA.webp');background-size: cover; /* Cover the entire background */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat;
+}
+
+@media (min-width: 300px) {
+    .custom-width {
+      width: 100%;
+    }
+  }
+  @media (min-width: 768px) {
+    .custom-width {
+      width: 50%;
+    }
+  }
