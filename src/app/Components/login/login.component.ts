@@ -12,6 +12,7 @@ import { AuthenticationService } from '../../Services/authentication.service';
 })
 
 export class LoginComponent {
+  
   loginForm = new FormGroup({
     userName: new FormControl(),
     password: new FormControl()

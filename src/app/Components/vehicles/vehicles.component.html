@@ -117,7 +117,25 @@
                             <app-vehicle-item [data]="item"></app-vehicle-item>
                         </div>
                     }
-                    
+                    <nav aria-label="Page navigation example">
+                      <ul class="pagination">
+                        <li class="page-item">
+                          <a class="page-link text-secondary cursor-pointer" (click)="prev()"  aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                          </a>
+                        </li>
+                        @for (item of numberOfPages; track $index) {
+                          <li  class="page-item"><a class="page-link text-secondary cursor-pointer" [class.active]="currentPageIndex == item" (click)="changePage(item)" >{{item}}</a></li>
+                        }
+                        
+                        <li class="page-item">
+                          <a class="page-link text-secondary cursor-pointer"  aria-label="Next">
+                            <span aria-hidden="true" (click)="next()">&raquo;</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </nav>
+
                 </div>
             </div>
         </div>
