@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { AuthenticationService } from '../../Services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +12,23 @@ import { RouterLink } from '@angular/router';
 })
 export class LoginComponent {
   loginForm = new FormGroup({
-    username : new FormControl(),
+    userName : new FormControl(),
     password : new FormControl()
   });
-  
+
+
+  logIn(formGroup:FormGroup) {
+    if(formGroup.valid) {      
+      this.authService.logIn(formGroup.value).subscribe({
+        next: (response) => {
+          console.log(response);
+          const token = JSON.stringify(response.token);
+          const user = JSON.stringify(response.user);
+          this.authService.setCredentials(token, user);
+        }
+      })
+    }
+  }
+
+  constructor(public authService:AuthenticationService) { }
 }
