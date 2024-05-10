@@ -11,6 +11,7 @@ import { AuthenticationService } from '../../Services/authentication.service';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+  
   loginForm = new FormGroup({
     userName : new FormControl(),
     password : new FormControl()
