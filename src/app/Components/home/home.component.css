@@ -1,3 +1,5 @@
+
+
 .background {
     background-image: url("../../../assets/images/homebackground.jpg");
     background-size: cover;
@@ -20,24 +22,33 @@
 .subtitleone,
 .subtitletwo {
     text-align: center;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: var( --heading-font-helveticanow)!important;
     font-weight: bolder;
+    color: black;
+    text-transform: uppercase;
+
 }
 
 .title {
-    font-size: 110px;
+    font-size: 72px;
     margin-bottom: 1px;
-    line-height: 85px;
+    line-height: 72px;
+    letter-spacing: -4.2px;
+
 }
 
 .subtitleone {
-    font-size: 90px;
+    font-size: 72px;
     margin-bottom: 0px;
+    letter-spacing: -4.2px;
+
 }
 
 .subtitletwo {
     font-size: 20px;
     margin-bottom: 5px;
+    font-size: 16px;
+    line-height: 24px;
 }
 
 .home-section {
