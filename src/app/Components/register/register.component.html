@@ -16,7 +16,7 @@
             <div class="mx-2 text-light">or</div>
             <div class="d-block bg-secondary w-25 text-center mt-3 opacity-50" style="height: 1px;"></div>
         </div>
-        <form [formGroup]="registerForm" class="d-flex flex-column justify-content-center px-5 py-3 w-75">
+        <form [formGroup]="registerForm" (ngSubmit)="register(registerForm)" class="d-flex flex-column justify-content-center px-5 py-3 w-75">
             <input id="username" type="text" formControlName="username" placeholder="username" class="fw-bold text-color-website form-control my-1">
             <input id="email" type="text" formControlName="email" placeholder="email" class="fw-bold text-color-website form-control my-1">
             <input id="password" type="password" formControlName="password" placeholder="password" class="fw-bold text-color-website border my-1 form-control">
