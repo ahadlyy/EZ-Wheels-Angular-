@@ -18,6 +18,14 @@ export class CarService {
     return this.http.get(`${this.baseUrl}/${pageNumber},${pageSize}`, { params:{...filter} });
   }
 
+  getColors():Observable<any>{
+    return this.http.get(`${this.baseUrl}/colors`);
+  }
+
+  getMakers():Observable<any>{
+    return this.http.get(`${this.baseUrl}/make`);
+  }
+
   getCarReservations(plateNumber: string): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/${plateNumber}/reservations`);
   }
