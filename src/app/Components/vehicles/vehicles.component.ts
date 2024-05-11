@@ -16,13 +16,36 @@ export class VehiclesComponent implements OnInit{
   cars:Car[] = [];
   totalCount:number = 0;
   numberOfPages:number[] = [];
-  itemsInPage:number = 2;
+  itemsInPage:number = 6;
   currentPageIndex:number = 1;
   currentFilterForm : any ;
+  colors:string[] = [];
+  makers:string[] = [];
   constructor(private _carService:CarService){};
 
   ngOnInit(): void {
     this.getCarsData(1);
+    this._carService.getColors().subscribe({
+      next:(res)=>{
+        this.colors = res.data;
+        console.log(this.colors);
+      },
+      error:(err)=>{
+        console.log(err);
+      }
+    });
+    this._carService.getMakers().subscribe({
+      next:(res)=>{
+        this.makers = res.data;
+        console.log(this.makers);
+        
+      },
+    });
+  }
+  resetFilters(){
+    this.currentFilterForm = null;
+    this.getCarsData(1);
+    this.filterForm.reset();
   }
 
   getCarsData(page:number,form?:FormGroup){
@@ -78,8 +101,11 @@ export class VehiclesComponent implements OnInit{
 
   filter(form: FormGroup){
     this.currentPageIndex=1;
-    console.log(form.value);
-    
+    Object.keys(form.controls).forEach(el=>{
+      if(!form.get(el)?.value){
+        form.get(el)?.setValue('');
+      }
+    });
     this.getCarsData(this.currentPageIndex,form);
     this.currentFilterForm = form;
   }
