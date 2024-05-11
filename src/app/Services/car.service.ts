@@ -13,9 +13,9 @@ export class CarService {
     return this.http.get<Car>(`${this.baseUrl}/${plateNumber}`);
   }
 
-  getCars(pageNumber: number, pageSize: number, filter: any): Observable<Car[]> {
-    let params = { pageNumber: pageNumber.toString(), pageSize: pageSize.toString(), ...filter };
-    return this.http.get<Car[]>(`${this.baseUrl}`, { params });
+  getCars(pageNumber: number=1, pageSize: number=100, filter?: any): Observable<any> {
+    // let params = { pageNumber: pageNumber.toString(), pageSize: pageSize.toString(), ...filter };
+    return this.http.get(`${this.baseUrl}/${pageNumber},${pageSize}`, { params:{...filter} });
   }
 
   getCarReservations(plateNumber: string): Observable<any> {

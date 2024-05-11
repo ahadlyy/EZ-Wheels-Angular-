@@ -1,47 +1,32 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginUser } from '../Interfaces/login-user';
-import * as jwtdecode from 'jwt-decode';
 import { RegisterUser } from '../Interfaces/register-user';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  isAuthenticated = false;
-  baseUrl = "https://localhost:7057/api/account";
+  User: any;
+  baseUrl = "https://localhost:7108/api/account/";
 
-  register(user: RegisterUser) {
-    this.http.post<any>(this.baseUrl, user).subscribe({
-      next: (response) => {
-        // router navigation
-        console.log("success");
-      },
-      error: (err) => {
-        console.log(err);
-      }
-  })
-}
+  register(user: RegisterUser): Observable<any> {
+    return this.http.post<any>(this.baseUrl + "register", user);
+  }
 
-  logIn(user: LoginUser) {
-    this.http.post<any>(this.baseUrl, user).subscribe({
-      next: (response) => {
-        this.isAuthenticated = true;
-        localStorage.setItem("token", response.token);
-        let claims:{Name:string, NameIdentifier:string, Jti:string} = jwtdecode.jwtDecode(response);
-        localStorage.setItem("username", claims.Name);
-        localStorage.setItem("id", claims.NameIdentifier);
-        localStorage.setItem("tokenId", claims.Jti);
-      }
-    });
+  logIn(user: LoginUser): Observable<any> {
+    return this.http.post<any>(this.baseUrl + "login", user);
   }
 
   logOut() {
-    this.isAuthenticated=false;
     localStorage.removeItem("token");
-    localStorage.removeItem("username");
-    localStorage.removeItem("id");
-    localStorage.removeItem("tokenId");
+    this.User = null;
+  }
+
+  setCredentials(token: string, user: any) {
+    localStorage.setItem("token", `${token}`);
+    this.User = JSON.parse(user);
   }
 
   constructor(public http: HttpClient) { }
