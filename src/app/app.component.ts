@@ -1,3 +1,4 @@
+import { HomeComponent } from './Components/home/home.component';
 import { FooterComponent } from './Core/Footer/footer/footer.component';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
@@ -8,7 +9,7 @@ import { RegisterComponent } from './Components/register/register.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,HeaderComponent, LoginComponent, RegisterComponent,FooterComponent,HomeComponent],
+  imports: [RouterOutlet,HeaderComponent, LoginComponent, RegisterComponent,FooterComponent, HomeComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
