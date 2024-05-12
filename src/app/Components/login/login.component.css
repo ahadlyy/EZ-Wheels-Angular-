@@ -13,6 +13,7 @@
     background-size: cover; /* Cover the entire background */
     background-position: center; /* Center the background image */
     background-repeat: no-repeat;
+    font-family: var(--heading-font-roboto-condensed);
 }
 
 @media (min-width: 300px) {
