@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@900&display=swap');
+
+
 .home {
     position: relative;
 }
@@ -28,24 +31,33 @@
 .subtitleone,
 .subtitletwo {
     text-align: center;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: var( --heading-font-helveticanow)!important;
     font-weight: bolder;
+    color: black;
+    text-transform: uppercase;
+
 }
 
 .title {
-    font-size: 110px;
+    font-size: 72px;
     margin-bottom: 1px;
-    line-height: 85px;
+    line-height: 72px;
+    letter-spacing: -4.2px;
+
 }
 
 .subtitleone {
-    font-size: 90px;
+    font-size: 72px;
     margin-bottom: 0px;
+    letter-spacing: -4.2px;
+
 }
 
 .subtitletwo {
     font-size: 20px;
     margin-bottom: 5px;
+    font-size: 16px;
+    line-height: 24px;
 }
 
 .home-section {
@@ -74,3 +86,101 @@
     font-size: 18px;
     line-height: 1.5;
 }
+/* ================================================================================================================= */
+/* ===============more ez=====================*/
+.title{
+  font-family: var(--heading-font-roboto-condensed)!important;
+  font-weight: bolder;
+  /* color: #fff; */
+  text-transform: uppercase;
+  font-size: 50px !important;
+  line-height: 50px !important;
+  letter-spacing: -0.5px;
+
+}
+.card{
+  background-image: url("../../../assets/images/suitewithcar.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 75vh;
+  border-radius: 2%;
+}
+
+
+.card-title{
+  font-family: var( --heading-font-helveticanow)!important;
+  font-weight: bolder;
+  color: var(--main-white);
+  text-transform: uppercase;
+  font-size: 30px;
+  line-height: 30px;
+}
+
+.card-text{
+  font-family: var( --heading-font-helveticanow)!important;
+  font-weight: bolder;
+  color: var(--main-white);
+  text-transform: uppercase;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+
+
+.main-gray-backgroundcolor{
+  background-color: var(--main-gray)!important;
+}
+
+/* =========================================================================================== */
+/* ===============Big Image=====================*/
+
+
+.bigimage {
+  background-image: url("../../../assets/images/bigimage.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center; /* Center text horizontally */
+}
+
+.white-color{
+  color: var(--main-white)!important;
+}
+
+.firstcontent{
+  font-family: var(--heading-font-roboto-condensed)!important;
+  font-weight: bolder;
+  color: var(--main-white);
+  font-size: 3rem;
+  line-height: 3rem;
+  text-align: center; /* Justify text */
+}
+.secodcontent{
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+/* =========================================================================================== */
+/* =============== top cities =====================*/
+
+.rightcontent{
+  text-align: justify;
+}
+.rightcontent>h2{
+  font-family: var(--heading-font-roboto-condensed)!important;
+  font-weight: bolder;
+  color: var(--main-black)!important;
+}
+
+
+
+
+
+
+

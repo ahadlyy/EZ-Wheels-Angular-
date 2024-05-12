@@ -1,0 +1,23 @@
+
+.font-style{
+  font-family: var( --heading-font-helveticanow)!important;
+  font-size: 16px;
+  line-height: 24px !important;
+}
+
+.copyright {
+  color:#7a7971 ;
+}
+
+.black-background {
+  background-color: var(--main-black);
+}
+
+.third-color {
+  color: var(--third-gray);
+}
+
+
+.white-color {
+   color: var(--main-white) !important;
+}

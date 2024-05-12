@@ -5,5 +5,41 @@
 }
 
 .btn-item{
-    width: 20px;
+    display: inline-flex;
+    align-items: center;
+    padding-right: 10px;
+    padding-left: 10px;
+    font-size: 12px;
+    /* height: 1.5rem; */
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.car-title{
+    font-family: var(--heading-font-helveticanow);
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.1px;
+    font-weight: 700;
+}
+
+.car-color{
+    font-family: var(--heading-font-helveticanow);
+    font-size: 12px;
+    line-height: 18px;
+    color: var(--third-gray);
+}
+
+.miles-item{
+    font-size: 12px;
+    line-height: 18px;
+    font-family: var(--heading-font-helveticanow);
+}
+.card-wrapper {
+    transition: all 0.4s;
+}
+.card-wrapper:hover{
+    border : 2px solid var(--third-gray);
+    border-radius: 10px;
+
 }

@@ -10,7 +10,7 @@ export class RentCarService {
   baseUrl:string = `https://localhost:7108/api/Rent`;
   constructor(private _http:HttpClient) { }
 
-  getAll(pageNumber:number,pageSize:number):Observable<any>{
+  getAll(pageNumber:number = 1,pageSize:number = 10):Observable<any>{
     return this._http.get(`${this.baseUrl}/${pageNumber}/${pageSize}`);
   }
 

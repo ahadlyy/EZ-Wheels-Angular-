@@ -1,11 +1,329 @@
-<h1 class="text-center">vehicles works!</h1>
-<div class="p-5">
-    <div class="row g-3">
-        @for (item of cars; track $index) {
-            <div class="col-md-6 col-lg-4">
-                <app-vehicle-item [data]="item"></app-vehicle-item>
-            </div>
-        }
+<div class="p-3">
+  <div class="title">WHICH VEHICLE DO YOU WANT TO DRIVE?</div>
+  <div class="line"></div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="accordion mt-3" id="accordionPanelsStayOpenExample">
+        <button class="btn btn-secondary w-100 mb-2" (click)="resetFilters()">
+          Reset Filters
+        </button>
         
+        <form [formGroup]="filterForm">
+          <input
+          type="text"
+          class="form-control my-2"
+          placeholder="Search by model"
+          formControlName="model"
+          (input)="filter(filterForm)"
+        />
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseOne"
+                aria-expanded="true"
+                aria-controls="panelsStayOpen-collapseOne"
+              >
+                Price
+              </button>
+            </h2>
+            <div
+              id="panelsStayOpen-collapseOne"
+              class="accordion-collapse collapse show"
+            >
+              <div class="accordion-body">
+                <div class="form-check">
+                  <label for="highToLow" class="me-3 form-check-label"
+                    >low to high</label
+                  >
+                  <input
+                    (change)="filter(filterForm)"
+                    formControlName="priceOrder"
+                    type="radio"
+                    class="form-check-input"
+                    name="sort"
+                    id="highToLow"
+                    value="ascending"
+                    #lthRadio
+                  />
+                </div>
+                <div class="form-check">
+                  <label for="lowToHigh" class="me-3 form-check-label"
+                    >High to Low</label
+                  >
+                  <input
+                    (change)="filter(filterForm)"
+                    formControlName="priceOrder"
+                    type="radio"
+                    class="form-check-input"
+                    name="sort"
+                    id="lowToHigh"
+                    value="descending"
+                    #htlRadio
+                  />
+                </div>
+                <div class="">
+                  <label for="lowerThan" class="me-3">Lower Than</label>
+                  <input
+                    (input)="filter(filterForm)"
+                    formControlName="maxRentalPrice"
+                    type="number"
+                    class="form-control"
+                    id="lowerThan"
+                    #lowerInp
+                  />
+                </div>
+                <div class="">
+                  <label for="higherThan" class="me-3">higher Than</label>
+                  <input
+                    (input)="filter(filterForm)"
+                    formControlName="minRentalPrice"
+                    type="number"
+                    type="number"
+                    class="form-control"
+                    id="higherThan"
+                    #higherInp
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseTwo"
+                aria-expanded="false"
+                aria-controls="panelsStayOpen-collapseTwo"
+              >
+                Colors
+              </button>
+            </h2>
+            <div
+              id="panelsStayOpen-collapseTwo"
+              class="accordion-collapse collapse"
+            >
+              <div class="accordion-body">
+                @for (item of colors; track $index) {
+                <div class="color-item">
+                  <input
+                    type="radio"
+                    formControlName="color"
+                    class="me-2 form-check-input"
+                    [id]="item"
+                    [value]="item"
+                    (change)="filter(filterForm)"
+                  />
+                  <label [for]="item" class="me-3 form-check-label">{{
+                    item
+                  }}</label>
+                </div>
+                }
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseTwo2"
+                aria-expanded="false"
+                aria-controls="panelsStayOpen-collapseTwo2"
+              >
+                Makers
+              </button>
+            </h2>
+            <div
+              id="panelsStayOpen-collapseTwo2"
+              class="accordion-collapse collapse"
+            >
+              <div class="accordion-body">
+                @for (item of makers; track $index) {
+                <div class="color-item">
+                  <input
+                    type="radio"
+                    formControlName="make"
+                    class="me-2 form-check-input"
+                    [id]="item"
+                    [value]="item"
+                    (change)="filter(filterForm)"
+                  />
+                  <label [for]="item" class="me-3 form-check-label">{{
+                    item
+                  }}</label>
+                </div>
+                }
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseThree"
+                aria-expanded="false"
+                aria-controls="panelsStayOpen-collapseThree"
+              >
+                Other
+              </button>
+            </h2>
+            <div
+              id="panelsStayOpen-collapseThree"
+              class="accordion-collapse collapse"
+            >
+              <div class="accordion-body">
+                <!--* number of passengers -->
+                <div class="filter-line">
+                  <label>passengers</label>
+                  <div class="form-check d-flex justify-content-between w-100">
+                    <div class="radio-btn">
+                      <input
+                        name="numberOfPassenger"
+                        type="radio"
+                        class="form-check-input"
+                        id="2"
+                        value="2"
+                        formControlName="numberOfPassengers"
+                        (change)="filter(filterForm)"
+                      />
+                      <label for="2" class="form-check-label">2</label>
+                    </div>
+                    <div class="radio-btn">
+                      <input
+                        name="numberOfPassenger"
+                        type="radio"
+                        class="form-check-input"
+                        id="4"
+                        value="4"
+                        formControlName="numberOfPassengers"
+                        (change)="filter(filterForm)"
+                      />
+                      <label for="4" class="form-check-label">4</label>
+                    </div>
+                    <div class="radio-btn">
+                      <input
+                        name="numberOfPassenger"
+                        type="radio"
+                        class="form-check-input"
+                        id="7"
+                        value="7"
+                        formControlName="numberOfPassengers"
+                        (change)="filter(filterForm)"
+                      />
+                      <label for="4" class="form-check-label">7</label>
+                    </div>
+                  </div>
+                </div>
+                <!--* transmission -->
+                <div class="filter-line">
+                  <label>Transmission</label>
+                  <div class="form-check w-100">
+                    <div class="radio-btn">
+                      <input
+                        name="transmission"
+                        type="radio"
+                        class="form-check-input"
+                        id="automatic"
+                        value="automatic"
+                        formControlName="transmission"
+                        (change)="filter(filterForm)"
+                      />
+                      <label for="automatic" class="form-check-label"
+                        >Automatic</label
+                      >
+                    </div>
+                    <div class="radio-btn">
+                      <input
+                        name="transmission"
+                        type="radio"
+                        class="form-check-input"
+                        id="manual"
+                        value="manual"
+                        formControlName="transmission"
+                        (change)="filter(filterForm)"
+                      />
+                      <label for="manual" class="form-check-label"
+                        >manual</label
+                      >
+                    </div>
+                  </div>
+                </div>
+                <!--* Type -->
+                <div class="filter-line">
+                  <label>Type</label>
+                </div>
+                <select
+                  class="form-select"
+                  formControlName="type"
+                  (change)="filter(filterForm)"
+                >
+                  <option value="SUV">SUV</option>
+                  <option value="Sedan">Sedan</option>
+                  <option value="Hatchback">Hatchback</option>
+                  <option value="Crossover">Crossover</option>
+                  <option value="Sports">Sports</option>
+                  <option value="Electric">Electric</option>
+                  <option value="Convertible">Convertible</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
+    <div class="col-md-9">
+      <div class="mt-3">
+        <div class="row g-3">
+          @for (item of cars; track $index) {
+          <div class="col-md-6 col-lg-4">
+            <app-vehicle-item [data]="item"></app-vehicle-item>
+          </div>
+          }
+          @if (cars.length == 0) {
+            <h2>No Cars Found ....</h2>
+          }
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item">
+                <a
+                  class="page-link text-secondary cursor-pointer"
+                  (click)="prev()"
+                  aria-label="Previous"
+                >
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              @for (item of numberOfPages; track $index) {
+              <li class="page-item">
+                <a
+                  class="page-link text-secondary cursor-pointer"
+                  [class.active]="currentPageIndex == item"
+                  (click)="changePage(item)"
+                  >{{ item }}</a
+                >
+              </li>
+              }
+
+              <li class="page-item">
+                <a
+                  class="page-link text-secondary cursor-pointer"
+                  aria-label="Next"
+                >
+                  <span aria-hidden="true" (click)="next()">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
