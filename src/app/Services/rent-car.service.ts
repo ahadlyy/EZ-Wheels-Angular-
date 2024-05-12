@@ -11,7 +11,7 @@ export class RentCarService {
   constructor(private _http:HttpClient) { }
 
   getAll(pageNumber:number = 1,pageSize:number = 10):Observable<any>{
-    return this._http.get(`${this.baseUrl}/${pageNumber}/${pageSize}`);
+    return this._http.get(`${this.baseUrl}/${pageNumber},${pageSize}`);
   }
 
   getById(id:string):Observable<any>{

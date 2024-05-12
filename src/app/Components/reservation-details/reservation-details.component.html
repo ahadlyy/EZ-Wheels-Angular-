@@ -4,47 +4,47 @@
       <tbody>
         <tr>
           <th scope="row">Reservation ID</th>
-          <td>{{ reservation.ReservationNumber }}</td>
+          <td>{{ reservation[0].ReservationNumber }}</td>
         </tr>
         <tr>
           <th scope="row">Car</th>
-          <td>{{ reservation.Make }} {{ reservation.Model }}</td>
+          <td>{{ reservation[0].Make }} {{ reservation[0].Model }}</td>
         </tr>
         <tr>
           <th scope="row">Plate Number</th>
-          <td>{{ reservation.PlateNumber }}</td>
+          <td>{{ reservation[0].PlateNumber }}</td>
         </tr>
         <tr>
           <th scope="row">Customer ID</th>
-          <td>{{ reservation.CustomerId }}</td>
+          <td>{{ reservation[0].CustomerId }}</td>
         </tr>
         <tr>
           <th scope="row">Customer Name</th>
-          <td>{{ reservation.CustomerName }}</td>
+          <td>{{ reservation[0].CustomerName }}</td>
         </tr>
         <tr>
           <th scope="row">From</th>
-          <td>{{ reservation.StartingDate }}</td>
+          <td>{{ reservation[0].StartingDate }}</td>
         </tr>
         <tr>
           <th scope="row">To</th>
-          <td>{{ reservation.EndingDate }}</td>
+          <td>{{ reservation[0].EndingDate }}</td>
         </tr>
         <tr>
           <th scope="row">PickUpLat</th>
-          <td>{{ reservation.PickUpLatitude }}</td>
+          <td>{{ reservation[0].PickUpLatitude }}</td>
         </tr>
         <tr>
           <th scope="row">PickUpLong</th>
-          <td>{{ reservation.PickUpLongitude }}</td>
+          <td>{{ reservation[0].PickUpLongitude }}</td>
         </tr>
         <tr>
           <th scope="row">DropOffLat</th>
-          <td>{{ reservation.DropOffLatitude }}</td>
+          <td>{{ reservation[0].DropOffLatitude }}</td>
         </tr>
         <tr>
           <th scope="row">DropOffLong</th>
-          <td>{{ reservation.DropOffLongitude }}</td>
+          <td>{{ reservation[0].DropOffLongitude }}</td>
         </tr>
         </tbody>
     </table>

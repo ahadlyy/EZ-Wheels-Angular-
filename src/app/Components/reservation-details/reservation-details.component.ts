@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
   styleUrl: './reservation-details.component.css'
 })
 export class ReservationDetailsComponent implements OnInit, OnDestroy{
-  reservation : RentCar | null = null;
+  reservation : RentCar[] | null = null;
   sub: Subscription | null = null;
   innerSub: Subscription | null = null;
   deleteSub: Subscription | null = null;
@@ -20,14 +20,14 @@ export class ReservationDetailsComponent implements OnInit, OnDestroy{
 
   ngOnInit() {
     this.sub = this.activatedRoute.params.subscribe({next: (data)=>{
-      this.innerSub = this.rentCarService.getById(data['reservationNumber']).subscribe(res=>{this.reservation = res})
+      this.innerSub = this.rentCarService.getById(data['reservationNumber']).subscribe(res=>{this.reservation = res.data})
       }})
       
     }
 
   deleteReservation(){
     if(this.reservation != null)
-      this.deleteSub = this.rentCarService.delete(this.reservation?.ReservationNumber).subscribe();
+      this.deleteSub = this.rentCarService.delete(this.reservation[0]?.ReservationNumber).subscribe();
   }
   ngOnDestroy(){
     this.sub?.unsubscribe();
