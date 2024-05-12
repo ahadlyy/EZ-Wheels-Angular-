@@ -29,9 +29,7 @@ export enum TypeEnum {
     Sedan,
     Hatchback,
     Crossover,
-    Van,
     Sports,
-    Hybrid,
     Electric,
     Convertible
 }
