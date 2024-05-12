@@ -26,7 +26,7 @@ export class RentCarService {
     return this._http.patch(`${this.baseUrl}`,rent);
   }
 
-  delete(id:string):Observable<any>{
+  delete(id:string | undefined):Observable<any>{
     return this._http.delete(`${this.baseUrl}?id=${id}`);
   }
 }
