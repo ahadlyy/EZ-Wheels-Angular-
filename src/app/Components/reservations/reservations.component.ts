@@ -27,9 +27,15 @@ export class ReservationsComponent implements OnInit, OnDestroy {
   selectedReservation: RentCar | null = null;
   constructor(private rentCarService: RentCarService,private carService: CarService, private router:Router){}
   ngOnInit(): void {
-    this.sub = this.rentCarService.getAll().subscribe(reservations => this.reservations = reservations);
+    this.sub = this.rentCarService.getAll().subscribe({
+      next: res => this.reservations = res.data,
+      error: err => console.log(err)
+    });
     if(this.plateNumber != null)
-      this.sub = this.carService.getCarReservations(this.plateNumber).subscribe(reservations => this.reservations = reservations);
+      this.sub = this.carService.getCarReservations(this.plateNumber).subscribe({
+        next: res => this.reservations = res.data,
+        error: err => console.log(err)
+      });
   }
   showDetails(reservation: RentCar) {
     this.router.navigate(['/reservations', reservation.ReservationNumber]);
