@@ -9,7 +9,8 @@
 }
 
 #imgDiv{
-    background-image: url('../../../assets/images/DODGE-TA.webp');background-size: cover; /* Cover the entire background */
+    background-image: url('../../../assets/images/DODGE-TA.webp');
+    background-size: cover; /* Cover the entire background */
     background-position: center; /* Center the background image */
     background-repeat: no-repeat;
 }

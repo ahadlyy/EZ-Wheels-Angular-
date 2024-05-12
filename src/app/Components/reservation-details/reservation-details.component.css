@@ -1,0 +1,11 @@
+.table{
+    border-color: var(--third-gray);
+}
+.table th{
+    background-color: var(--main-black);
+    color: var(--main-orange);
+  }
+  .table td{
+    background-color: var(--main-black);
+    color: var(--main-orange);
+  }
