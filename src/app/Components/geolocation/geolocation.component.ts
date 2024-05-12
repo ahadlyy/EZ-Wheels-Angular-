@@ -91,7 +91,11 @@ addMarker(location: google.maps.LatLngLiteral, type: 'pickup' | 'dropoff') {
         CustomerId: "string",
         PlateNumber: "220197",
         Make: "Alfa Romeo",
-        Model: "quadrifoglio"
+        Model: "quadrifoglio",
+        TotalRentPrice:1000,
+        IsOnlinePaid:true,
+        IsInProgress:true,
+        NumberOfRentDays:10
     };
 
     if(this.pickupLocation && this.dropoffLocation){

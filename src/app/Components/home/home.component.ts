@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from '../../Core/Header/header/header.component';
 import { RentComponent } from '../rent/rent.component';
 
 @Component({

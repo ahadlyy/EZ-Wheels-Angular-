@@ -1,21 +1,63 @@
+<!-- <div class="card text-center">
+    <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs" id="myTab">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/active" routerLinkActive="active">Active</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/vehicles" routerLinkActive="active">vehicles</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/map" routerLinkActive="active">PickUp | DropOff</a>
+            </li>
+        </ul>
+    </div>
+    <div class="card-body tab-content">
+        <router-outlet></router-outlet>
+    </div>
+</div> -->
 
-    <div class="card text-center">
-        <div class="card-header">
-            <ul class="nav nav-tabs card-header-tabs">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Active</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
-            </ul>
+<div class="card text-center">
+    <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs" id="myTab">
+            <li class="nav-item">
+                <a class="nav-link active" (click)="showContent('renting')"
+                    [class.active]="activeTab === 'renting'">Renting Date</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="showContent('vehicles')"
+                    [class.active]="activeTab === 'vehicles'">Vehicles</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="showContent('map')" [class.active]="activeTab === 'map'">PickUp |
+                    Return</a>
+            </li>
+        </ul>
+    </div>
+    <div class="card-body">
+        <div *ngIf="activeTab === 'renting'">
+            <div class="form-group">
+                <label for="pickupDate">PickUp Date</label>
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker1" placeholder="PickUp Date">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <label for="returnDate">Return Date</label>
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker2" placeholder="Return Date">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+            </div>
         </div>
-        <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+        <div *ngIf="activeTab === 'vehicles'">
+            <app-vehicles *ngIf="activeTab === 'vehicles'"></app-vehicles>
+        </div>
+        <div *ngIf="activeTab === 'map'">
+            <app-geolocation *ngIf="activeTab === 'map'"></app-geolocation>
         </div>
     </div>
+</div>

@@ -7,11 +7,13 @@ import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { GeolocationComponent } from './Components/geolocation/geolocation.component';
+import { RentComponent } from './Components/rent/rent.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,HeaderComponent, LoginComponent, RegisterComponent,FooterComponent, HomeComponent],
+  imports: [RouterOutlet,HeaderComponent, LoginComponent, RegisterComponent,
+    FooterComponent, HomeComponent,GoogleMapsModule,GeolocationComponent,RentComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
