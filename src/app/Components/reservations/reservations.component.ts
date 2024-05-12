@@ -1,3 +1,4 @@
+import { CarService } from './../../Services/car.service';
 import { RentCar } from './../../Interfaces/rent-car';
 import { RentCarService } from './../../Services/rent-car.service';
 import { Component, Input, NgModule, OnDestroy, OnInit } from '@angular/core';
@@ -24,11 +25,11 @@ export class ReservationsComponent implements OnInit, OnDestroy {
   ];
 
   selectedReservation: RentCar | null = null;
-  constructor(private rentCarService: RentCarService, private router:Router){}
+  constructor(private rentCarService: RentCarService,private carService: CarService, private router:Router){}
   ngOnInit(): void {
     this.sub = this.rentCarService.getAll().subscribe(reservations => this.reservations = reservations);
     if(this.plateNumber != null)
-      this.reservations.filter(reservation => reservation.PlateNumber == this.plateNumber);
+      this.sub = this.carService.getCarReservations(this.plateNumber).subscribe(reservations => this.reservations = reservations);
   }
   showDetails(reservation: RentCar) {
     this.router.navigate(['/reservations', reservation.ReservationNumber]);
