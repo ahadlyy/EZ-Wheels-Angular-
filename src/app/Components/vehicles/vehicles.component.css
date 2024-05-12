@@ -1,0 +1,58 @@
+.title{
+    font-family: var(--heading-font-roboto-condense);
+    font-weight: 900;
+    font-size: 20px;
+    padding:20px 0px;
+    color:var(--main-black);
+    line-height: 30px;
+    width: 50%;
+    letter-spacing: 1.08px;
+}
+.line{
+    border-bottom: 1px solid #c9c9cf;
+    display: block;
+    width: 100%;
+    opacity: 0.35;
+}
+
+.filter-btn{
+    color:var(--main-black);
+    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: var(--second-gray);
+    padding: 8px 12px;
+    line-height: 24px;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: all 0.2s;
+}
+
+.filter-btn:hover{
+    background-color:var(--main-gray) ;
+}
+
+.filter-btn:focus-visible{
+    background-color: black ;
+    color:white;
+}
+
+.accordion-header:focus{
+    background-color: var(--main-gray);
+}
+.active{
+    background-color: var(--second-gray);
+    border: 1px solid var(--main-gray);
+}
+
+.accordion-button:focus {
+    box-shadow: none !important;
+}
+
+.accordion-button{
+    background-color: white;
+}
+
+input:focus{
+    /* border: none !important; */
+    box-shadow: none;
+}

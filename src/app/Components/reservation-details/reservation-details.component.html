@@ -1,0 +1,56 @@
+<div class="m-5 text-center">
+  @if(reservation != null){
+    <table class="table table-striped w-50 mx-auto bg-dark">
+      <tbody>
+        <tr>
+          <th scope="row">Reservation ID</th>
+          <td>{{ reservation.ReservationNumber }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Car</th>
+          <td>{{ reservation.Make }} {{ reservation.Model }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Plate Number</th>
+          <td>{{ reservation.PlateNumber }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Customer ID</th>
+          <td>{{ reservation.CustomerId }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Customer Name</th>
+          <td>{{ reservation.CustomerName }}</td>
+        </tr>
+        <tr>
+          <th scope="row">From</th>
+          <td>{{ reservation.StartingDate }}</td>
+        </tr>
+        <tr>
+          <th scope="row">To</th>
+          <td>{{ reservation.EndingDate }}</td>
+        </tr>
+        <tr>
+          <th scope="row">PickUpLat</th>
+          <td>{{ reservation.PickUpLatitude }}</td>
+        </tr>
+        <tr>
+          <th scope="row">PickUpLong</th>
+          <td>{{ reservation.PickUpLongitude }}</td>
+        </tr>
+        <tr>
+          <th scope="row">DropOffLat</th>
+          <td>{{ reservation.DropOffLatitude }}</td>
+        </tr>
+        <tr>
+          <th scope="row">DropOffLong</th>
+          <td>{{ reservation.DropOffLongitude }}</td>
+        </tr>
+        </tbody>
+    </table>
+  <button class="btn btn-danger w-25" type="button">Delete Reservation</button>
+  }
+  @else {
+    <h1>No Reservation with this Number</h1>
+  }
+</div>
