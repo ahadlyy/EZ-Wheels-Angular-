@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { GeolocationComponent } from '../../../Components/geolocation/geolocation.component';
+
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink,RouterLinkActive],
+  imports: [RouterLink,RouterLinkActive,GeolocationComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })

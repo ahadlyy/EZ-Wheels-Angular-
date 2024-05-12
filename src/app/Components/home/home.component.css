@@ -1,3 +1,11 @@
+.home {
+    position: relative;
+}
+
+.rent {
+    position: absolute;
+}
+
 .background {
     background-image: url("../../../assets/images/homebackground.jpg");
     background-size: cover;
