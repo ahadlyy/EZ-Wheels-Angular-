@@ -15,15 +15,23 @@ export class ReservationDetailsComponent implements OnInit, OnDestroy{
   reservation : RentCar | null = null;
   sub: Subscription | null = null;
   innerSub: Subscription | null = null;
+  deleteSub: Subscription | null = null;
   constructor(private activatedRoute: ActivatedRoute,private  rentCarService: RentCarService) {}
 
   ngOnInit() {
     this.sub = this.activatedRoute.params.subscribe({next: (data)=>{
-      this.innerSub = this.rentCarService.getById(data['reservationNumber']).subscribe(res=>{this.reservation = res})}})
+      this.innerSub = this.rentCarService.getById(data['reservationNumber']).subscribe(res=>{this.reservation = res})
+      }})
       
     }
+
+  deleteReservation(){
+    if(this.reservation != null)
+      this.deleteSub = this.rentCarService.delete(this.reservation?.ReservationNumber).subscribe();
+  }
   ngOnDestroy(){
     this.sub?.unsubscribe();
     this.innerSub?.unsubscribe();
+    this.deleteSub?.unsubscribe();
   }
 }
