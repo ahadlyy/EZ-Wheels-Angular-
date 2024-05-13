@@ -1,26 +1,29 @@
 <div class="card-wrapper p-1">
   <div class="vehicle-card text-white p-3 rounded">
     <div class="title">
-      <h4 class="car-title">{{data.model}} ({{data.make}})</h4>
-      <p class="car-color">{{data.variant}}</p>
+      <h4 class="car-title">{{ data.model }} ({{ data.make }})</h4>
+      <p class="car-color">{{ data.variant }}</p>
     </div>
     <div class="btns mb-2">
       <div class="btn-item me-2">
         <i class="fa-solid fa-user me-2"></i>
-        <span class="">{{data.numberOfPassengers}}</span>
+        <span class="">{{ data.numberOfPassengers }}</span>
       </div>
       <div class="btn-item me-2">
         <i *ngIf="data.transmission == 1" class="fa-solid fa-a me-2"></i>
         <i *ngIf="data.transmission == 0" class="fa-solid fa-m me-2"></i>
-        <span>{{TransmissionEnum[data.transmission]}}</span>
+        <span>{{ TransmissionEnum[data.transmission] }}</span>
       </div>
     </div>
     <div class="img">
       <img src="assets/images/chev.png" class="w-100" alt="zzz" />
     </div>
     <div class="car-details mt-3 d-flex justify-content-between">
-      <p class="">incl. {{data.mileage}} miles</p>
-      <p>{{data.rentalPrice}} / per day.</p>
+      <p class="">incl. {{ data.mileage }} miles</p>
+      <p>{{ data.rentalPrice }} / per day.</p>
     </div>
+    <a class="btn btn-info" [routerLink]="['/car-details', data.plateNumber]"
+      >Details</a
+    >
   </div>
 </div>

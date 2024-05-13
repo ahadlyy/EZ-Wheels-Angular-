@@ -1,0 +1,33 @@
+
+<div class="row h-100">
+    <div class="col-md-2">
+        <div class="images d-flex flex-column ">
+            
+                <div class="" *ngFor="let item of slides; let i = index">
+                    <img [src]="item" class="img-slider" (click)="changeCurr(i)" alt="">
+                </div>
+            
+          </div> 
+    </div>
+    <div class="col-md-10 ">
+        <div class="carousel ">
+            <ng-container *ngFor="let slide of slides; let i = index" class="">
+              <img
+              @carouselAnimation
+                *ngIf="i===currentSlide"
+                [src]="slide"
+                class="slide"
+              />
+            </ng-container>
+          
+            <!-- controls -->
+            <button class="control prev" (click)="onPreviousClick()">
+              <span class="arrow left"></span>
+            </button>
+            <button class="control next" (click)="onNextClick()">
+              <span class="arrow right"></span>
+            </button>
+          </div>
+           
+    </div>
+</div>

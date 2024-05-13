@@ -9,8 +9,8 @@ import { Car } from '../Interfaces/car';
 export class CarService {
   private baseUrl = 'https://localhost:7108/api/Car';
 
-  getCarById(plateNumber: string): Observable<Car> {
-    return this.http.get<Car>(`${this.baseUrl}/${plateNumber}`);
+  getCarById(plateNumber: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/${plateNumber}`);
   }
 
   getCars(pageNumber: number=1, pageSize: number=100, filter?: any): Observable<any> {
