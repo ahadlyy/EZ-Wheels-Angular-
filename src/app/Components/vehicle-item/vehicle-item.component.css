@@ -23,7 +23,7 @@
     font-weight: 700;
 }
 
-.car-model{
+.car-color{
     font-family: var(--heading-font-helveticanow);
     font-size: 12px;
     line-height: 18px;
@@ -34,6 +34,9 @@
     font-size: 12px;
     line-height: 18px;
     font-family: var(--heading-font-helveticanow);
+}
+.card-wrapper {
+    transition: all 0.4s;
 }
 .card-wrapper:hover{
     border : 2px solid var(--third-gray);

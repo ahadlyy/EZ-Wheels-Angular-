@@ -35,3 +35,24 @@
     background-color: black ;
     color:white;
 }
+
+.accordion-header:focus{
+    background-color: var(--main-gray);
+}
+.active{
+    background-color: var(--second-gray);
+    border: 1px solid var(--main-gray);
+}
+
+.accordion-button:focus {
+    box-shadow: none !important;
+}
+
+.accordion-button{
+    background-color: white;
+}
+
+input:focus{
+    /* border: none !important; */
+    box-shadow: none;
+}
