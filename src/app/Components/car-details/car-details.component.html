@@ -4,4 +4,47 @@
       <app-slider [slides]="carImg"></app-slider>
     </div>
   </div>
+  <div class="text-center mt-5">
+    <p class="text-secondary fs-6">{{ car.make }}</p>
+    <h2>{{ car.model }}</h2>
+
+    <div class="icons">
+      <div class="row">
+        <div class="col-md-2">
+          <div
+            class="info-item d-flex justify-content-center align-items-center"
+          >
+            <div class="icon">
+              <i class="fa-solid fa-gauge-simple-high"></i>
+            </div>
+            <div class="info">
+              <p class="mb-0 text-secondary">Mileage</p>
+              <span>{{ car.mileage }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <i class="fa-solid fa-m"></i>
+    </div>
+    <div class="car-info w-25 m-auto rounded bg-info text-white">
+      <p>color:</p>
+      <span>{{ car.color }}</span>
+      <p>Plate Number:</p>
+      <span>{{ car.plateNumber }}</span>
+      <p>Chassis Number:</p>
+      <span>{{ car.chassisNumber }}</span>
+      <p>Rental Price:</p>
+      <span>{{ car.rentalPrice }}</span>
+      <p>Variant:</p>
+      <span>{{ car.variant }}</span>
+      <p>Number of Passengers :</p>
+      <span>{{ car.numberOfPassengers }}</span>
+      <p>state :</p>
+      <span>{{ car.state }}</span>
+      <p>transmission :</p>
+      <span>{{ car.transmission }}</span>
+      <p>type :</p>
+      <span>{{ car.type }}</span>
+    </div>
+  </div>
 </div>

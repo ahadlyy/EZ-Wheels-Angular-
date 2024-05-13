@@ -1,3 +1,22 @@
 .slid-cont{
-    background-color: red;
+    /* background-color: red; */
+    height: fit-content;
+    width: 90%;
+    margin: auto;
+    /* aspect-ratio: 16/9; */
     }
+.icon{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    margin: 0 auto;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon i {
+    font-size: 40px;
+}

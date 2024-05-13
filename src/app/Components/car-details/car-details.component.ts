@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+  import { Component,OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CarService } from '../../Services/car.service';
 import { Car } from '../../Interfaces/car';
@@ -22,7 +22,7 @@ export class CarDetailsComponent implements OnInit{
         this.carId = params.get('id')??""; 
         this._carService.getCarById(this.carId).subscribe({
           next:(res)=>{
-            this.car = res.data;
+            this.car = res.data[0];
             console.log(this.car);
             
           },
