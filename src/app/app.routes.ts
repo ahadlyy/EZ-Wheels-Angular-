@@ -6,6 +6,7 @@ import { HomeComponent } from './Components/home/home.component';
 import { ReservationsComponent } from './Components/reservations/reservations.component';
 import { ReservationDetailsComponent } from './Components/reservation-details/reservation-details.component';
 import { AdminComponent } from './Components/admin/admin.component';
+import { ProfileComponent } from './Components/profile/profile.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -15,5 +16,5 @@ export const routes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'reservations', component: ReservationsComponent },
     { path: 'reservations/:reservationNumber', component: ReservationDetailsComponent },
+    { path:'profile', component:ProfileComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' }
-];
