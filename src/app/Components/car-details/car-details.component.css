@@ -1,22 +1,85 @@
 .slid-cont{
     /* background-color: red; */
-    height: fit-content;
+    /* height: 300px; */
     width: 90%;
     margin: auto;
+    border-radius: 10px;
+    overflow: hidden !important;
     /* aspect-ratio: 16/9; */
     }
 .icon{
-    width: 90px;
-    height: 90px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     border: 1px solid rgba(0, 0, 0, 0.05);
-    margin: 0 auto;
-    margin-bottom: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all 0.4s;
 }
 
 .icon i {
     font-size: 40px;
+}
+
+.info-item{
+    transition: all 0.2s;
+    display: flex;
+    padding: 10px;
+    border-radius: 5px;
+    justify-content: start !important;
+    align-items: center;
+}
+
+.info-item:hover .icon{
+    background-color: var(--main-black);
+    color: white;
+}
+
+.info-item:hover {
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
+}
+
+.info span {
+    font-weight: 600;
+}
+
+.badge {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: var(--main-black); /* Green */
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 3px;
+    width: 100%;
+    position: absolute;
+    top: -10px;
+    right: 10px;
+}
+
+.car-status{
+    background-color: var(--third-gray);
+    padding-top: 30px;
+}
+.rent-btn{
+    padding: 5px 10px;
+    background-color: var(--main-black);
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 30px;
+    border-radius: 2px;
+    transition: all 0.3s;
+    border: none;
+}
+
+.rent-btn:hover{
+    background-color: white;
+    color: var(--main-black);
+}
+.rent-price{
+    color: white;
+    font-weight: 800;
+    font-size: 30px;
 }
