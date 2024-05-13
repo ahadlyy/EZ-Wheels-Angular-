@@ -18,7 +18,12 @@
                     <div id="customersettings_root" class="customer-settings">
                         <button class="btn btn-link" type="button">Manage bookings</button>
                         <button class="btn btn-link" type="button">Notifications</button>
-                        <a class="btn btn-link" type="button" routerLink="login">Log in | Register</a>
+                        @if (this.authService.User == null) {
+                            <a class="btn btn-link" type="button" routerLink="login">Log in | Register</a>
+                        } @else {
+                            <button class="btn btn-link" (click)="this.authService.logOut()" type="button">Log out</button>
+                            <a class="btn btn-link" routerLink="profile" type="button">Profile</a>
+                        }
                         <a routerLink="vehicles"> Vehicles</a>
                     </div>
                 </div>
