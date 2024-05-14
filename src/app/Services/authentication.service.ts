@@ -1,14 +1,17 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Output } from '@angular/core';
 import { LoginUser } from '../Interfaces/login-user';
 import { RegisterUser } from '../Interfaces/register-user';
 import { Observable } from 'rxjs';
+import { EventEmitter } from '@angular/core';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  User: any;
+  User: any; // get from here 
+  // @Output() targetUser: EventEmitter<User> = new EventEmitter<User>();
   baseUrl = "https://localhost:7108/api/account/";
 
   register(user: RegisterUser): Observable<any> {
