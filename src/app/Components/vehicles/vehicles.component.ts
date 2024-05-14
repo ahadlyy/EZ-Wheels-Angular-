@@ -1,9 +1,12 @@
 import { CarService } from './../../Services/car.service';
 import { VehicleItemComponent } from './../vehicle-item/vehicle-item.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Car,StateEnum,TransmissionEnum,TypeEnum } from '../../Interfaces/car';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { RentCar } from '../../Interfaces/rent-car';
+
+let selectedCar: RentCar | any;
 
 @Component({
   selector: 'app-vehicles',
@@ -13,6 +16,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './vehicles.component.css'
 })
 export class VehiclesComponent implements OnInit{
+  @Output() rentCarSelected: EventEmitter<Car> = new EventEmitter<Car>();
   cars:Car[] = [];
   totalCount:number = 0;
   numberOfPages:number[] = [];
@@ -28,7 +32,7 @@ export class VehiclesComponent implements OnInit{
     this._carService.getColors().subscribe({
       next:(res)=>{
         this.colors = res.data;
-        console.log(this.colors);
+        //console.log(this.colors);
       },
       error:(err)=>{
         console.log(err);
@@ -37,7 +41,7 @@ export class VehiclesComponent implements OnInit{
     this._carService.getMakers().subscribe({
       next:(res)=>{
         this.makers = res.data;
-        console.log(this.makers);
+        //console.log(this.makers);
         
       },
     });
@@ -52,7 +56,7 @@ export class VehiclesComponent implements OnInit{
     this._carService.getCars(page,this.itemsInPage,form?.value).subscribe({
       next:(res)=>{
         this.cars = res.data;
-        console.log(this.cars);
+        //console.log(this.cars);
         this.totalCount=res.totalCount;
         let Pages = Math.ceil((this.totalCount)/this.itemsInPage);
         this.numberOfPages=[];
@@ -62,10 +66,13 @@ export class VehiclesComponent implements OnInit{
       }
     });
   }
+
+  rentCar(car:Car){
+    this.rentCarSelected.emit(car);
+    //console.log(`heeee`, car);
+  }
   
-  changePage(page:number){
-    // console.log(this.currentFilterForm?.value);
-    
+  changePage(page:number){    
     this.getCarsData(page,this.currentFilterForm);
     this.currentPageIndex=page;
   }
@@ -109,5 +116,6 @@ export class VehiclesComponent implements OnInit{
     this.getCarsData(this.currentPageIndex,form);
     this.currentFilterForm = form;
   }
+
 }
 

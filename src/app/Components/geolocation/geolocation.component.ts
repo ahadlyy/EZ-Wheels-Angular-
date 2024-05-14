@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, ViewChild, Output } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { GoogleMapsModule } from '@angular/google-maps';
@@ -7,8 +7,8 @@ import { NgModule } from '@angular/core';
 import { RentCar } from '../../Interfaces/rent-car';
 import { RentCarService } from '../../Services/rent-car.service';
 
-let pickupLocation :number;
-let dropoffLocation:number;
+ let pickupLocation: google.maps.LatLngLiteral | undefined;
+ let dropoffLocation: google.maps.LatLngLiteral | undefined;
 
 interface MapConfig {
   center?: google.maps.LatLngLiteral;
@@ -25,13 +25,13 @@ interface MapConfig {
 })
 
 export class GeolocationComponent implements OnInit {
+    @Output() locationSelected: EventEmitter<{ latitude: number, longitude: number }> = new EventEmitter();
+
   options: MapConfig = {};
   map: google.maps.Map | undefined;
   markers: google.maps.Marker[] = [];
   pickupLocation: google.maps.LatLngLiteral | undefined;
   dropoffLocation: google.maps.LatLngLiteral | undefined;
-
-  constructor(private rentCarService: RentCarService) {}
 
   ngOnInit() {
     if (navigator.geolocation) {
@@ -75,40 +75,24 @@ export class GeolocationComponent implements OnInit {
     if (this.pickupLocation != null && this.dropoffLocation != null) {
         this.addMarker(this.pickupLocation,'pickup');
         this.addMarker(this.dropoffLocation,'dropoff');
+        this.locationSelected.emit({ latitude: this.pickupLocation.lat, longitude: this.pickupLocation.lng });
+        this.locationSelected.emit({ latitude: this.dropoffLocation.lat, longitude: this.dropoffLocation.lng });
     }
-}
-
-addMarker(location: google.maps.LatLngLiteral, type: 'pickup' | 'dropoff') {
-    const rent: RentCar = {
-        ReservationNumber: "RES017",
-        StartingDate: new Date(),
-        EndingDate: new Date(),
+  }
+   
+  addMarker(location: google.maps.LatLngLiteral, type: 'pickup' | 'dropoff') {
+        let locationData = {
         PickUpLatitude: type === 'pickup' ? location.lat : this.pickupLocation?.lat || 0,
         PickUpLongitude: type === 'pickup' ? location.lng : this.pickupLocation?.lng || 0,
         DropOffLatitude: type === 'dropoff' ? location.lat : this.dropoffLocation?.lat || 0,
-        DropOffLongitude: type === 'dropoff' ? location.lng : this.dropoffLocation?.lng || 0,
-        CustomerName: "Adly",
-        CustomerId: "string",
-        PlateNumber: "220197",
-        Make: "Alfa Romeo",
-        Model: "quadrifoglio",
-        TotalRentPrice:1000,
-        IsOnlinePaid:true,
-        IsInProgress:true,
-        NumberOfRentDays:10
+        DropOffLongitude: type === 'dropoff' ? location.lng : this.dropoffLocation?.lng || 0
     };
-
-    if(this.pickupLocation && this.dropoffLocation){
-    this.rentCarService.Create(rent).subscribe({
-        next: (response) => {
-            console.log('Marker added successfully:', response);
-        },
-        error: (error) => {
-            console.error('Error adding marker:', error);
-        }
-    });
-    console.log('Latitude:', location.lat);
-    console.log('Longitude:', location.lng);
+    //console.log(locationData);
+    if(locationData){
+    locationData.DropOffLatitude = 0;
+    locationData.DropOffLongitude = 0;
+    locationData.PickUpLatitude = 0;
+    locationData.PickUpLongitude = 0;
     }
- }
+  }  
 }
