@@ -32,7 +32,10 @@ export class ReservationsComponent implements OnInit {
       error: err=> console.log(err)
     });
     if(this.plateNumber != null)
-      this.sub = this.carService.getCarReservations(this.plateNumber).subscribe(reservations => this.reservations = reservations);
+      this.sub = this.carService.getCarReservations(this.plateNumber).subscribe({
+        next: res => this.reservations = res.data,
+        error: err => console.log(err)
+      });
   }
   showDetails(id:string) {
     console.log(id)
