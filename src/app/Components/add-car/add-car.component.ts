@@ -10,28 +10,28 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './add-car.component.css'
 })
 export class AddCarComponent {
+  transValue:number = 0;
   constructor(private _carService:CarService){}
 
 
 
   newCarForm = new FormGroup({
-    PlateNumber : new FormControl(''),
-    ChassisNumber : new FormControl(''),
-    Make : new FormControl(''),
-    Color : new FormControl(''),
-    RentalPrice : new FormControl(''),
-    Model : new FormControl(''),
-    Variant : new FormControl(''),
-    NumberOfPassengers : new FormControl(''),
-    Transmission : new FormControl(''),
-    Type : new FormControl('')
+    plateNumber : new FormControl(''),
+    chassisNumber : new FormControl(''),
+    make : new FormControl(''),
+    color : new FormControl(''),
+    rentalPrice : new FormControl(''),
+    model : new FormControl(''),
+    variant : new FormControl(''),
+    numberOfPassengers : new FormControl(''),
+    transmission : new FormControl<number>(0),
+    // type : new FormControl('')
   });
 
 
   submit(form:FormGroup){
     if(form.valid){
       //console.log(form.value);
-      
       this._carService.addCar(form.value).subscribe({
         next:(res)=>console.log(res),
         error:(err)=>console.log(err)
