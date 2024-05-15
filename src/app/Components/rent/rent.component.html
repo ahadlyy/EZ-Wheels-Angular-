@@ -1,3 +1,5 @@
+<div class="container w-75">
+  <div class="sticky-container">
 <div class="card text-center">
     <div class="card-header">
         <ul class="nav nav-tabs card-header-tabs" id="myTab">
@@ -17,8 +19,9 @@
     </div>
     <div class="card-body">
         <div *ngIf="activeTab === 'renting'">
+          <div class="col-md-6">
             <div class="form-group">
-                <label for="pickupDate">PickUp Date</label>
+                <label for="pickupDate" style="margin: 10px; font-size: 21px;">PickUp Date :</label>
                 <mat-form-field>
                     <input matInput [matDatepicker]="picker1" placeholder="PickUp Date" [(ngModel)]="rent.StartingDate">
                     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
@@ -26,13 +29,17 @@
                 </mat-form-field>
             </div>
             <div class="form-group">
-                <label for="returnDate">Return Date</label>
+                <label for="returnDate" style="margin: 10px; font-size: 22px;">Return Date :</label>
                 <mat-form-field>
                     <input matInput [matDatepicker]="picker2" placeholder="Return Date" [(ngModel)]="rent.EndingDate">
                     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                     <mat-datepicker #picker2></mat-datepicker>
                 </mat-form-field>
             </div>
+          </div>
+          <div class="col-md-6">
+
+          </div>
             <!-- Other form fields -->
             <!-- <button class="btn btn-primary" (click)="saveRent()">Save</button> -->
         </div>
@@ -47,4 +54,8 @@
             <app- (locationSelected)="onLocationSelected($event)"></app-geolocation>
         </div> -->
     </div>
+</div>
+
+</div>
+
 </div>

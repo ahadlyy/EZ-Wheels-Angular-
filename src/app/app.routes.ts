@@ -10,23 +10,22 @@ import { AdminComponent } from './Components/admin/admin.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { RentComponent } from './Components/rent/rent.component';
 
-
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'login', component: LoginComponent },
-    // { path: 'vehicles', component: VehiclesComponent },
     { path: 'admin', component: AdminComponent },
     { path: 'vehicles', component: VehiclesComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'reservations', component: ReservationsComponent },
     { path: 'reservations/:reservationNumber', component: ReservationDetailsComponent },
     { path:'profile', component:ProfileComponent },
-    { path: '', redirectTo: 'home', pathMatch: 'full' }]
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: '', component: RentComponent,
-      children: [
-      { path: 'vehicles', component:VehiclesComponent, outlet: 'vehiclesContent' },
-      { path: 'map', component:GeolocationComponent, outlet: 'mapContent' }
-    ]
-  }
+    { path: '', redirectTo: 'home', pathMatch: 'full' }, 
+    {
+        path: '',
+        component: RentComponent,
+        children: [
+            { path: 'vehicles', component: VehiclesComponent, outlet: 'vehiclesContent' },
+            { path: 'map', component: GeolocationComponent, outlet: 'mapContent' }
+        ]
+    }
 ];
