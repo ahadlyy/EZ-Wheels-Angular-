@@ -9,6 +9,8 @@ import { ReservationDetailsComponent } from './Components/reservation-details/re
 import { AdminComponent } from './Components/admin/admin.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { RentComponent } from './Components/rent/rent.component';
+import { CarDetailsComponent } from './Components/car-details/car-details.component';
+import { AddCarComponent } from './Components/add-car/add-car.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
