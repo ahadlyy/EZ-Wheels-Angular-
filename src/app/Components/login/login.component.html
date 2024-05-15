@@ -19,8 +19,8 @@
             <div class="d-block bg-secondary w-25 text-center mt-3 opacity-50" style="height: 1px;"></div>
         </div>
         <form [formGroup]="loginForm" (ngSubmit)="logIn(loginForm)" class="d-flex flex-column justify-content-center px-5 py-3 w-75">
-            <input id="username" type="text" formControlName="userName" placeholder="username" class="fw-bold text-color-website form-control">
-            <input id="password" type="password" formControlName="password" placeholder="password" class="fw-bold text-color-website border my-3 form-control">
+            <input id="username" type="text" formControlName="userName" placeholder="Username" class="fw-bold text-color-website form-control">
+            <input id="password" type="password" formControlName="password" placeholder="Password" class="fw-bold text-color-website border my-3 form-control">
             <input type="submit" class="my-3 text-white fw-bold bg-color-website border border-0 p-1 rounded" value="Login" />
         </form>
         <a class="text-color-website text-decoration-none fw-bold" routerLink="/register">New customer? Signup here</a>

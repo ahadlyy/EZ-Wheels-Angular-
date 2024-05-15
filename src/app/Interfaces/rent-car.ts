@@ -10,5 +10,9 @@ export interface RentCar {
     CustomerId:string,
     PlateNumber:string,
     Make:string,
-    Model:string
+    Model:string,
+    TotalRentPrice:number,
+    IsOnlinePaid:boolean,
+    IsInProgress:boolean,
+    NumberOfRentDays:number
 }

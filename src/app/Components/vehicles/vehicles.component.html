@@ -284,7 +284,7 @@
         <div class="row g-3">
           @for (item of cars; track $index) {
           <div class="col-md-6 col-lg-4">
-            <app-vehicle-item [data]="item"></app-vehicle-item>
+            <app-vehicle-item [data]="item" (rentedCar)="rentCar($event)"></app-vehicle-item>
           </div>
           }
           @if (cars.length == 0) {
