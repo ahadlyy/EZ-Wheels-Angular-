@@ -12,12 +12,12 @@ import { UserService } from '../../Services/user.service';
 })
 export class ProfileComponent {
   updateUserForm = new FormGroup({
-    userName: new FormControl( this.authService.User.userName ),
+    userName: new FormControl( this.authService.User.value.userName ),
     password: new FormControl(),
     confirmPassword: new FormControl(),
-    email: new FormControl(this.authService.User.email),
-    age: new FormControl(this.authService.User.age),
-    phone: new FormControl(this.authService.User.phone)
+    email: new FormControl(this.authService.User.value.email),
+    age: new FormControl(this.authService.User.value.age),
+    phone: new FormControl(this.authService.User.value.phone)
   });
 
   submitUserInfo(formGroup: FormGroup) {    

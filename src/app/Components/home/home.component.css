@@ -15,6 +15,14 @@
   background-repeat: no-repeat;
   min-height: 100Vh;
 }
+.contentcontainer{
+
+    border-radius: 1rem; /* Assuming 'rounded-pill' means a large radius, adjust as needed */
+    position: relative; /* If you're using z-index, ensure the element is positioned */
+    z-index: 1; /* Adjusts the stacking order, but only affects visibility if the element is positioned */
+}
+
+
 
 .transparent {
   background-color: transparent !important;
@@ -46,8 +54,8 @@
 }
 
 .subtitleone {
-  font-size: 72px;
-  margin-bottom: 0px;
+  font-size: 44px;
+  margin: 0.5rem;
   letter-spacing: -4.2px;
 
 }
