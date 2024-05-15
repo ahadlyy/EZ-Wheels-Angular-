@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 import { GeolocationComponent } from '../geolocation/geolocation.component';
 import { Router, RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -16,6 +16,9 @@ import { RentCar } from '../../Interfaces/rent-car';
 import { CarService } from '../../Services/car.service';
 import { Car } from '../../Interfaces/car';
 import { AuthenticationService } from '../../Services/authentication.service';
+import { LoginUser } from '../../Interfaces/login-user';
+import { RegisterUser } from '../../Interfaces/register-user';
+import { UserService } from '../../Services/user.service';
 
 
 @Component({
@@ -27,8 +30,9 @@ import { AuthenticationService } from '../../Services/authentication.service';
   templateUrl: './rent.component.html',
   styleUrl: './rent.component.css'
 })
-export class RentComponent {
- constructor() {}
+export class RentComponent implements OnInit {
+  loggedInUser: LoginUser | any;
+ constructor(private authService: AuthenticationService) { }
  rent: RentCar = {
         ReservationNumber:"",
         StartingDate: new Date(),
@@ -47,6 +51,13 @@ export class RentComponent {
         NumberOfRentDays:0,
         TotalRentPrice:0
     };
+
+    ngOnInit(): void {
+    this.authService.targetUser.subscribe((user: LoginUser) => {
+      this.rent.CustomerName = this.authService.User.userName;
+      this.rent.CustomerId = this.authService.User.userId;
+    });
+  }
 
 activeTab: string = 'renting';
   showContent(tab: string) {
