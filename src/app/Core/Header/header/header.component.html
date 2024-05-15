@@ -2,7 +2,7 @@
     <header class="header">
         <div class="container-fluid">
             <div class="row align-items-center">
-                <div class="col-md-4">
+                <div class="col-md-6 col-12">
                     <button class="menu-toggle-button" type="button" aria-label="Open global navigation menu">
                         <span class="menu-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -10,22 +10,23 @@
                             </svg>
                         </span>
                     </button>
-                    <a href="/" class="logo-link">
-                        <img src="assets/images/ez-wheels.png" alt="Your Logo" class="logo-image">
+                    <a href="/" class="logo-link ms-5">
+                      <img width="100" _ngcontent-ng-c4265544765="" src="../../../../assets/images/ez-wheels-high-resolution-logo-white-transparent.png" alt="Your Logo" class="logo-image">
+
                     </a>
                 </div>
-                <div class="col-md-8 text-end">
+                <div class="col-md-6 col-12 text-end">
                     <div id="customersettings_root" class="customer-settings">
-                        <button class="btn btn-link" type="button">Manage bookings</button>
-                        <button class="btn btn-link" type="button">Notifications</button>
+                        <button class="btn btn-link text-decoration-none btn-white bg-white text-black rounded-pill" type="button">Manage bookings</button>
+                        <button class="btn btn-link  text-decoration-none btn-white bg-white text-black rounded-pill" type="button">Notifications</button>
                         @if (this.authService.User == null) {
-                            <a class="btn btn-link" type="button" routerLink="login">Log in | Register</a>
+                            <a class="btn btn-link text-decoration-none btn-white bg-black ms-1 text-white rounded-pill" type="button" routerLink="login">Log in | Register</a>
                         } @else {
                             <button class="btn btn-link" (click)="this.authService.logOut()" type="button">Log out</button>
                             <a class="btn btn-link" routerLink="profile" type="button">Profile</a>
                         }
-                        <a routerLink="vehicles"> Vehicles</a>
-                        <a class="btn btn-link" type="button" routerLink="login">Log in | Register</a>
+
+
                         <!-- <a routerLink="vehicles"> Vehicles</a>
                         <a routerLink="map"> pickUp|dropOff</a> -->
                     </div>
