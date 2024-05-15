@@ -10,8 +10,8 @@ import { EventEmitter } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  User: any; // get from here 
-  // @Output() targetUser: EventEmitter<User> = new EventEmitter<User>();
+  User: LoginUser | any;
+  @Output() targetUser: EventEmitter<LoginUser> = new EventEmitter<LoginUser>();
   baseUrl = "https://localhost:7108/api/account/";
 
   register(user: RegisterUser): Observable<any> {
@@ -30,6 +30,10 @@ export class AuthenticationService {
   setCredentials(token: string, user: any) {
     localStorage.setItem("token", `${token}`);
     this.User = JSON.parse(user);
+  }
+
+  login(user: LoginUser) {
+    this.targetUser.emit(user);
   }
 
   constructor(public http: HttpClient) { }
