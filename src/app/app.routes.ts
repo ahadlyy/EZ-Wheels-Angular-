@@ -14,6 +14,8 @@ export const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'admin', component: AdminComponent },
+  {path:'car-details/:id',component:CarDetailsComponent},
+    {path:'add-car',component:AddCarComponent},
     { path: 'vehicles', component: VehiclesComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'reservations', component: ReservationsComponent },
@@ -28,4 +30,5 @@ export const routes: Routes = [
             { path: 'map', component: GeolocationComponent, outlet: 'mapContent' }
         ]
     }
+
 ];
