@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from '../../Core/Header/header/header.component';
+import { RentComponent } from '../rent/rent.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [RentComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

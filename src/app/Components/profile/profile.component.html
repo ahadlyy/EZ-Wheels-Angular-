@@ -1,0 +1,24 @@
+<h1 class="playfair-display-h2 main-text-color">Profile</h1>
+
+<form [formGroup]="updateUserForm" (ngSubmit)="submitUserInfo(updateUserForm)" class="d-flex flex-column justify-content-center px-5 py-3 w-75">
+
+    <label for="username">Username</label>
+    <input id="username" type="text" formControlName="userName" class="fw-bold text-color-website border my-3 form-control">
+    
+    <label for="password">Password</label>
+    <input id="password" type="password" formControlName="password" class="fw-bold text-color-website border my-3 form-control">
+
+    <label for="confirmPass">Confirm Password</label>
+    <input id="confirmPass" type="password" formControlName="confirmPassword" class="fw-bold text-color-website border my-3 form-control">
+
+    <label for="email">Email</label>
+    <input id="email" type="text" formControlName="email" class="fw-bold text-color-website border my-3 form-control">
+
+    <label for="age">Age</label>
+    <input id="age" type="text" formControlName="age" class="fw-bold text-color-website border my-3 form-control">
+
+    <label for="phone">Phone Number</label>
+    <input id="phone" type="text" formControlName="phone" class="fw-bold text-color-website border my-3 form-control">
+
+    <input type="submit" class="my-3 text-white fw-bold bg-color-website border border-0 p-1 rounded" value="Update" />
+</form>

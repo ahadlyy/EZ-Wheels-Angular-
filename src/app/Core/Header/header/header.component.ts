@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthenticationService } from '../../../Services/authentication.service';
+import { GeolocationComponent } from '../../../Components/geolocation/geolocation.component';
+
 
 @Component({
   selector: 'app-header',
@@ -10,4 +13,5 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class HeaderComponent {
 
+constructor(public authService: AuthenticationService) { }
 }
