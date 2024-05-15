@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './reservations.component.html',
   styleUrl: './reservations.component.css'
 })
-export class ReservationsComponent implements OnInit, OnDestroy {
+export class ReservationsComponent implements OnInit {
   sub: Subscription | null = null;
   @Input() plateNumber: string|null = null;
   reservations: RentCar[] = [
@@ -27,14 +27,21 @@ export class ReservationsComponent implements OnInit, OnDestroy {
   selectedReservation: RentCar | null = null;
   constructor(private rentCarService: RentCarService,private carService: CarService, private router:Router){}
   ngOnInit(): void {
-    this.sub = this.rentCarService.getAll().subscribe(reservations => this.reservations = reservations);
+     this.rentCarService.getAll().subscribe({
+      next: res => this.reservations = res.data,
+      error: err=> console.log(err)
+    });
     if(this.plateNumber != null)
-      this.sub = this.carService.getCarReservations(this.plateNumber).subscribe(reservations => this.reservations = reservations);
+      this.sub = this.carService.getCarReservations(this.plateNumber).subscribe({
+        next: res => this.reservations = res.data,
+        error: err => console.log(err)
+      });
   }
-  showDetails(reservation: RentCar) {
-    this.router.navigate(['/reservations', reservation.ReservationNumber]);
+  showDetails(id:string) {
+    console.log(id)
+    this.router.navigate(['/reservations', id]);
   }
-  ngOnDestroy(): void {
-    this.sub?.unsubscribe();
-  }
+  // ngOnDestroy(): void {
+  //   this.sub?.unsubscribe();
+  // }
 }

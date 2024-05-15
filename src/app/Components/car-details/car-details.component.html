@@ -1,1 +1,161 @@
-<p>car-details works!</p>
+<div class="container my-4">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="slid-cont">
+        <img src="assets/images/chev.png" class="w-100 h-100" alt="" />
+      </div>
+    </div>
+    <div class="col-md-4  d-flex align-items-center">
+      <div class="car-status p-4 mt-3 w-100 position-relative rounded">
+        <div class="badge py-2">
+          <i class="fa-solid fa-check me-2" *ngIf="car.state == 0"></i>
+          <i
+            class="fa-solid fa-screwdriver-wrench me-2"
+            *ngIf="car.state == 1"
+          ></i>
+          <i class="fa-solid fa-xmark me-2" *ngIf="car.state == 2"></i>
+          <span *ngIf="car.state == 0"> Available for Rent</span>
+          <span *ngIf="car.state == 2"> Rented</span>
+          <span *ngIf="car.state == 1"> under Maintenance</span>
+        </div>
+        <div class="btns">
+          <span class="rent-price">{{car.rentalPrice}} EGP </span>
+          <span class="text-white fs-6">per Day</span>
+          <br>
+          <button class="rent-btn" *ngIf="car.state == 0">Rent Now !</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center mt-5">
+    <p class="text-secondary fs-6">{{ car.make }}</p>
+    <h2 class="fs-1 fw-bold">{{ car.model }}</h2>
+  </div>
+
+  <div class="icons">
+    <div class="row g-2">
+      <div class="col-md-3">
+        <div class="info-item">
+          <div class="icon me-1">
+            <i class="fa-solid fa-gauge-simple-high"></i>
+          </div>
+          <div class="info">
+            <p class="mb-0 text-secondary">Mileage</p>
+            <span>{{ car.mileage }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3" *ngIf="car.transmission == 0">
+        <div class="info-item d-flex justify-content-center align-items-center">
+          <div class="icon me-1">
+            <i class="fa-solid fa-m"></i>
+          </div>
+          <div class="info">
+            <p class="mb-0 text-secondary">Transmission</p>
+            <span>Manual</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3" *ngIf="car.transmission == 1">
+        <div class="info-item d-flex justify-content-center align-items-center">
+          <div class="icon me-1">
+            <i class="fa-solid fa-a"></i>
+          </div>
+          <div class="info">
+            <p class="mb-0 text-secondary">Transmission</p>
+            <span>Automatic</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="info-item d-flex justify-content-center align-items-center">
+          <div class="icon me-1">
+            <i class="fa-solid fa-brush"></i>
+          </div>
+          <div class="info">
+            <p class="mb-0 text-secondary">Color</p>
+            <span>{{ car.color }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="info-item d-flex">
+          <div class="icon me-1">
+            <i class="fa-solid fa-car-rear"></i>
+          </div>
+          <div class="info">
+            <p class="mb-0 text-secondary">Plate Number</p>
+            <span>{{ car.plateNumber }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="info-item d-flex justify-content-center align-items-center">
+          <div class="icon me-1">
+            <i class="fa-solid fa-money-check-dollar"></i>
+          </div>
+          <div class="info">
+            <p class="mb-0 text-secondary">Price per day</p>
+            <span>{{ car.rentalPrice }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="info-item d-flex justify-content-center align-items-center">
+          <div class="icon me-1">
+            <i class="fa-solid fa-car-side"></i>
+          </div>
+          <div class="info">
+            <p class="mb-0 text-secondary">Variant</p>
+            <span>{{ car.variant }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="info-item d-flex justify-content-center align-items-center">
+          <div class="icon me-1">
+            <i class="fa-solid fa-users"></i>
+          </div>
+          <div class="info">
+            <p class="mb-0 text-secondary">passengers</p>
+            <span>{{ car.numberOfPassengers }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="info-item d-flex justify-content-center align-items-center">
+          <div class="icon me-1">
+            <i class="fa-solid fa-truck"></i>
+          </div>
+          <div class="info">
+            <p class="mb-0 text-secondary">Type</p>
+            <span>{{ TypeEnum[car.type] }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="similar-cars text-center mt-5" *ngIf="similarCars.length > 0">
+    <p class="text-secondary fs-6">Choose Car</p>
+    <h2 class="fs-1 fw-bold">Related Products</h2>
+    <div class="cars">
+      <div class="row">
+        @for (item of similarCars; track $index) {
+        <div class="col-md-4">
+          <app-vehicle-item [data]="item"></app-vehicle-item>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
