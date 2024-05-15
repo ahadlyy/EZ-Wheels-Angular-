@@ -1,0 +1,44 @@
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="text-center mb-2">Add New Car</h1>
+            <form [formGroup]="newCarForm" (ngSubmit)="submit(newCarForm)"  enctype="multipart/form-data">
+                <input type="text" class="form-control my-2" placeholder="Plate Number" formControlName="PlateNumber"/>
+                <input type="text" class="form-control my-2" placeholder="Chassis Number" formControlName="ChassisNumber"/>
+                <input type="text" class="form-control my-2" placeholder="Make" formControlName="Make"/>
+                <input type="text" class="form-control my-2" placeholder="Color" formControlName="Color"/>
+                <input type="number" class="form-control my-2" placeholder="Rental Price" formControlName="RentalPrice"/>
+                <input type="number" class="form-control my-2" placeholder="mileage" formControlName="mileage"/>
+                <input type="text" class="form-control my-2" placeholder="Model" formControlName="Model"/>
+                <input type="text" class="form-control my-2" placeholder="Variant" formControlName="Variant"/>
+                <input type="number" class="form-control my-2" placeholder="Number Of Passengers" formControlName="NumberOfPassengers"/>
+                <input type="text" class="form-control my-2" placeholder="Transmission" formControlName="Transmission"/>
+                <input type="text" class="form-control my-2" placeholder="Type" formControlName="Type"/>
+                <input type="text" type="submit" class="btn btn-secondary w-100">
+              </form>
+        </div>
+        <div class="col-md-6">
+            <div class="car-img">
+                <img src="assets/images/chev.png" alt="car-img">
+            </div>
+            
+            <div class="images-upload my-4 cursor-pointer">
+                <label
+                  for="file-upload"
+                  class="custom-file-upload m-auto d-block w-50 text-center fw-bold"
+                  >Upload Cover Image</label
+                >
+                <input
+                  class="upload-img d-none"
+                  id="file-upload"
+                  type="file"
+                  
+                />
+              </div>
+
+        </div>
+    </div>
+
+</div>
+
+
