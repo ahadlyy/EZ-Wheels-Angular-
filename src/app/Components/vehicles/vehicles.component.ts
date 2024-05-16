@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { LoaderService } from '../../Services/loader.service';
+import { Router } from '@angular/router';
 
 import { RentCar } from '../../Interfaces/rent-car';
 
@@ -29,7 +30,7 @@ export class VehiclesComponent implements OnInit{
   currentFilterForm : any ;
   colors:string[] = [];
   makers:string[] = [];
-  constructor(private _carService:CarService){};
+  constructor(private _carService:CarService,private _router:Router){};
 
   ngOnInit(): void {
     
