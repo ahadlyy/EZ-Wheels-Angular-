@@ -2,23 +2,24 @@
   <div class="row">
     <div class="col-md-8">
       <div class="slid-cont">
-        <img src="assets/images/chev.png" class="w-100 h-100" alt="" />
+        <img *ngIf="car.photoUrl != null" [src]="car.photoUrl" class="w-100 h-100" alt="" />
+        <img *ngIf="car.photoUrl == null" src="assets/images/default-car.jpg" class="w-100 h-100" alt="default-car">
       </div>
     </div>
     <div class="col-md-4  d-flex align-items-center">
       <div class="car-status p-4 mt-3 w-100 position-relative rounded">
         <div class="badge py-2">
-          <i class="fa-solid fa-check me-2" *ngIf="car.state == 0"></i>
+          <i class="fa-solid fa-check me-2" *ngIf="carState == 'Available'"></i>
           <i
             class="fa-solid fa-screwdriver-wrench me-2"
-            *ngIf="car.state == 1"
+            *ngIf="carState == 'Maintenance'"
           ></i>
-          <i class="fa-solid fa-xmark me-2" *ngIf="car.state == 2"></i>
-          <span *ngIf="car.state == 0"> Available for Rent</span>
-          <span *ngIf="car.state == 2"> Rented</span>
-          <span *ngIf="car.state == 1"> under Maintenance</span>
+          <i class="fa-solid fa-xmark me-2" *ngIf="carState == 'Rented'"></i>
+          <span *ngIf="carState == 'Available'"> Available for Rent</span>
+          <span *ngIf="carState== 'Rented'"> Rented</span>
+          <span *ngIf="carState == 'Maintenance'"> under Maintenance</span>
         </div>
-        <div class="btns">
+        <div class="btns pt-4">
           <span class="rent-price">{{car.rentalPrice}} EGP </span>
           <span class="text-white fs-6">per Day</span>
           <br>
@@ -47,7 +48,7 @@
         </div>
       </div>
 
-      <div class="col-md-3" *ngIf="car.transmission == 0">
+      <div class="col-md-3" *ngIf="transmission== 'Manual'">
         <div class="info-item d-flex justify-content-center align-items-center">
           <div class="icon me-1">
             <i class="fa-solid fa-m"></i>
@@ -59,7 +60,7 @@
         </div>
       </div>
 
-      <div class="col-md-3" *ngIf="car.transmission == 1">
+      <div class="col-md-3" *ngIf="transmission== 'Automatic'">
         <div class="info-item d-flex justify-content-center align-items-center">
           <div class="icon me-1">
             <i class="fa-solid fa-a"></i>
@@ -138,7 +139,7 @@
           </div>
           <div class="info">
             <p class="mb-0 text-secondary">Type</p>
-            <span>{{ TypeEnum[car.type] }}</span>
+            <span>{{ carType }}</span>
           </div>
         </div>
       </div>

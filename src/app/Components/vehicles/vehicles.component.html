@@ -277,11 +277,9 @@
         <div class="row g-3">
           @for (item of cars; track $index) {
           <div class="col-md-6 col-lg-4">
-<<<<<<< HEAD
-            <app-vehicle-item [data]="item" [mode]="'admin'"></app-vehicle-item>
-=======
-            <app-vehicle-item [data]="item" (rentedCar)="rentCar($event)"></app-vehicle-item>
->>>>>>> 77cebce268171270b2b8cbb5f5593ae9bb7038e5
+
+            <app-vehicle-item [data]="item" [mode]="'admin'" (rentedCar)="rentCar($event)"></app-vehicle-item>
+
           </div>
           } @if (cars.length == 0) {
           <h2>No Cars Found ....</h2>

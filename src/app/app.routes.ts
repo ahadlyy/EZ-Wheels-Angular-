@@ -12,6 +12,7 @@ import { RentComponent } from './Components/rent/rent.component';
 import { CarDetailsComponent } from './Components/car-details/car-details.component';
 import { AddCarComponent } from './Components/add-car/add-car.component';
 import { EditCarComponent } from './Components/edit-car/edit-car.component';
+import { NotFoundComponent } from './Core/not-found/not-found.component';
 import { AdminUsersComponent } from './Components/admin-users/admin-users.component';
 import { UserFormComponent } from './Components/user-form/user-form.component';
 import { canloginGuard } from './guards/canlogin.guard';
@@ -41,6 +42,9 @@ export const routes: Routes = [
             { path: 'vehicles', component: VehiclesComponent, outlet: 'vehiclesContent' },
             { path: 'map', component: GeolocationComponent, outlet: 'mapContent' }
         ]
+    },
+    {
+        path:"**",component:NotFoundComponent
     }
 ];
 
