@@ -17,6 +17,6 @@ export class AdminComponent {
     this.router.navigate(['/vehicles']);
   }
   goToUsers() {
-    // this.router.navigate(['/vehicles']);
+    this.router.navigate(['/users']);
   }
 }

@@ -11,10 +11,17 @@ import { ProfileComponent } from './Components/profile/profile.component';
 import { RentComponent } from './Components/rent/rent.component';
 import { CarDetailsComponent } from './Components/car-details/car-details.component';
 import { AddCarComponent } from './Components/add-car/add-car.component';
+
 import { EditCarComponent } from './Components/edit-car/edit-car.component';
 import { NotFoundComponent } from './Core/not-found/not-found.component';
 
+import { AdminUsersComponent } from './Components/admin-users/admin-users.component';
+import { UserFormComponent } from './Components/user-form/user-form.component';
+
+
+
 export const routes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' }, 
     { path: 'home', component: HomeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'admin', component: AdminComponent },
@@ -25,8 +32,11 @@ export const routes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'reservations', component: ReservationsComponent },
     { path: 'reservations/:reservationNumber', component: ReservationDetailsComponent },
+    { path:'profile', component:ProfileComponent },
+    { path:'users', component:AdminUsersComponent },
+    { path:'users/update/:id', component:UserFormComponent },
+    { path:'users/add', component:UserFormComponent },
     { path:'profile/:id', component:ProfileComponent },
-    { path: '', redirectTo: 'home', pathMatch: 'full' }, 
     {
         path: '',
         component: RentComponent,

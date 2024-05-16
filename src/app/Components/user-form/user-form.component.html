@@ -1,0 +1,16 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm)" class="m-5 text-center">
+    @if(userId){
+        <h2 class="bg-dark text-light rounded-3 p-1">Edit a User</h2>
+    }
+    @else {
+        <h2 class="bg-dark text-light rounded-3 p-1">Add an Employee</h2>
+    }
+    <input id="userName" type="text" formControlName="userName" placeholder="Username" class="fw-bold text-color-website form-control my-1">
+    <input id="email" type="text" formControlName="email" placeholder="Email" class="fw-bold text-color-website form-control my-1">
+    <input id="age" type="number" formControlName="age" placeholder="Age" class="fw-bold text-color-website form-control my-1">
+    <input id="phone" type="text" formControlName="phoneNumber" placeholder="Phone" class="fw-bold text-color-website form-control my-1">
+    <input id="password" type="password" formControlName="password" placeholder="Password" class="fw-bold text-color-website border my-1 form-control">
+    <input id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="Confirm Password" class="fw-bold text-color-website border my-1 form-control">
+    
+    <button type="submit" class="btn btn-success mt-2 w-25">Submit</button>
+</form>
