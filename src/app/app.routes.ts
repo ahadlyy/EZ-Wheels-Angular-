@@ -14,6 +14,7 @@ import { AddCarComponent } from './Components/add-car/add-car.component';
 import { AdminUsersComponent } from './Components/admin-users/admin-users.component';
 import { UserFormComponent } from './Components/user-form/user-form.component';
 
+
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'login', component: LoginComponent },
@@ -28,6 +29,8 @@ export const routes: Routes = [
     { path:'users', component:AdminUsersComponent },
     { path:'users/update/:id', component:UserFormComponent },
     { path:'users/add', component:UserFormComponent },
+    { path:'profile/:id', component:ProfileComponent },
+
     { path: '', redirectTo: 'home', pathMatch: 'full' }, 
     {
         path: '',
@@ -37,5 +40,4 @@ export const routes: Routes = [
             { path: 'map', component: GeolocationComponent, outlet: 'mapContent' }
         ]
     }
-
 ];
