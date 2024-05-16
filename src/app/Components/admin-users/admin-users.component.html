@@ -1,0 +1,85 @@
+
+<div class="pt-2 d-flex flex-column justify-content-center bg-dark fontf"
+>
+<p class="d-flex justify-content-between m-3">
+    <a class="btn orange-bg fw-semibold" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Show Employees</a>
+    <button class="btn orange-bg fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Show Clients</button>
+    <button class="btn orange-bg fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Show Both</button>
+  </p>
+  <div>
+    <div>
+      <div class="collapse multi-collapse" id="multiCollapseExample1">
+        <div class="card card-body bg-dark">
+            <h2 class="text-info text-center">Employees</h2>
+            <table
+                class="table table-warning"
+            >
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Age</th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">Operations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for(user of employees; track $index){
+                        <tr>
+                            <td>{{user.id}}</td>
+                            <td>{{user.userName}}</td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.age}}</td>
+                            <td>{{user.phoneNumber}}</td>
+                            <td>
+                                <button class="btn btn-warning" [routerLink]="['/users','update', user.id]">Update</button>
+                                <button class="btn btn-danger" (click)="deleteUser(user.id)">Delete</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="collapse multi-collapse" id="multiCollapseExample2">
+        <div class="card card-body bg-dark">
+            <h2 class="text-info text-center">Clients</h2>
+            <table
+            class="table table-success"
+        >
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(user of clients; track $index){
+                    <tr>
+                        <td>{{user.id}}</td>
+                        <td>{{user.userName}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.age}}</td>
+                        <td>{{user.phoneNumber}}</td>
+                        <td>
+                            <button class="btn btn-warning" [routerLink]="['/users','update', user.id]">Update</button>
+                            <button class="btn btn-danger" (click)="deleteUser(user.id)">Delete</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+  </div>
+    <button class="btn w-50 m-auto orange-bg fw-semibold" [routerLink]="['/users', 'add']">Add an Employee</button>
+</div>
+
