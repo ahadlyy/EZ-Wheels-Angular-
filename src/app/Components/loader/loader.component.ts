@@ -15,9 +15,7 @@ export class LoaderComponent// implements OnDestroy
   isLoading:boolean = false;
   sub:Subscription = new Subscription();
   constructor(public loader: LoaderService) { 
-    this.sub = this.loader.loading.subscribe(loader => {this.isLoading =loader
-      console.log(this.isLoading);
-      
+    this.sub = this.loader.loading.subscribe(loader => {this.isLoading =loader      
     });
     
   }

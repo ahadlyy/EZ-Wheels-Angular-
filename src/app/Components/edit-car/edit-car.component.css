@@ -1,0 +1,27 @@
+.custom-file-upload{
+    cursor: pointer;
+    border: 1px solid #222;
+    border-radius: 5px;
+    padding: 10px 20px;
+    transition: all 0.4s;
+}
+
+.custom-file-upload:hover{
+    background-color: #222;
+    color: white;
+}
+
+label{
+    font-family: var(--heading-font-helveticanow);
+    font-weight: 600;
+}
+
+input{
+    font-family: var(--heading-font-helveticanow);
+    font-weight: 400;
+}
+
+input:focus{
+    border:1px solid black !important;
+    box-shadow:none !important;
+}
