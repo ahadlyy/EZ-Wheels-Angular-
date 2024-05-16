@@ -20,11 +20,12 @@
 
                         <button class="btn btn-link text-decoration-none btn-white bg-white text-black rounded-pill" type="button">Manage bookings</button>
                         <button class="btn btn-link  text-decoration-none btn-white bg-white text-black rounded-pill" type="button">Notifications</button>
+                        <a class="btn btn-link text-decoration-none btn-white bg-white text-black rounded-pill" routerLink="/add-car">Add Car</a>
                         @if (this.authService.User == null) {
                             <a class="btn btn-link text-decoration-none btn-white bg-black ms-1 text-white rounded-pill" type="button" routerLink="login">Log in | Register</a>
                         } @else {
                             <button class="btn btn-link" (click)="this.authService.logOut()" type="button">Log out</button>
-                            <a class="btn btn-link" [routerLink]="['profile', this.authService.User.id]"  type="button">Profile</a>
+                            <a class="btn btn-link" [routerLink]="['profile', this.authService.User.value.id]"  type="button">Profile</a>
                         }
 
 
