@@ -22,7 +22,7 @@ export const routes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'reservations', component: ReservationsComponent },
     { path: 'reservations/:reservationNumber', component: ReservationDetailsComponent },
-    { path:'profile', component:ProfileComponent },
+    { path:'profile/:id', component:ProfileComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' }, 
     {
         path: '',
@@ -32,5 +32,4 @@ export const routes: Routes = [
             { path: 'map', component: GeolocationComponent, outlet: 'mapContent' }
         ]
     }
-
 ];

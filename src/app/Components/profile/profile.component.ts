@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationService } from '../../Services/authentication.service';
 import { UserService } from '../../Services/user.service';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -11,14 +13,26 @@ import { UserService } from '../../Services/user.service';
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
-  updateUserForm = new FormGroup({
-    userName: new FormControl( this.authService.User.value.userName ),
-    password: new FormControl(),
-    confirmPassword: new FormControl(),
-    email: new FormControl(this.authService.User.value.email),
-    age: new FormControl(this.authService.User.value.age),
-    phone: new FormControl(this.authService.User.value.phone)
-  });
+  // updateUserForm = new FormGroup({
+  //   userName: new FormControl( this.userToUpdate.UserName ),
+  //   password: new FormControl(),
+  //   confirmPassword: new FormControl(),
+  //   email: new FormControl(this.userToUpdate.Email),
+  //   age: new FormControl(this.userToUpdate.Age),
+  //   phone: new FormControl(this.userToUpdate.PhoneNumber)
+  // });
+  updateUserForm!: FormGroup;
+
+  initializeForm() {
+    this.updateUserForm = new FormGroup({
+      userName: new FormControl(this.userToUpdate.UserName),
+      password: new FormControl(),
+      confirmPassword: new FormControl(),
+      email: new FormControl(this.userToUpdate.Email),
+      age: new FormControl(this.userToUpdate.Age),
+      phone: new FormControl(this.userToUpdate.PhoneNumber)
+    });
+  }
 
   submitUserInfo(formGroup: FormGroup) {    
     if (formGroup.valid) {
@@ -35,5 +49,25 @@ export class ProfileComponent {
     }
   }
 
-  constructor(public userService: UserService, public authService: AuthenticationService) { }
+  sub: Subscription | null = null;
+  subHelper: Subscription | null = null;
+  userToUpdate: any = null;
+
+  ngOnDestroy(): void {
+    this.sub?.unsubscribe();
+    this.subHelper?.unsubscribe();
+  }
+
+  ngOnInit() {
+    this.sub = this.activatedRoute.params.subscribe(
+      {
+        next: data => this.subHelper = this.userService.getById(data['id']).subscribe(user => {
+          this.userToUpdate = user;
+          this.initializeForm();
+      })
+      }
+    );
+  }
+
+  constructor(public userService: UserService, public authService: AuthenticationService, public activatedRoute: ActivatedRoute) { }
 }
