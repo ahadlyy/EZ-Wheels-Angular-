@@ -9,6 +9,8 @@ import { ReservationDetailsComponent } from './Components/reservation-details/re
 import { AdminComponent } from './Components/admin/admin.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { RentComponent } from './Components/rent/rent.component';
+import { CarDetailsComponent } from './Components/car-details/car-details.component';
+import { AddCarComponent } from './Components/add-car/add-car.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -20,7 +22,7 @@ export const routes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'reservations', component: ReservationsComponent },
     { path: 'reservations/:reservationNumber', component: ReservationDetailsComponent },
-    { path:'profile', component:ProfileComponent },
+    { path:'profile/:id', component:ProfileComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' }, 
     {
         path: '',
@@ -30,5 +32,4 @@ export const routes: Routes = [
             { path: 'map', component: GeolocationComponent, outlet: 'mapContent' }
         ]
     }
-
 ];

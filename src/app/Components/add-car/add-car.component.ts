@@ -32,6 +32,7 @@ export class AddCarComponent {
   submit(form:FormGroup){
     if(form.valid){
       //console.log(form.value);
+
       this._carService.addCar(form.value).subscribe({
         next:(res)=>console.log(res),
         error:(err)=>console.log(err)

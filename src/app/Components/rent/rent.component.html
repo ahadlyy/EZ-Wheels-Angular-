@@ -18,7 +18,7 @@
         </ul>
     </div>
     <div class="card-body">
-        <div *ngIf="activeTab === 'renting'">
+        <div *ngIf="activeTab === 'renting'" class="d-flex justify-content-center align-items-center">
           <div class="col-md-6">
             <div class="form-group">
                 <label for="pickupDate" style="margin: 10px; font-size: 21px;">PickUp Date :</label>
@@ -37,7 +37,15 @@
                 </mat-form-field>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 d-flex flex-column">
+            <div class="col-12 m-3 ms-1">
+              <label for="appt" style="margin: 10px; font-size: 21px;">PickUp time:</label>
+              <input type="time" class="w-50 p-1" id="appt" name="appt">
+            </div>
+            <div class="col-12 m-3 ms-1">
+              <label for="appt2" style="margin: 10px; font-size: 21px;">Return time:</label>
+              <input type="time" class="w-50 p-1" id="appt2" name="appt2">
+            </div>
 
           </div>
             <!-- Other form fields -->
