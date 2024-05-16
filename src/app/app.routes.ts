@@ -16,5 +16,5 @@ export const routes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'reservations', component: ReservationsComponent },
     { path: 'reservations/:reservationNumber', component: ReservationDetailsComponent },
-    { path:'profile', component:ProfileComponent },
+    { path:'profile/:id', component:ProfileComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' }]
