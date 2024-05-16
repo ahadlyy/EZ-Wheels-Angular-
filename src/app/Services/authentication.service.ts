@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, Output } from '@angular/core';
 import { LoginUser } from '../Interfaces/login-user';
 import { RegisterUser } from '../Interfaces/register-user';
-import { Observable } from 'rxjs';
 import { OutputUser } from '../Interfaces/output-user';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { EventEmitter } from '@angular/core';

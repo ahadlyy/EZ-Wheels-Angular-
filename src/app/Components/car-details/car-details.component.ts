@@ -18,6 +18,9 @@ export class CarDetailsComponent implements OnInit{
   TypeEnum=TypeEnum;
   carId:string  = "";
   car:Car = {} as Car;
+  carState:any ;
+  transmission:any;
+  carType:any;
   // carImg:string[] = ["assets/images/car-bg.jpg","assets/images/chev.png","assets/images/chev.png","assets/images/chev.png","assets/images/chev.png"];
   similarCars:Car[] = [];
   constructor(
@@ -32,6 +35,9 @@ export class CarDetailsComponent implements OnInit{
         this._carService.getCarById(this.carId).subscribe({
           next:(res)=>{
             this.car = res.data[0];  
+            this.carState= this.car.state;
+            this.transmission = this.car.transmission;
+            this.carType = this.car.type;
             this._carService.getCars(1,100,{
               make:this.car.make
             }).subscribe({

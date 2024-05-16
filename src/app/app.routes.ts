@@ -12,17 +12,15 @@ import { RentComponent } from './Components/rent/rent.component';
 import { CarDetailsComponent } from './Components/car-details/car-details.component';
 import { AddCarComponent } from './Components/add-car/add-car.component';
 import { EditCarComponent } from './Components/edit-car/edit-car.component';
+import { NotFoundComponent } from './Core/not-found/not-found.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'admin', component: AdminComponent },
-  {path:'car-details/:id',component:CarDetailsComponent},
+    {path:'car-details/:id',component:CarDetailsComponent},
     {path:'add-car',component:AddCarComponent},
-<<<<<<< HEAD
     {path:'edit-car/:id',component:EditCarComponent},
-];
-=======
     { path: 'vehicles', component: VehiclesComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'reservations', component: ReservationsComponent },
@@ -36,6 +34,9 @@ export const routes: Routes = [
             { path: 'vehicles', component: VehiclesComponent, outlet: 'vehiclesContent' },
             { path: 'map', component: GeolocationComponent, outlet: 'mapContent' }
         ]
+    },
+    {
+        path:"**",component:NotFoundComponent
     }
 ];
->>>>>>> 77cebce268171270b2b8cbb5f5593ae9bb7038e5
+
