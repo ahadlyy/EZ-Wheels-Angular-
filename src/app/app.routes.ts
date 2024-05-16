@@ -11,19 +11,22 @@ import { ProfileComponent } from './Components/profile/profile.component';
 import { RentComponent } from './Components/rent/rent.component';
 import { CarDetailsComponent } from './Components/car-details/car-details.component';
 import { AddCarComponent } from './Components/add-car/add-car.component';
+import { canloginGuard } from './guards/canlogin.guard';
+import { ManageBookingsComponent } from './Components/manage-bookings/manage-bookings.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'admin', component: AdminComponent },
-  {path:'car-details/:id',component:CarDetailsComponent},
-    {path:'add-car',component:AddCarComponent},
+    { path: 'admin', component: AdminComponent, canActivate:[canloginGuard] },
+    { path:'car-details/:id',component:CarDetailsComponent},
+    { path:'add-car',component:AddCarComponent, canActivate:[canloginGuard] },
     { path: 'vehicles', component: VehiclesComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'reservations', component: ReservationsComponent },
-    { path: 'reservations/:reservationNumber', component: ReservationDetailsComponent },
-    { path:'profile/:id', component:ProfileComponent },
+    { path: 'reservations', component: ReservationsComponent, canActivate:[canloginGuard] },
+    { path: 'reservations/:reservationNumber', component: ReservationDetailsComponent, canActivate:[canloginGuard] },
+    { path:'profile', component:ProfileComponent, canActivate:[canloginGuard]},
     { path: '', redirectTo: 'home', pathMatch: 'full' }, 
+    { path: 'managebookings', component:ManageBookingsComponent, canActivate:[canloginGuard]},
     {
         path: '',
         component: RentComponent,
