@@ -1,0 +1,31 @@
+/* .card {
+  width: 1150px;
+  height: 250hv;
+  margin: auto;
+  position: fixed;
+  top: 20px;
+
+} */
+
+.card {
+  width: 1150px;
+  height: 250px;
+  margin: auto;
+  position: relative;
+  z-index: 1000;
+}
+
+@media (min-width: 768px) {
+  .sticky-container {
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    position: relative;
+  }
+}
+

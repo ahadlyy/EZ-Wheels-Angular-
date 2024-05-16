@@ -35,6 +35,7 @@ export class AddCarComponent {
   submit(form:FormGroup){
     if(form.valid){
       //console.log(form.value);
+
       this._carService.addCar(form.value).subscribe({
         next:(res)=>{
           this.plateNumber = res.plateNumber;
