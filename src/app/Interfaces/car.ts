@@ -3,11 +3,11 @@ export interface Car {
     chassisNumber:string,
     make:string,
     color:string,
-    rentalPrice:number,
+    rentalPrice?:number,
     model:string,
     variant:string,
     mileage:number,
-    numberOfPassengers:number,
+    numberOfPassengers?:number,
     state:StateEnum,
     transmission:TransmissionEnum,
     type:TypeEnum
@@ -29,9 +29,7 @@ export enum TypeEnum {
     Sedan,
     Hatchback,
     Crossover,
-    Van,
     Sports,
-    Hybrid,
     Electric,
     Convertible
 }

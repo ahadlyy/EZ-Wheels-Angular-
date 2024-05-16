@@ -51,3 +51,8 @@
 .accordion-button{
     background-color: white;
 }
+
+input:focus{
+    /* border: none !important; */
+    box-shadow: none;
+}
