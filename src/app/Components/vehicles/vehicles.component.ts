@@ -5,6 +5,7 @@ import { Car,StateEnum,TransmissionEnum,TypeEnum } from '../../Interfaces/car';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { LoaderService } from '../../Services/loader.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vehicles',
@@ -22,7 +23,7 @@ export class VehiclesComponent implements OnInit{
   currentFilterForm : any ;
   colors:string[] = [];
   makers:string[] = [];
-  constructor(private _carService:CarService){};
+  constructor(private _carService:CarService,private _router:Router){};
 
   ngOnInit(): void {
     

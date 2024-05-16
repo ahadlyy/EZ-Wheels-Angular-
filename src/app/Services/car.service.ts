@@ -38,12 +38,16 @@ export class CarService {
     return this.http.post(this.baseUrl, form);
   }
 
-  editCar(plateNumber: string, car: Car): Observable<Car> {
+  editCar(plateNumber: string, car: any): Observable<Car> {
     return this.http.put<Car>(`${this.baseUrl}/${plateNumber}`, car);
   }
 
   deleteCar(plateNumber: string): Observable<any> {
     return this.http.delete<any>(`${this.baseUrl}/${plateNumber}`);
+  }
+
+  uploadCarPhoto(plateNumber: string,photo:any): Observable<any>{
+    return this.http.post(`${this.baseUrl}/photo?plateNumber=${plateNumber}`,photo);
   }
   constructor(public http: HttpClient) { }
 }

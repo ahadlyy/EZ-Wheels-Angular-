@@ -48,3 +48,6 @@
 .rent-btn:hover{
     transform: translateY(-4px);
 }
+.card-img{
+    height: 200px;
+}

@@ -1,6 +1,7 @@
 export interface Car {
     plateNumber:string,
     chassisNumber:string,
+    photoUrl:string,
     make:string,
     color:string,
     rentalPrice:number,
