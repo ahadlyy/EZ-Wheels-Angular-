@@ -10,19 +10,12 @@ import { Subscription } from 'rxjs';
   templateUrl: './loader.component.html',
   styleUrl: './loader.component.css'
 })
-export class LoaderComponent// implements OnDestroy
-{
+
+export class LoaderComponent {
   isLoading:boolean = false;
   sub:Subscription = new Subscription();
   constructor(public loader: LoaderService) { 
-    this.sub = this.loader.loading.subscribe(loader => {this.isLoading =loader
-      console.log(this.isLoading);
-      
+    this.sub = this.loader.loading.subscribe(loader => {this.isLoading =loader      
     });
-    
   }
-
-  // ngOnDestroy(): void {
-  //     this.sub.unsubscribe();
-  // }
 }

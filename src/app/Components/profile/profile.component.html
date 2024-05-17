@@ -1,4 +1,4 @@
-<h1 class="playfair-display-h2 main-text-color">Profile</h1>
+<h1 class="bg-dark text-center p-3 text-white">Edit Profile</h1>
 
 <form [formGroup]="updateUserForm" (ngSubmit)="submitUserInfo(updateUserForm)" class="d-flex flex-column justify-content-center px-5 py-3 w-75">
 
@@ -18,7 +18,7 @@
     <input id="age" type="text" formControlName="age" class="fw-bold text-color-website border my-3 form-control">
 
     <label for="phone">Phone Number</label>
-    <input id="phone" type="text" formControlName="phone" class="fw-bold text-color-website border my-3 form-control">
+    <input id="phone" type="text" formControlName="phoneNumber" class="fw-bold text-color-website border my-3 form-control">
 
-    <input type="submit" class="my-3 text-white fw-bold bg-color-website border border-0 p-1 rounded" value="Update" />
+    <input type="submit" class="my-3 fw-bold bg-color-website border border-0 p-1 rounded btn btn-success" value="Update" />
 </form>
