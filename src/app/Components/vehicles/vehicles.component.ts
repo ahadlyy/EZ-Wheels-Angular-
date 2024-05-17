@@ -131,6 +131,4 @@ export class VehiclesComponent implements OnInit{
     this.getCarsData(this.currentPageIndex,form);
     this.currentFilterForm = form;
   }
-
 }
-
