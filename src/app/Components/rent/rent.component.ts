@@ -20,13 +20,15 @@ import { LoginUser } from '../../Interfaces/login-user';
 import { RegisterUser } from '../../Interfaces/register-user';
 import { UserService } from '../../Services/user.service';
 import { RentCarService } from '../../Services/rent-car.service';
+import { PaymentComponent } from '../payment/payment.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @Component({
   selector: 'app-rent',
   standalone: true,
-  imports: [RouterModule, CommonModule, VehiclesComponent, RentComponent, GeolocationComponent,
-            MatButtonToggleModule, MatDatepickerModule, MatInputModule, MatNativeDateModule, 
+  imports: [RouterModule, CommonModule, VehiclesComponent, RentComponent, GeolocationComponent,PaymentComponent,
+            MatButtonToggleModule, MatDatepickerModule, MatInputModule, MatNativeDateModule,HttpClientModule, 
             MatFormFieldModule,FormsModule],
   templateUrl: './rent.component.html',
   styleUrl: './rent.component.css'
@@ -55,8 +57,8 @@ export class RentComponent implements OnInit {
 
     ngOnInit(): void {
     this.authService.User.subscribe((user) => {
-      this.rent.customerName = user?.userName;
-      this.rent.customerId = user?.id;      
+      this.rent.CustomerName = user?.userName;
+      this.rent.CustomerId = user?.id;
     });
   }
 
