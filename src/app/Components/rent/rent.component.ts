@@ -56,9 +56,7 @@ export class RentComponent implements OnInit {
     ngOnInit(): void {
     this.authService.User.subscribe((user) => {
       this.rent.customerName = user?.userName;
-      this.rent.customerId = user?.id;
-      
-      
+      this.rent.customerId = user?.id;      
     });
   }
 
@@ -82,6 +80,7 @@ activeTab: string = 'renting';
     this.rent.make = selectedCars.make;
     this.rent.plateNumber = selectedCars.plateNumber;
     console.log(this.authService.User.value.userName);
+    console.log(this.rent);
     this.rentCarService.Create(this.rent).subscribe({
       next: (response) => {
         console.log(response);
