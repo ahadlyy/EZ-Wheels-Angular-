@@ -20,7 +20,16 @@
         </div>
         <form [formGroup]="loginForm" (ngSubmit)="logIn(loginForm)" class="d-flex flex-column justify-content-center px-5 py-3 w-75">
             <input id="username" type="text" formControlName="userName" placeholder="Username" class="fw-bold text-color-website form-control">
+            <div class="" *ngIf="loginForm.get('userName')?.errors && loginForm.get('userName')?.touched">
+                <p class="mb-0 text-danger" *ngIf="loginForm.get('userName')?.getError('required') && loginForm.get('userName')?.touched">name is required</p>
+            </div>
+
             <input id="password" type="password" formControlName="password" placeholder="Password" class="fw-bold text-color-website border my-3 form-control">
+            <div class="" *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched">
+                <p class="mb-0 text-danger" *ngIf="loginForm.get('password')?.getError('required') && loginForm.get('password')?.touched">password is required</p>
+                <p class="mb-0 text-danger" *ngIf="loginForm.get('password')?.getError('pattern') && loginForm.get('password')?.touched"> password pattern is invalid</p>
+            </div>
+            
             <input type="submit" class="my-3 text-white fw-bold bg-color-website border border-0 p-1 rounded" value="Login" />
         </form>
         <a class="text-color-website text-decoration-none fw-bold" routerLink="/register">New customer? Signup here</a>
