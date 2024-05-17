@@ -20,6 +20,8 @@ import { LoginUser } from '../../Interfaces/login-user';
 import { RegisterUser } from '../../Interfaces/register-user';
 import { UserService } from '../../Services/user.service';
 import { RentCarService } from '../../Services/rent-car.service';
+import { MatButtonModule } from '@angular/material/button';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 
 @Component({
@@ -27,13 +29,17 @@ import { RentCarService } from '../../Services/rent-car.service';
   standalone: true,
   imports: [RouterModule, CommonModule, VehiclesComponent, RentComponent, GeolocationComponent,
             MatButtonToggleModule, MatDatepickerModule, MatInputModule, MatNativeDateModule, 
-            MatFormFieldModule,FormsModule],
+            MatFormFieldModule,FormsModule, MatButtonModule],
   templateUrl: './rent.component.html',
   styleUrl: './rent.component.css'
 })
 export class RentComponent implements OnInit {
   loggedInUser: LoginUser | any;
- constructor(private authService: AuthenticationService, private rentCarService: RentCarService) { }
+ constructor(
+  private authService: AuthenticationService,
+   private rentCarService: RentCarService,
+   private _snackBar: MatSnackBar
+  ) { }
  rent: RentCar = {
         ReservationNumber:"",
         StartingDate: new Date(),
@@ -74,7 +80,11 @@ activeTab: string = 'renting';
     this.rent.DropOffLongitude = location.longitude;
     console.log(location);
     console.log(this.rent);
-    
+    this._snackBar.open("Alert", "location selected!",{
+      horizontalPosition:'center',
+      verticalPosition:'top',
+      duration:2000,
+    });
   }
 
   RentCarSelected(selectedCars: Car) {
