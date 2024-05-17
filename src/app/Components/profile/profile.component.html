@@ -1,6 +1,7 @@
 <h1 class="bg-dark text-center p-3 text-white">Edit Profile</h1>
+<div class="container">
 
-<form [formGroup]="updateUserForm" (ngSubmit)="submitUserInfo(updateUserForm)" class="d-flex flex-column justify-content-center px-5 py-3 w-75">
+<form [formGroup]="updateUserForm" (ngSubmit)="submitUserInfo(updateUserForm)" class="bg-secondary-subtle rounded m-auto d-flex flex-column justify-content-center my-4 px-5 py-3 w-50">
 
     <label for="username">Username</label>
     <input id="username" type="text" formControlName="userName" class="fw-bold text-color-website border my-3 form-control">
@@ -22,3 +23,4 @@
 
     <input type="submit" class="my-3 fw-bold bg-color-website border border-0 p-1 rounded btn btn-success" value="Update" />
 </form>
+</div>

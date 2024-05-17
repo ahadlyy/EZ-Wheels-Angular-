@@ -1,6 +1,6 @@
 import { RentCarService } from './../../Services/rent-car.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RentCar } from '../../Interfaces/rent-car';
 import { Subscription } from 'rxjs';
 
@@ -12,11 +12,11 @@ import { Subscription } from 'rxjs';
   styleUrl: './reservation-details.component.css'
 })
 export class ReservationDetailsComponent implements OnInit, OnDestroy{
-  reservation : RentCar[] | null = null;
+  reservation : any[] | null = null;
   sub: Subscription | null = null;
   innerSub: Subscription | null = null;
   deleteSub: Subscription | null = null;
-  constructor(private activatedRoute: ActivatedRoute,private  rentCarService: RentCarService) {}
+  constructor(private activatedRoute: ActivatedRoute,private  rentCarService: RentCarService, private router:Router) {}
 
   ngOnInit() {
     this.sub = this.activatedRoute.params.subscribe({next: (data)=>{
@@ -27,7 +27,8 @@ export class ReservationDetailsComponent implements OnInit, OnDestroy{
 
   deleteReservation(){
     if(this.reservation != null)
-      this.deleteSub = this.rentCarService.delete(this.reservation[0]?.ReservationNumber).subscribe();
+      this.deleteSub = this.rentCarService.delete(this.reservation[0]?.reservationNumber).subscribe();
+      this.router.navigateByUrl('/admin')
   }
   ngOnDestroy(){
     this.sub?.unsubscribe();
