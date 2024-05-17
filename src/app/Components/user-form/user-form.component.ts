@@ -13,11 +13,11 @@ import { UserService } from '../../Services/user.service';
 export class UserFormComponent implements OnInit {
   userForm = new FormGroup({
     userName: new FormControl(),
+    password: new FormControl(),
+    confirmPassword: new FormControl(),
     email: new FormControl(),
     age: new FormControl(),
-    phoneNumber: new FormControl(),
-    password: new FormControl(),
-    confirmPassword: new FormControl()
+    phoneNumber: new FormControl()
   });
   userId: string | null = null;
   constructor(
@@ -43,7 +43,7 @@ export class UserFormComponent implements OnInit {
         });
       } else {
         this.userService.add(formGroup.value).subscribe(() => {
-          console.log(formGroup.value)
+          console.log(formGroup.value);
           this.router.navigate(['/users']);
         });
       }
