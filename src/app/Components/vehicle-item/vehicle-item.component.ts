@@ -23,7 +23,7 @@ export class VehicleItemComponent implements OnInit{
   TypeEnum=TypeEnum;
   @Input() data:Car = {} as Car;
 
-  @Input() mode:string="";
+  @Input() mode:string | null="";
 
   constructor(private _carService: CarService,private _router: Router){
     

@@ -28,7 +28,8 @@ export class AddCarComponent {
     variant : new FormControl(''),
     numberOfPassengers : new FormControl(''),
     transmission : new FormControl(''),
-    type : new FormControl('')
+    type : new FormControl(''),
+    state : new FormControl('')
   });
 
 

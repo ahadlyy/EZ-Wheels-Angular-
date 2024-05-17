@@ -4,7 +4,8 @@
     <p style="color: var(--main-orange);">As an admin you can do the following:</p>
     <div class="row row-cols-1 row-cols-md-3 g-4 mx-5 mb-5">
         <div class="col">
-            <div class="card bg-warning cursor-pointer" (click)="goToVehicles()">
+            <a [routerLink]="['vehicles','admin']" class="text-decoration-none">
+            <div class="card bg-warning cursor-pointer">
                 <div class="card-body">
                     <h5 class="card-title fw-bold">Manage Vehicles</h5>
                     <p class="card-text">
@@ -12,6 +13,7 @@
                     </p>
                 </div>
             </div>
+        </a>
         </div>
         <div class="col">
             <div class="card bg-danger cursor-pointer" (click)="goToReservations()">
@@ -32,6 +34,11 @@
                     </p>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row bg-white">
+            <router-outlet></router-outlet>
         </div>
     </div>
 </div>

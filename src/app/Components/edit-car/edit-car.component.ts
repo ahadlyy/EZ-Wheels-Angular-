@@ -37,6 +37,7 @@ export class EditCarComponent implements OnInit{
           this.newCarForm.get('transmission')?.setValue(this.car.transmission);
           this.newCarForm.get('type')?.setValue(this.car.type);
           this.newCarForm.get('state')?.setValue(this.car.state);
+          this.newCarForm.get('plateNumber')?.disable();
         },
       })
     });
@@ -63,7 +64,8 @@ export class EditCarComponent implements OnInit{
       //console.log(form.value);
       this._carService.editCar(this.carId,form.value).subscribe({
         next:(res)=>{
-          this._router.navigate(['/vehicles']);
+          console.log(res);
+          // this._router.navigate(['/vehicles']);
         },
         error:(err)=>console.log(err)
       });

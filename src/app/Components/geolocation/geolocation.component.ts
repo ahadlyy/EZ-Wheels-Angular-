@@ -41,7 +41,7 @@ export class GeolocationComponent implements OnInit {
       navigator.geolocation.getCurrentPosition(position => {
         this.options = {
           center: { lat: position.coords.latitude, lng: position.coords.longitude },
-          zoom: 20,
+          zoom: 16,
           maxZoom: 30
         };
       }, error => {
