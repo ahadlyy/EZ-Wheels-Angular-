@@ -1,16 +1,21 @@
 <div class="row row-cols-1 row-cols-md-3 g-4 m-2">
-    @for(reservation of reservations; track $index){
-    <div class="col">
-        <div class="card bg-dark cursor-pointer" (click)="showDetails(reservation.ReservationNumber)">
-            <div class="card-body">
-                <h5 class="card-title">{{ reservation.Make }} {{ reservation.Model }}</h5>
-                <p class="card-text">
-                    Car: {{reservation.PlateNumber}} <br />
-                    Customer: {{ reservation.CustomerName }} <br />
-                </p>
+    @if(reservations.length > 0){
+        @for(reservation of reservations; track $index){
+            <div class="col">
+                <div class="card bg-dark cursor-pointer" (click)="showDetails(reservation.reservationNumber)">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ reservation.make }} {{ reservation.model }}</h5>
+                        <p class="card-text">
+                            Car: {{reservation.plateNumber}} <br />
+                            Customer: {{ reservation.customerName }} <br />
+                        </p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+            }
+    }@else {
+        <h1 class="text-center w-100">No Reservations Available</h1>
     }
+    
 </div>
 
