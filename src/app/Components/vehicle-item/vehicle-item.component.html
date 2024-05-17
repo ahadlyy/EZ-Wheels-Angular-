@@ -1,27 +1,52 @@
+
 <div class="card-wrapper p-1">
-  <div class="vehicle-card text-white p-3 rounded">
-    <div class="title">
-      <h4 class="car-title">{{data.model}} ({{data.make}})</h4>
-      <p class="car-color">{{data.variant}}</p>
-    </div>
-    <div class="btns mb-2">
-      <div class="btn-item me-2">
-        <i class="fa-solid fa-user me-2"></i>
-        <span class="">{{data.numberOfPassengers}}</span>
-      </div>
-      <div class="btn-item me-2">
-        <i *ngIf="data.transmission == 1" class="fa-solid fa-a me-2"></i>
-        <i *ngIf="data.transmission == 0" class="fa-solid fa-m me-2"></i>
-        <span>{{TransmissionEnum[data.transmission]}}</span>
-      </div>
-    </div>
-    <div class="img">
-      <img src="assets/images/chev.png" class="w-100" alt="zzz" />
-    </div>
-    <div class="car-details mt-3 d-flex justify-content-between">
-      <p class="">incl. {{data.mileage}} miles</p>
-      <p>{{data.rentalPrice}} / per day.</p>
-      <button class="btn tbn-info" (click)="rentCar()">Rent</button>
-    </div>
+  <a class="text-decoration-none" [routerLink]="['/car-details', data.plateNumber]">
+  <div class="card-img">
+    <img *ngIf="data.photoUrl != null" [src]="data.photoUrl" class="w-100 h-100" alt="car-image">
+    <img *ngIf="data.photoUrl == null" src="assets/images/default-car.jpg" class="w-100 h-100" alt="default-car">
   </div>
+  </a>
+  <div class="card-body bg-white">
+    <div class=" d-flex justify-content-between">
+      <div class="d-flex flex-column justify-content-center">
+        <h4 class="car-title mb-0">{{ data.model }}</h4>
+      <p class="car-color mb-0">{{ data.make }}</p>
+      </div>
+      <div class="price-car">
+        <div class="d-flex flex-column">
+          <span class="price"> {{ data.rentalPrice }} </span>
+          <span class="per-day car-color align-content-end text-end">per Day</span>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="d-flex  justify-content-between">
+      <div class="car-info d-flex">
+        <div class="info-item me-2">
+          <i *ngIf="data.transmission == 1" class="fa-solid fa-a me-2"></i>
+          <i *ngIf="data.transmission == 0" class="fa-solid fa-m me-2"></i>
+        </div>
+        <div class="info-item me-2">
+          <i class="fa-solid fa-user me-1"></i>
+          <span class="">{{ data.numberOfPassengers }}</span>
+        </div>
+        <div class="info-item me-2">
+          <i class="fa-solid fa-gauge-high me-1"></i>
+          <span class="">{{ data.mileage }}</span>
+        </div>
+        <div class="info-item me-2">
+          <i class="fa-solid fa-brush me-2"></i>
+          <span class="">{{ data.color }}</span>
+        </div>
+      </div>
+      <div class="rent-btn text-center">
+        <a class=" cursor-pointer text-decoration-none align-self-end fw-bold" (click)="rentCar()">Rent Now!</a>
+      </div>
+
+    </div>
+
+  </div>
+  <a *ngIf="mode == 'admin'" class="btn btn-info w-100" [routerLink]="['/edit-car', data.plateNumber]">Edit Car</a>
+  <button *ngIf="mode == 'admin'" class="btn btn-danger w-100" (click)="delete()">Delete</button>
 </div>

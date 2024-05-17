@@ -19,6 +19,7 @@ import { AuthenticationService } from '../../Services/authentication.service';
 import { LoginUser } from '../../Interfaces/login-user';
 import { RegisterUser } from '../../Interfaces/register-user';
 import { UserService } from '../../Services/user.service';
+import { RentCarService } from '../../Services/rent-car.service';
 
 
 @Component({
@@ -32,7 +33,7 @@ import { UserService } from '../../Services/user.service';
 })
 export class RentComponent implements OnInit {
   loggedInUser: LoginUser | any;
- constructor(private authService: AuthenticationService) { }
+ constructor(private authService: AuthenticationService, private rentCarService: RentCarService) { }
  rent: RentCar = {
         ReservationNumber:"",
         StartingDate: new Date(),
@@ -53,9 +54,11 @@ export class RentComponent implements OnInit {
     };
 
     ngOnInit(): void {
-    this.authService.targetUser.subscribe((user: LoginUser) => {
-      this.rent.CustomerName = this.authService.User.userName;
-      this.rent.CustomerId = this.authService.User.userId;
+    this.authService.User.subscribe((user) => {
+      this.rent.CustomerName = user?.userName;
+      this.rent.CustomerId = user?.id;
+      
+      
     });
   }
 
@@ -69,13 +72,23 @@ activeTab: string = 'renting';
     this.rent.PickUpLongitude = location.longitude;
     this.rent.DropOffLatitude = location.latitude; 
     this.rent.DropOffLongitude = location.longitude;
-    //console.log(location);
+    console.log(location);
+    console.log(this.rent);
+    
   }
 
   RentCarSelected(selectedCars: Car) {
     this.rent.Model = selectedCars.model;
     this.rent.Make = selectedCars.make;
     this.rent.PlateNumber = selectedCars.plateNumber;
-    //console.log(this.rent);
-  }
+    console.log(this.authService.User.value.userName);
+    this.rentCarService.Create(this.rent).subscribe({
+      next: (response) => {
+        console.log(response);
+      },
+      error: err => {
+        console.log(err);
+      }
+    })
+  }  
 }

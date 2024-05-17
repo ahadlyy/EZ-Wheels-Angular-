@@ -4,9 +4,14 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Car,StateEnum,TransmissionEnum,TypeEnum } from '../../Interfaces/car';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+
+import { LoaderService } from '../../Services/loader.service';
+import { Router } from '@angular/router';
+
 import { RentCar } from '../../Interfaces/rent-car';
 
 let selectedCar: RentCar | any;
+
 
 @Component({
   selector: 'app-vehicles',
@@ -25,14 +30,15 @@ export class VehiclesComponent implements OnInit{
   currentFilterForm : any ;
   colors:string[] = [];
   makers:string[] = [];
-  constructor(private _carService:CarService){};
+  constructor(private _carService:CarService,private _router:Router){};
 
   ngOnInit(): void {
+    
     this.getCarsData(1);
     this._carService.getColors().subscribe({
       next:(res)=>{
         this.colors = res.data;
-        //console.log(this.colors);
+
       },
       error:(err)=>{
         console.log(err);
@@ -41,8 +47,7 @@ export class VehiclesComponent implements OnInit{
     this._carService.getMakers().subscribe({
       next:(res)=>{
         this.makers = res.data;
-        //console.log(this.makers);
-        
+
       },
     });
   }
@@ -53,10 +58,11 @@ export class VehiclesComponent implements OnInit{
   }
 
   getCarsData(page:number,form?:FormGroup){
+
     this._carService.getCars(page,this.itemsInPage,form?.value).subscribe({
       next:(res)=>{
         this.cars = res.data;
-        //console.log(this.cars);
+
         this.totalCount=res.totalCount;
         let Pages = Math.ceil((this.totalCount)/this.itemsInPage);
         this.numberOfPages=[];
@@ -69,9 +75,10 @@ export class VehiclesComponent implements OnInit{
 
   rentCar(car:Car){
     this.rentCarSelected.emit(car);
-    //console.log(`heeee`, car);
+    
   }
   
+
   changePage(page:number){    
     this.getCarsData(page,this.currentFilterForm);
     this.currentPageIndex=page;

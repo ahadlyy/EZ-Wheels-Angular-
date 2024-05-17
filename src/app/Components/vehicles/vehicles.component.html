@@ -7,15 +7,15 @@
         <button class="btn btn-secondary w-100 mb-2" (click)="resetFilters()">
           Reset Filters
         </button>
-        
+
         <form [formGroup]="filterForm">
           <input
-          type="text"
-          class="form-control my-2"
-          placeholder="Search by model"
-          formControlName="model"
-          (input)="filter(filterForm)"
-        />
+            type="text"
+            class="form-control my-2"
+            placeholder="Search by model"
+            formControlName="model"
+            (input)="filter(filterForm)"
+          />
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button
@@ -43,7 +43,6 @@
                     formControlName="priceOrder"
                     type="radio"
                     class="form-check-input"
-                    name="sort"
                     id="highToLow"
                     value="ascending"
                     #lthRadio
@@ -58,7 +57,6 @@
                     formControlName="priceOrder"
                     type="radio"
                     class="form-check-input"
-                    name="sort"
                     id="lowToHigh"
                     value="descending"
                     #htlRadio
@@ -186,7 +184,6 @@
                   <div class="form-check d-flex justify-content-between w-100">
                     <div class="radio-btn">
                       <input
-                        name="numberOfPassenger"
                         type="radio"
                         class="form-check-input"
                         id="2"
@@ -198,7 +195,6 @@
                     </div>
                     <div class="radio-btn">
                       <input
-                        name="numberOfPassenger"
                         type="radio"
                         class="form-check-input"
                         id="4"
@@ -210,7 +206,6 @@
                     </div>
                     <div class="radio-btn">
                       <input
-                        name="numberOfPassenger"
                         type="radio"
                         class="form-check-input"
                         id="7"
@@ -228,7 +223,6 @@
                   <div class="form-check w-100">
                     <div class="radio-btn">
                       <input
-                        name="transmission"
                         type="radio"
                         class="form-check-input"
                         id="automatic"
@@ -242,7 +236,6 @@
                     </div>
                     <div class="radio-btn">
                       <input
-                        name="transmission"
                         type="radio"
                         class="form-check-input"
                         id="manual"
@@ -284,11 +277,12 @@
         <div class="row g-3">
           @for (item of cars; track $index) {
           <div class="col-md-6 col-lg-4">
-            <app-vehicle-item [data]="item" (rentedCar)="rentCar($event)"></app-vehicle-item>
+
+            <app-vehicle-item [data]="item" [mode]="'admin'" (rentedCar)="rentCar($event)"></app-vehicle-item>
+
           </div>
-          }
-          @if (cars.length == 0) {
-            <h2>No Cars Found ....</h2>
+          } @if (cars.length == 0) {
+          <h2>No Cars Found ....</h2>
           }
           <nav aria-label="Page navigation example">
             <ul class="pagination">

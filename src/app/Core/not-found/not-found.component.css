@@ -1,0 +1,34 @@
+.img-not-found{
+    width:50% ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-block: 60px;
+    flex-direction: column;
+}
+
+.img-not-found img{
+    width: 100%;
+    /* height: 400px; */
+}
+
+h1{
+    font-family: var(--heading-font-helveticanow);
+    font-weight: 800;
+    font-size: 40px;
+}
+
+a{
+    background-color: #222;
+    color:white;
+    transition: all 0.4s;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+a:hover{
+    transform: translateY(-5px);
+}
