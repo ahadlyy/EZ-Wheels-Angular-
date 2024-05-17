@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CarService } from '../../Services/car.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-car',
@@ -14,7 +15,10 @@ export class AddCarComponent {
   carAdded:boolean = false;
   plateNumber:string="";
   photoUrl:string="assets/images/car-placeholder.jpg";
-  constructor(private _carService:CarService){}
+  constructor(
+    private _carService:CarService,
+    private _snackBar: MatSnackBar
+  ){}
 
 
 
@@ -40,8 +44,19 @@ export class AddCarComponent {
         next:(res)=>{
           this.plateNumber = res.plateNumber;
           this.carAdded=true;
+          this._snackBar.open("Alert", "Car Added Successfully",{
+            horizontalPosition:'center',
+            verticalPosition:'top',
+            duration:2000,
+          });
         },
-        error:(err)=>console.log(err)
+        error:(err)=>{
+          this._snackBar.open("Problem", "There was a problem adding your car please try again",{
+            horizontalPosition:'center',
+            verticalPosition:'top',
+            duration:2000,
+          });
+        }
       });
     }
   }
@@ -55,8 +70,17 @@ export class AddCarComponent {
         this._carService.uploadCarPhoto(this.plateNumber,formData).subscribe({
           next:(res)=>{console.log(res)
             this.photoUrl = res.photoUrl;
+            this._snackBar.open("Alert", "Image Added Successfully",{
+              horizontalPosition:'center',
+              verticalPosition:'top',
+              duration:2000,
+            });
           },
-          error:(err)=>{console.log(err)}
+          error:(err)=>{this._snackBar.open("Problem", "There was a problem adding your car image please try again",{
+            horizontalPosition:'center',
+            verticalPosition:'top',
+            duration:2000,
+          });}
         })
       }
   }

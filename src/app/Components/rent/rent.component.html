@@ -52,7 +52,7 @@
                   matInput
                   [matDatepicker]="picker1"
                   placeholder="PickUp Date"
-                  [(ngModel)]="rent.StartingDate"
+                  [(ngModel)]="rent.startingDate"
                 />
                 <mat-datepicker-toggle
                   matSuffix
@@ -70,7 +70,7 @@
                   matInput
                   [matDatepicker]="picker2"
                   placeholder="Return Date"
-                  [(ngModel)]="rent.EndingDate"
+                  [(ngModel)]="rent.endingDate"
                 />
                 <mat-datepicker-toggle
                   matSuffix
@@ -94,7 +94,6 @@
               <input type="time" class="w-50 p-1" id="appt2" name="appt2" />
             </div>
           </div>
-          <!-- <button class="btn btn-primary" (click)="saveRent()">Save</button> -->
         </div>
         <div *ngIf="activeTab === 'vehicles'">
           <app-vehicles
@@ -106,8 +105,9 @@
             (locationSelected)="onLocationSelected($event)"
           ></app-geolocation>
         </div>
-        <div *ngIf="activeTab === 'pay'" class="d-flex justify-content-center">
-          <app-payment class="w-50 mt-2"></app-payment>
+        <div *ngIf="activeTab === 'pay'" class="d-flex flex-column align-content-center justify-content-center">
+          <app-payment (payment)="cash($event)" class="w-50 mt-2"></app-payment>
+          <button *ngIf="isPaid" class="btn btn-primary" (click)="saveRent()">Save</button>
         </div>
       </div>
     </div>
