@@ -12,7 +12,7 @@ export class UserService {
     return this.http.get(this.baseUrl + `?role=${role}`);
   }
 
-  getById(id: number) {
+  getById(id: string) {
     return this.http.get(this.baseUrl + `/${id}`);
   }
 

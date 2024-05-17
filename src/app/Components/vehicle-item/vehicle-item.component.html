@@ -2,10 +2,11 @@
 <div class="card-wrapper p-1">
   <a class="text-decoration-none" [routerLink]="['/car-details', data.plateNumber]">
   <div class="card-img">
-    <img src="assets/images/chev.png" class="w-100" alt="car-image">
+    <img *ngIf="data.photoUrl != null" [src]="data.photoUrl" class="w-100 h-100" alt="car-image">
+    <img *ngIf="data.photoUrl == null" src="assets/images/default-car.jpg" class="w-100 h-100" alt="default-car">
   </div>
   </a>
-  <div class="card-body">
+  <div class="card-body bg-white">
     <div class=" d-flex justify-content-between">
       <div class="d-flex flex-column justify-content-center">
         <h4 class="car-title mb-0">{{ data.model }}</h4>
@@ -46,4 +47,6 @@
     </div>
 
   </div>
+  <a *ngIf="mode == 'admin'" class="btn btn-info w-100" [routerLink]="['/edit-car', data.plateNumber]">Edit Car</a>
+  <button *ngIf="mode == 'admin'" class="btn btn-danger w-100" (click)="delete()">Delete</button>
 </div>

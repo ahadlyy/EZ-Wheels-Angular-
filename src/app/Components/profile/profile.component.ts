@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationService } from '../../Services/authentication.service';
 import { UserService } from '../../Services/user.service';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -10,14 +12,14 @@ import { UserService } from '../../Services/user.service';
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit{
   updateUserForm = new FormGroup({
-    userName: new FormControl( this.authService.User.value.userName ),
+    userName: new FormControl(),
     password: new FormControl(),
     confirmPassword: new FormControl(),
-    email: new FormControl(this.authService.User.value.email),
-    age: new FormControl(this.authService.User.value.age),
-    phone: new FormControl(this.authService.User.value.phone)
+    email: new FormControl(),
+    age: new FormControl(),
+    phoneNumber: new FormControl()
   });
 
   submitUserInfo(formGroup: FormGroup) {    
@@ -35,5 +37,9 @@ export class ProfileComponent {
     }
   }
 
-  constructor(public userService: UserService, public authService: AuthenticationService) { }
+  ngOnInit(): void {
+    this.updateUserForm.patchValue(this.authService.User.value);
+  }
+
+  constructor(public userService: UserService, public authService: AuthenticationService, public activatedRoute: ActivatedRoute) { }
 }
