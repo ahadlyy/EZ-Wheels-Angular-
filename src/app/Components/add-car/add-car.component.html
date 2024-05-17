@@ -1,73 +1,149 @@
 <div class="container my-5">
-
   <div class="row">
     <div class="col-md-6">
       <h1 class="text-center mb-2">Add New Car</h1>
       <form [formGroup]="newCarForm" (ngSubmit)="submit(newCarForm)">
+        
+        <div class="inp-item d-flex justify-content-center align-items-center">
+          <label for="plateNumber" class="w-50">
+            plate Number <span *ngIf="newCarForm.get('plateNumber')?.errors && newCarForm.get('plateNumber')?.touched" class="text-danger fs-4">*</span>
+          </label>
+          
+          <input
+            type="text"
+            class="form-control my-2"
+            [class.border-danger]="newCarForm.get('plateNumber')?.errors && newCarForm.get('plateNumber')?.touched"
+            placeholder="Plate Number"
+            formControlName="plateNumber"
+            id="plateNumber"
+          />
+        <br>
+        </div>
 
         <div class="inp-item d-flex justify-content-center align-items-center">
-          <label for="plateNumber" class="me-1 w-25">plate Number</label>
-          <input type="text" class="form-control my-2" placeholder="Plate Number" formControlName="plateNumber" id="plateNumber"/>
-          </div>
+          <label for="chassisNumber" class="w-50">Chassis Number
+            <span *ngIf="newCarForm.get('chassisNumber')?.errors && newCarForm.get('chassisNumber')?.touched" class="text-danger fs-4">*</span>
+          </label>
+          <input
+          [class.border-danger]="newCarForm.get('chassisNumber')?.errors && newCarForm.get('chassisNumber')?.touched"
+            type="text"
+            class="form-control my-2"
+            placeholder="Chassis Number"
+            formControlName="chassisNumber"
+            id="chassisNumber"
+          />
+        </div>
 
-        <input
-          type="text"
-          class="form-control my-2"
-          placeholder="Chassis Number"
-          formControlName="chassisNumber"
-        />
-        <input
-          type="text"
-          class="form-control my-2"
-          placeholder="Make"
-          formControlName="make"
-        />
-        <input
-          type="text"
-          class="form-control my-2"
-          placeholder="Color"
-          formControlName="color"
-        />
-        <input
-          type="number"
-          class="form-control my-2"
-          placeholder="Rental Price"
-          formControlName="rentalPrice"
-        />
-        <input
-          type="number"
-          class="form-control my-2"
-          placeholder="mileage"
-          formControlName="mileage"
-        />
-        <input
-          type="text"
-          class="form-control my-2"
-          placeholder="Model"
-          formControlName="model"
-        />
-        <input
-          type="text"
-          class="form-control my-2"
-          placeholder="Variant"
-          formControlName="variant"
-        />
-        <input
-          type="number"
-          class="form-control my-2"
-          placeholder="Number Of Passengers"
-          formControlName="numberOfPassengers"
-        />
-        <label for="transmission" class=" text-center d-block">Transmission</label>
+        <div class="inp-item d-flex justify-content-center align-items-center">
+          <label for="make" class=" w-50">Make
+            <span *ngIf="newCarForm.get('make')?.errors && newCarForm.get('make')?.touched" class="text-danger fs-4">*</span>
+          </label>
+          <input
+          [class.border-danger]="newCarForm.get('make')?.errors && newCarForm.get('make')?.touched"
+            type="text"
+            class="form-control my-2"
+            placeholder="Make"
+            formControlName="make"
+            id="make"
+          />
+        </div>
+
+        <div class="inp-item d-flex justify-content-center align-items-center">
+          <label for="color" class=" w-50">Color
+            <span *ngIf="newCarForm.get('color')?.errors && newCarForm.get('color')?.touched" class="text-danger fs-4">*</span>
+
+          </label>
+          <input
+          [class.border-danger]="newCarForm.get('color')?.errors && newCarForm.get('color')?.touched"
+            type="text"
+            class="form-control my-2"
+            placeholder="Color"
+            formControlName="color"
+            id="color"
+          />
+        </div>
+
+        <div class="inp-item d-flex justify-content-center align-items-center">
+          <label for="rentalPrice" class="w-50">Rental Price
+            <span *ngIf="newCarForm.get('rentalPrice')?.errors && newCarForm.get('rentalPrice')?.touched" class="text-danger fs-4">*</span>
+          </label>
+          <input
+          [class.border-danger]="newCarForm.get('rentalPrice')?.errors && newCarForm.get('rentalPrice')?.touched"
+            type="number"
+            class="form-control my-2"
+            placeholder="Rental Price"
+            formControlName="rentalPrice"
+            id="rentalPrice"
+          />
+        </div>
+
+        <div class="inp-item d-flex justify-content-center align-items-center">
+          <label for="mileage" class="w-50">Mileage
+            <span *ngIf="newCarForm.get('mileage')?.errors && newCarForm.get('mileage')?.touched" class="text-danger fs-4">*</span>
+          </label>
+          <input
+          [class.border-danger]="newCarForm.get('mileage')?.errors && newCarForm.get('mileage')?.touched"
+            type="number"
+            class="form-control my-2"
+            placeholder="mileage"
+            formControlName="mileage"
+            id="mileage"
+          />
+        </div>
+
+        <div class="inp-item d-flex justify-content-center align-items-center">
+          <label for="model" class="w-50">Model
+            <span *ngIf="newCarForm.get('model')?.errors && newCarForm.get('model')?.touched" class="text-danger fs-4">*</span>
+          </label>
+          <input
+          [class.border-danger]="newCarForm.get('model')?.errors && newCarForm.get('model')?.touched"
+            type="text"
+            class="form-control my-2"
+            placeholder="Model"
+            formControlName="model"
+            id="model"
+          />
+        </div>
+
+        <div class="inp-item d-flex justify-content-center align-items-center">
+          <label for="variant" class="w-50">Variant
+            <span *ngIf="newCarForm.get('variant')?.errors && newCarForm.get('variant')?.touched" class="text-danger fs-4">*</span>
+          </label>
+          <input
+          [class.border-danger]="newCarForm.get('variant')?.errors && newCarForm.get('variant')?.touched"
+            type="text"
+            class="form-control my-2"
+            placeholder="Variant"
+            formControlName="variant"
+          />
+        </div>
+
+        <div class="inp-item d-flex justify-content-center align-items-center">
+          <label for="numberOfPassengers" class="w-50">Passengers
+            <span *ngIf="newCarForm.get('numberOfPassengers')?.errors && newCarForm.get('numberOfPassengers')?.touched" class="text-danger fs-4">*</span>
+          </label>
+          <input
+          [class.border-danger]="newCarForm.get('numberOfPassengers')?.errors && newCarForm.get('numberOfPassengers')?.touched"
+            type="number"
+            class="form-control my-2"
+            placeholder="Number Of Passengers"
+            formControlName="numberOfPassengers"
+            id="numberOfPassengers"
+          />
+        </div>
+
+        <label for="transmission" class="text-center d-block"
+          >Transmission</label
+        >
         <select
           formControlName="transmission"
           id="transmission"
           class="form-control my-2"
         >
-          <option [value]="0">Manual</option>
-          <option [value]="1">Automatic</option>
+          <option value="Manual">Manual</option>
+          <option value="Automatic">Automatic</option>
         </select>
-        <label class=" text-center d-block" for="type">Type</label>
+        <label class="text-center d-block" for="type">Type</label>
         <select formControlName="type" id="type" class="form-control my-2">
           <option value="SUV">SUV</option>
           <option value="Sedan">Sedan</option>
@@ -76,39 +152,38 @@
           <option value="Sports">Sports</option>
           <option value="Electric">Electric</option>
           <option value="Convertible">Convertible</option>
-      </select>
-      <label class=" text-center d-block" for="type">State</label>
-      <select formControlName="state" id="state" class="form-control my-2">
-        <option value="Available">Available</option>
-        <option value="Maintenance">Maintenance</option>
-        <option value="Rented">Rented</option>
-    </select>
+        </select>
+        <label class="text-center d-block" for="type">State</label>
+        <select formControlName="state" id="state" class="form-control my-2">
+          <option value="Available">Available</option>
+          <option value="Maintenance">Maintenance</option>
+          <option value="Rented">Rented</option>
+        </select>
 
         <input type="text" type="submit" class="btn btn-secondary w-100" />
       </form>
     </div>
     <div class="col-md-6">
-      <!-- <div class="car-img">
-        <img src="assets/images/chev.png" alt="car-img" />
-      </div> -->
-
-      
       <div class="images-upload my-4 cursor-pointer position-relative">
         <div class="car-img">
-          <img [src]="photoUrl" class="w-100 " alt="car-img" />
-          <label
-          for="file-upload"
-          class="custom-file-upload "
-          >
-          <i class="fa-solid fa-image text-white"></i>
+          <img [src]="photoUrl" class="w-100" alt="car-img" />
+          <label for="file-upload" class="custom-file-upload">
+            <i class="fa-solid fa-image text-white"></i>
           </label>
-          </div>
-          
-        <input *ngIf="carAdded" class="upload-img d-none"  id="file-upload" (change)="uploadPhoto($event)" type="file" />
+        </div>
+
+        <input
+          *ngIf="carAdded"
+          class="upload-img d-none"
+          id="file-upload"
+          (change)="uploadPhoto($event)"
+          type="file"
+        />
       </div>
       <h3 class="fw-bold text-center" *ngIf="carAdded">Upload Cover Image</h3>
-      <h3 class="fw-bold text-center" *ngIf="!carAdded">You need To Add car first then upload it's image...</h3>
+      <h3 class="fw-bold text-center" *ngIf="!carAdded">
+        You need To Add car first then upload it's image...
+      </h3>
     </div>
   </div>
 </div>
-

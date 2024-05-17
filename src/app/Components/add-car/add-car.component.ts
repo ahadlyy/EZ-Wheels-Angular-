@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CarService } from '../../Services/car.service';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -23,18 +23,18 @@ export class AddCarComponent {
 
 
   newCarForm = new FormGroup({
-    plateNumber : new FormControl(''),
-    chassisNumber : new FormControl(''),
-    make : new FormControl(''),
-    color : new FormControl(''),
-    rentalPrice : new FormControl(''),
-    mileage : new FormControl(''),
-    model : new FormControl(''),
-    variant : new FormControl(''),
-    numberOfPassengers : new FormControl(''),
-    transmission : new FormControl(''),
-    type : new FormControl(''),
-    state : new FormControl('')
+    plateNumber : new FormControl('',Validators.required),
+    chassisNumber : new FormControl('',Validators.required),
+    make : new FormControl('',Validators.required),
+    color : new FormControl('',Validators.required),
+    rentalPrice : new FormControl('',Validators.required),
+    mileage : new FormControl('',Validators.required),
+    model : new FormControl('',Validators.required),
+    variant : new FormControl('',Validators.required),
+    numberOfPassengers : new FormControl('',Validators.required),
+    transmission : new FormControl('Manual'),
+    type : new FormControl('SUV'),
+    state : new FormControl('Available')
   });
 
 

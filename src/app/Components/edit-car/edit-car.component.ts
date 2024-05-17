@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CarService } from '../../Services/car.service';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Car } from '../../Interfaces/car';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-car',
@@ -15,7 +16,11 @@ import { Car } from '../../Interfaces/car';
 export class EditCarComponent implements OnInit{
   carId:string  = "";
   car:Car = {} as Car;
-  constructor(private _carService:CarService,private _activatedRoute:ActivatedRoute,private _router:Router){
+  constructor(
+    private _carService:CarService,
+    private _activatedRoute:ActivatedRoute,
+    private _router:Router,
+    private _snackBar: MatSnackBar){
   }
 
   ngOnInit(): void {
@@ -44,15 +49,15 @@ export class EditCarComponent implements OnInit{
   }
 
   newCarForm = new FormGroup({
-    plateNumber : new FormControl(),
-    chassisNumber : new FormControl(),
-    make : new FormControl(),
-    color : new FormControl(),
-    rentalPrice : new FormControl(),
-    mileage : new FormControl(),
-    model : new FormControl(),
-    variant : new FormControl(),
-    numberOfPassengers : new FormControl(),
+    plateNumber : new FormControl(''),
+    chassisNumber : new FormControl('',Validators.required),
+    make : new FormControl('',Validators.required),
+    color : new FormControl('',Validators.required),
+    rentalPrice : new FormControl('',Validators.required),
+    mileage : new FormControl('',Validators.required),
+    model : new FormControl('',Validators.required),
+    variant : new FormControl('',Validators.required),
+    numberOfPassengers : new FormControl('',Validators.required),
     transmission : new FormControl(),
     type : new FormControl(),
     state : new FormControl()
@@ -61,13 +66,22 @@ export class EditCarComponent implements OnInit{
 
   submit(form:FormGroup){
     if(form.valid){
-      //console.log(form.value);
       this._carService.editCar(this.carId,form.value).subscribe({
         next:(res)=>{
           console.log(res);
-          // this._router.navigate(['/vehicles']);
+          this._snackBar.open("Alert", "Car Update Successfully!",{
+            horizontalPosition:'center',
+            verticalPosition:'top',
+            duration:2000,
+          });
         },
-        error:(err)=>console.log(err)
+        error:(err)=>{
+          this._snackBar.open("Error", "there was an error updating your car",{
+            horizontalPosition:'center',
+            verticalPosition:'top',
+            duration:2000,
+          });
+        }
       });
     }
   }
@@ -81,8 +95,19 @@ export class EditCarComponent implements OnInit{
         this._carService.uploadCarPhoto(this.carId,formData).subscribe({
           next:(res)=>{
             this.car.photoUrl = res.photoUrl;
+            this._snackBar.open("Alert", "Photo Update Successfully!",{
+              horizontalPosition:'center',
+              verticalPosition:'top',
+              duration:2000,
+            });
           },
-          error:(err)=>{console.log(err)}
+          error:(err)=>{
+            this._snackBar.open("Error", "there was an error updating your car photo",{
+              horizontalPosition:'center',
+              verticalPosition:'top',
+              duration:2000,
+            });
+          }
         })
       }
   }
