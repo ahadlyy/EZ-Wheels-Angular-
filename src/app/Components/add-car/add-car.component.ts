@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 export class AddCarComponent {
   carAdded:boolean = false;
   plateNumber:string="";
+  photoUrl:string="assets/images/car-placeholder.jpg";
   constructor(private _carService:CarService){}
 
 
@@ -35,12 +36,9 @@ export class AddCarComponent {
 
   submit(form:FormGroup){
     if(form.valid){
-      //console.log(form.value);
-
       this._carService.addCar(form.value).subscribe({
         next:(res)=>{
           this.plateNumber = res.plateNumber;
-          console.log(this.plateNumber);
           this.carAdded=true;
         },
         error:(err)=>console.log(err)
@@ -55,7 +53,9 @@ export class AddCarComponent {
         formData.append('photo',file);
         
         this._carService.uploadCarPhoto(this.plateNumber,formData).subscribe({
-          next:(res)=>{console.log(res)},
+          next:(res)=>{console.log(res)
+            this.photoUrl = res.photoUrl;
+          },
           error:(err)=>{console.log(err)}
         })
       }

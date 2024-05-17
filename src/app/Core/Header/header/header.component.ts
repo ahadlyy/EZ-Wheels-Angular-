@@ -1,5 +1,5 @@
 import { Component, OnChanges, SimpleChanges } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthenticationService } from '../../../Services/authentication.service';
 import { GeolocationComponent } from '../../../Components/geolocation/geolocation.component';
 
@@ -13,7 +13,10 @@ import { GeolocationComponent } from '../../../Components/geolocation/geolocatio
 })
 export class HeaderComponent {
   isLoggedIn: boolean = false;
-constructor(public authService: AuthenticationService) {
+constructor(
+  public authService: AuthenticationService,
+  private _router: Router
+) {
   authService.User.subscribe(response => {
     console.log(response);
     if(response != null) {
@@ -27,6 +30,6 @@ constructor(public authService: AuthenticationService) {
 
  logOut(){
   this.authService.logOut();
-  // console.log(this.authService.User.value);
+  this._router.navigate(['/home']);
  }
 }
