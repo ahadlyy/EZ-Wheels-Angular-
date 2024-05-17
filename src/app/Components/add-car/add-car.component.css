@@ -18,3 +18,22 @@
 .custom-file-upload:hover{
     opacity: 1;
 }
+
+label{
+    font-family: var(--heading-font-helveticanow);
+    font-weight: 600;
+}
+
+input{
+    font-family: var(--heading-font-helveticanow);
+    font-weight: 400;
+}
+
+input:focus,select:focus{
+    border:1px solid black !important;
+    box-shadow:none !important;
+}
+
+.validation-alert{
+    font-size: 12px;
+}
