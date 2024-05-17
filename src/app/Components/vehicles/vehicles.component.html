@@ -1,5 +1,6 @@
 <div class="p-3">
-  <div class="title">WHICH VEHICLE DO YOU WANT TO DRIVE?</div>
+  <div class="title" *ngIf="mode != 'admin'">WHICH VEHICLE DO YOU WANT TO DRIVE?</div>
+  <a *ngIf="mode == 'admin'" class="btn btn-info w-50 my-4" routerLink="/add-car"> Add Car</a>
   <div class="line"></div>
   <div class="row">
     <div class="col-md-3">
@@ -278,7 +279,7 @@
           @for (item of cars; track $index) {
           <div class="col-md-6 col-lg-4">
 
-            <app-vehicle-item [data]="item" [mode]="'admin'" (rentedCar)="rentCar($event)"></app-vehicle-item>
+            <app-vehicle-item [data]="item" [mode]="mode" (rentedCar)="rentCar($event)"></app-vehicle-item>
 
           </div>
           } @if (cars.length == 0) {

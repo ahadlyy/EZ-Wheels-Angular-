@@ -11,7 +11,7 @@ import { UserService } from './user.service';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  User: BehaviorSubject<any> = new BehaviorSubject({} as any);
+  User: BehaviorSubject<any> = new BehaviorSubject(null);
   baseUrl = "https://localhost:7108/api/account/";
 
   register(user: RegisterUser): Observable<any> {

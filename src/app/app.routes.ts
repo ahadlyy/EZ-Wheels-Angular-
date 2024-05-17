@@ -22,7 +22,9 @@ export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' }, 
     { path: 'home', component: HomeComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'admin', component: AdminComponent, canActivate:[canloginGuard] },
+    { path: 'admin', component: AdminComponent, canActivate:[canloginGuard] ,children:[
+        {path:'vehicles/:mode',component:VehiclesComponent}
+    ]},
     { path:'car-details/:id',component:CarDetailsComponent},
     { path:'add-car',component:AddCarComponent, canActivate:[canloginGuard] },
     { path:'edit-car/:id',component:EditCarComponent, canActivate:[canloginGuard] },

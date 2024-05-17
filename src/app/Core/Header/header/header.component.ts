@@ -15,11 +15,18 @@ export class HeaderComponent {
   isLoggedIn: boolean = false;
 constructor(public authService: AuthenticationService) {
   authService.User.subscribe(response => {
+    console.log(response);
     if(response != null) {
       this.isLoggedIn = true;
     } else {
       this.isLoggedIn = false;
     }
   })
+ }
+
+
+ logOut(){
+  this.authService.logOut();
+  // console.log(this.authService.User.value);
  }
 }
