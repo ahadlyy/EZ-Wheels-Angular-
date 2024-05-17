@@ -1,8 +1,33 @@
-.card {
-  width: 1150px;
-  height: 250hv;
-  margin: auto;
-  position: sticky;
-  top: 20px; 
 
+.sticky-container{
+  width: 80%;
+  margin: auto;
 }
+
+.sticky-container .nav-link {
+  color: #222;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.card {
+  margin: auto;
+  position: relative;
+  z-index: 1000;
+}
+
+@media (min-width: 768px) {
+  .sticky-container {
+    position: -webkit-sticky; 
+    position: sticky;
+    top: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    position: relative;
+  }
+}
+

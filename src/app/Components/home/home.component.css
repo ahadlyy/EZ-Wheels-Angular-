@@ -6,10 +6,12 @@
 
 .rent {
     position: absolute;
+    left: 0;
+    width: 100%;
 }
 
 .background {
-  background-image: url("../../../assets/images/homebackground.jpg");
+  background-image: url("../../../assets/images/homebackground.jpeg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

@@ -26,7 +26,7 @@ export class LoginComponent {
           const token = JSON.stringify(response.token);
           const user = JSON.stringify(response.user);
           this.authService.setCredentials(token, user);
-          if (this.authService.User != null) {
+          if (this.authService.User.value != null) {
             this.router.navigate(["/"]);
           }
         }
