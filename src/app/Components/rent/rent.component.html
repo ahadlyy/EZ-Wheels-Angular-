@@ -1,108 +1,114 @@
-<div class="sticky-container">
-  <div class="card text-center">
-    <div class="card-header">
-      <ul class="nav nav-tabs card-header-tabs" id="myTab">
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            (click)="showContent('renting')"
-            [class.active]="activeTab === 'renting'"
-            >Renting Date</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            (click)="showContent('vehicles')"
-            [class.active]="activeTab === 'vehicles'"
-            >Vehicles</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            (click)="showContent('map')"
-            [class.active]="activeTab === 'map'"
-            >PickUp | Return</a
-          >
-        </li>
-      </ul>
-    </div>
-    <div class="card-body">
-      <div
-        *ngIf="activeTab === 'renting'"
-        class="d-flex justify-content-center align-items-center"
-      >
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="pickupDate" style="margin: 10px; font-size: 21px"
-              >PickUp Date :</label
+
+  <div class="sticky-container">
+    <div class="card text-center">
+      <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs" id="myTab">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              (click)="showContent('renting')"
+              [class.active]="activeTab === 'renting'"
+              >Renting Date</a
             >
-            <mat-form-field>
-              <input
-                matInput
-                [matDatepicker]="picker1"
-                placeholder="PickUp Date"
-                [(ngModel)]="rent.startingDate"
-              />
-              <mat-datepicker-toggle
-                matSuffix
-                [for]="picker1"
-              ></mat-datepicker-toggle>
-              <mat-datepicker #picker1></mat-datepicker>
-            </mat-form-field>
-          </div>
-          <div class="form-group">
-            <label for="returnDate" style="margin: 10px; font-size: 22px"
-              >Return Date :</label
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              (click)="showContent('vehicles')"
+              [class.active]="activeTab === 'vehicles'"
+              >Vehicles</a
             >
-            <mat-form-field>
-              <input
-                matInput
-                [matDatepicker]="picker2"
-                placeholder="Return Date"
-                [(ngModel)]="rent.endingDate"
-              />
-              <mat-datepicker-toggle
-                matSuffix
-                [for]="picker2"
-              ></mat-datepicker-toggle>
-              <mat-datepicker #picker2></mat-datepicker>
-            </mat-form-field>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              (click)="showContent('map')"
+              [class.active]="activeTab === 'map'"
+              >PickUp | Return</a 
+            >
+          </li>
+          <li class="nav-item">
+            <a 
+              class="nav-link"
+              (click)="showContent('pay')"
+              [class.active]="activeTab === 'pay'"
+              >purchase</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
+        <div
+          *ngIf="activeTab === 'renting'"
+          class="d-flex justify-content-center align-items-center"
+        >
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="pickupDate" style="margin: 10px; font-size: 21px"
+                >PickUp Date :</label
+              >
+              <mat-form-field>
+                <input
+                  matInput
+                  [matDatepicker]="picker1"
+                  placeholder="PickUp Date"
+                  [(ngModel)]="rent.StartingDate"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="picker1"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="form-group">
+              <label for="returnDate" style="margin: 10px; font-size: 22px"
+                >Return Date :</label
+              >
+              <mat-form-field>
+                <input
+                  matInput
+                  [matDatepicker]="picker2"
+                  placeholder="Return Date"
+                  [(ngModel)]="rent.EndingDate"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="picker2"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+            </div>
           </div>
+          <div class="col-md-6 d-flex flex-column">
+            <div class="col-12 m-3 ms-1">
+              <label for="appt" style="margin: 10px; font-size: 21px"
+                >PickUp time:</label
+              >
+              <input type="time" class="w-50 p-1" id="appt" name="appt" />
+            </div>
+            <div class="col-12 m-3 ms-1">
+              <label for="appt2" style="margin: 10px; font-size: 21px"
+                >Return time:</label
+              >
+              <input type="time" class="w-50 p-1" id="appt2" name="appt2" />
+            </div>
+          </div>
+          <!-- <button class="btn btn-primary" (click)="saveRent()">Save</button> -->
         </div>
-        <div class="col-md-6 d-flex flex-column">
-          <div class="col-12 m-3 ms-1">
-            <label for="appt" style="margin: 10px; font-size: 21px"
-              >PickUp time:</label
-            >
-            <input type="time" class="w-50 p-1" id="appt" name="appt" />
-          </div>
-          <div class="col-12 m-3 ms-1">
-            <label for="appt2" style="margin: 10px; font-size: 21px"
-              >Return time:</label
-            >
-            <input type="time" class="w-50 p-1" id="appt2" name="appt2" />
-          </div>
+        <div *ngIf="activeTab === 'vehicles'">
+          <app-vehicles
+            (rentCarSelected)="RentCarSelected($event)"
+          ></app-vehicles>
         </div>
-        <!-- Other form fields -->
-        <!-- <button class="btn btn-primary" (click)="saveRent()">Save</button> -->
+        <div *ngIf="activeTab === 'map'">
+          <app-geolocation
+            (locationSelected)="onLocationSelected($event)"
+          ></app-geolocation>
+        </div>
+        <div *ngIf="activeTab === 'pay'" class="d-flex justify-content-center">
+          <app-payment class="w-50 mt-2"></app-payment>
+        </div>
       </div>
-      <div *ngIf="activeTab === 'vehicles'">
-        <app-vehicles
-          (rentCarSelected)="RentCarSelected($event)"
-          
-        ></app-vehicles>
-        <!-- <app-vehicles></app-vehicles> -->
-      </div>
-      <div *ngIf="activeTab === 'map'">
-        <app-geolocation
-          (locationSelected)="onLocationSelected($event)"
-        ></app-geolocation>
-      </div>
-      <!-- <div>
-            <app- (locationSelected)="onLocationSelected($event)"></app-geolocation>
-        </div> -->
     </div>
   </div>
-</div>

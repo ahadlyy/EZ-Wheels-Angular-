@@ -5,10 +5,10 @@
 }
 
 .rent {
-    position: sticky;
+    position: absolute;
     left: 0;
     width: 100%;
-    top: 0;
+    /* top: 50px; */
 }
 
 .background {

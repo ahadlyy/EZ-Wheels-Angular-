@@ -41,14 +41,14 @@ export class GeolocationComponent implements OnInit {
       navigator.geolocation.getCurrentPosition(position => {
         this.options = {
           center: { lat: position.coords.latitude, lng: position.coords.longitude },
-          zoom: 16,
+          zoom: 15,
           maxZoom: 30
         };
       }, error => {
         console.error('Error getting user location:', error);
         this.options = {
           center: { lat: -31, lng: 147 },
-          zoom: 4,
+          zoom: 8,
           maxZoom: 20
         };
       });
@@ -87,7 +87,6 @@ export class GeolocationComponent implements OnInit {
         DropOffLatitude: type === 'dropoff' ? location.lat : this.dropoffLocation?.lat || 0,
         DropOffLongitude: type === 'dropoff' ? location.lng : this.dropoffLocation?.lng || 0
     };
-    //console.log(locationData);
     if(locationData){
     locationData.DropOffLatitude = 0;
     locationData.DropOffLongitude = 0;
