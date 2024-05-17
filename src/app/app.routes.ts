@@ -19,6 +19,7 @@ import { canloginGuard } from './guards/canlogin.guard';
 import { ManageBookingsComponent } from './Components/manage-bookings/manage-bookings.component';
 import { isAdminGuard } from './guards/is-admin.guard';
 import { isLoggedInGuard } from './guards/is-logged-in.guard';
+import { UpdatePasswordComponent } from './Components/update-password/update-password.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' }, 
@@ -43,6 +44,7 @@ export const routes: Routes = [
     // { path:'users', component:AdminUsersComponent },
     // { path:'users/update/:id', component:UserFormComponent },
     // { path:'users/add', component:UserFormComponent },
+    { path:'editPassword', component:UpdatePasswordComponent, canActivate:[canloginGuard]},
     { path: 'managebookings', component:ManageBookingsComponent, canActivate:[canloginGuard]},
     {
         path: '',

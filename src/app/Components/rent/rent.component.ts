@@ -30,16 +30,13 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 @Component({
-  selector: 'app-rent',
-  standalone: true,
-
-  imports: [RouterModule, CommonModule, VehiclesComponent, RentComponent, GeolocationComponent,
-            MatButtonToggleModule, MatDatepickerModule, MatInputModule, MatNativeDateModule, 
-            MatFormFieldModule,FormsModule, MatButtonModule],
-
-
-  templateUrl: './rent.component.html',
-  styleUrl: './rent.component.css'
+    selector: 'app-rent',
+    standalone: true,
+    templateUrl: './rent.component.html',
+    styleUrl: './rent.component.css',
+    imports: [RouterModule, CommonModule, VehiclesComponent, RentComponent, GeolocationComponent,
+        MatButtonToggleModule, MatDatepickerModule, MatInputModule, MatNativeDateModule,
+        MatFormFieldModule, FormsModule, MatButtonModule, PaymentComponent]
 })
 export class RentComponent implements OnInit {
   loggedInUser: LoginUser | any;
@@ -69,8 +66,8 @@ export class RentComponent implements OnInit {
 
     ngOnInit(): void {
     this.authService.User.subscribe((user) => {
-      this.rent.CustomerName = user?.userName;
-      this.rent.CustomerId = user?.id;
+      this.rent.customerName = user?.userName;
+      this.rent.customerId = user?.id;
     });
   }
 
