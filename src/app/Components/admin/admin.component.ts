@@ -10,13 +10,4 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 })
 export class AdminComponent {
   constructor(private router:Router){}
-  goToReservations() {
-    this.router.navigate(['/reservations']);
-  }
-  goToVehicles() {
-    this.router.navigate(['/vehicles']);
-  }
-  goToUsers() {
-    this.router.navigate(['/users']);
-  }
 }
