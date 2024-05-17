@@ -79,7 +79,9 @@ export class EditCarComponent implements OnInit{
         formData.append('photo',file);
         
         this._carService.uploadCarPhoto(this.carId,formData).subscribe({
-          next:(res)=>{console.log(res)},
+          next:(res)=>{
+            this.car.photoUrl = res.photoUrl;
+          },
           error:(err)=>{console.log(err)}
         })
       }
