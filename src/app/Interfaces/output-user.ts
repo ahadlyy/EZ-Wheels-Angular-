@@ -1,7 +1,7 @@
 export interface OutputUser {
-    Id: string, 
-    UserName: string,
-    Email: string,
-    Age: number,
-    PhoneNumber: string
+    id: string, 
+    userName: string,
+    email: string,
+    age: number,
+    phoneNumber: string
 }

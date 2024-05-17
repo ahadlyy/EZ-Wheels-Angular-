@@ -75,15 +75,18 @@
               </form>
         </div>
         <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
-          <div class="img-container">
-            <img [src]="car.photoUrl" alt="" class="w-100">
+
+          <div class="img-container cursor-pointer position-relative">
+            <img [src]="car.photoUrl" alt="car-img" class="w-100">
+            <label
+                  for="file-upload"
+                  class="custom-file-upload "
+                  >
+                  <i class="fa-solid fa-image text-white"></i>
+                </label>
           </div>
             <div  class="images-upload my-4 cursor-pointer">
-                <label
-                  for="file-upload"
-                  class="custom-file-upload m-auto d-block w-100 text-center fw-bold"
-                  >Upload Cover Image</label
-                >
+                
                 <input
                   class="upload-img d-none"
                   id="file-upload"

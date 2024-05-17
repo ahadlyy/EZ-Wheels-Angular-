@@ -1,5 +1,5 @@
-.header {
-    background-color: var(--main-orange);
+/* .header {
+    background-color: var(--main-black);
     padding: 10px 20px;
     box-shadow: 0px 2px 4px rgba(119, 19, 19, 0.1);
 }
@@ -18,7 +18,7 @@
 
 .logo-image {
     height: 40px;
-    opacity: 0.7;
+    opacity: 1;
 }
 
 .customer-settings button {
@@ -38,9 +38,18 @@
 .customer-settings button:hover {
     color: var(--main-orange);
     text-decoration: none;
-}
+} */
 
 .menu-icon {
     width: 24px;
     height: 24px;
+}
+
+.nav-item {
+    /* margin-inline: 10px; */
+    transition: all 0.4s;
+}
+
+.nav-item:hover{
+    transform: translateY(-4px);
 }

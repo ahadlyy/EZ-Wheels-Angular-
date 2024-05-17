@@ -5,7 +5,7 @@ export const canloginGuard: CanActivateFn = (route, state) => {
   let token = localStorage.getItem("token");
   if(token == null) {
     let router = inject(Router);
-    router.navigateByUrl("login");
+    router.navigateByUrl("/login");
     return false;
   }
   return true;

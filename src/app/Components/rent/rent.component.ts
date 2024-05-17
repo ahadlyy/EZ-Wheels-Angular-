@@ -35,31 +35,28 @@ export class RentComponent implements OnInit {
   loggedInUser: LoginUser | any;
  constructor(private authService: AuthenticationService, private rentCarService: RentCarService) { }
  rent: RentCar = {
-        ReservationNumber:"",
-        StartingDate: new Date(),
-        EndingDate: new Date(),
-        PickUpLatitude:  0,
-        PickUpLongitude:  0,
-        DropOffLatitude:  0,
-        DropOffLongitude:  0,
-        CustomerName: "",
-        CustomerId: "",
-        PlateNumber: "",
-        Make: "",
-        Model: "",
-        IsOnlinePaid:true,
-        IsInProgress:true,
-        NumberOfRentDays:0,
-        TotalRentPrice:0
+        reservationNumber:"",
+        startingDate: new Date(),
+        endingDate: new Date(),
+        pickUpLatitude:  0,
+        pickUpLongitude:  0,
+        dropOffLatitude:  0,
+        dropOffLongitude:  0,
+        customerName: "",
+        customerId: "",
+        plateNumber: "",
+        make: "",
+        model: "",
+        isOnlinePaid:true,
+        isInProgress:true,
+        numberOfRentDays:0,
+        totalRentPrice:0
     };
 
     ngOnInit(): void {
     this.authService.User.subscribe((user) => {
-      this.rent.CustomerName = user?.userName;
-      this.rent.CustomerId = user?.id;
-      console.log(user?.id);
-      
-      
+      this.rent.customerName = user?.userName;
+      this.rent.customerId = user?.id;      
     });
   }
 
@@ -69,19 +66,19 @@ activeTab: string = 'renting';
   }
 
   onLocationSelected(location: { latitude: number, longitude: number }) {
-    this.rent.PickUpLatitude = location.latitude;
-    this.rent.PickUpLongitude = location.longitude;
-    this.rent.DropOffLatitude = location.latitude; 
-    this.rent.DropOffLongitude = location.longitude;
+    this.rent.pickUpLatitude = location.latitude;
+    this.rent.pickUpLongitude = location.longitude;
+    this.rent.dropOffLatitude = location.latitude; 
+    this.rent.dropOffLongitude = location.longitude;
     console.log(location);
     console.log(this.rent);
     
   }
 
   RentCarSelected(selectedCars: Car) {
-    this.rent.Model = selectedCars.model;
-    this.rent.Make = selectedCars.make;
-    this.rent.PlateNumber = selectedCars.plateNumber;
+    this.rent.model = selectedCars.model;
+    this.rent.make = selectedCars.make;
+    this.rent.plateNumber = selectedCars.plateNumber;
     console.log(this.authService.User.value.userName);
     console.log(this.rent);
     this.rentCarService.Create(this.rent).subscribe({

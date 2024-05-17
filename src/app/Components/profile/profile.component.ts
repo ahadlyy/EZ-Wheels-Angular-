@@ -13,6 +13,7 @@ import { Subscription } from 'rxjs';
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent implements OnInit{
+  user:any;
   updateUserForm = new FormGroup({
     userName: new FormControl(),
     password: new FormControl(),
@@ -38,8 +39,15 @@ export class ProfileComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.updateUserForm.patchValue(this.authService.User.value);
+    // this.updateUserForm.patchValue(this.authService.User.value);
   }
 
-  constructor(public userService: UserService, public authService: AuthenticationService, public activatedRoute: ActivatedRoute) { }
+  constructor(public userService: UserService, public authService: AuthenticationService, public activatedRoute: ActivatedRoute) {
+    console.log("constructor");
+    
+    this.user = this.authService.User.value;
+    console.log(this.user);
+    this.updateUserForm.patchValue(this.user);
+        
+   }
 }
