@@ -5,35 +5,39 @@
     <div class="row row-cols-1 row-cols-md-3 g-4 mx-5 mb-5">
         <div class="col">
             <a [routerLink]="['vehicles','admin']" class="text-decoration-none">
-            <div class="card bg-warning cursor-pointer">
-                <div class="card-body">
-                    <h5 class="card-title fw-bold">Manage Vehicles</h5>
-                    <p class="card-text">
-                        Add, Edit or Delete vehicles
-                    </p>
+                <div class="card bg-warning cursor-pointer">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Manage Vehicles</h5>
+                        <p class="card-text">
+                            Add, Edit or Delete vehicles
+                        </p>
+                    </div>
                 </div>
-            </div>
-        </a>
+            </a>
         </div>
         <div class="col">
-            <div class="card bg-danger cursor-pointer" (click)="goToReservations()">
-                <div class="card-body">
-                    <h5 class="card-title fw-bold">Manage Reservations</h5>
-                    <p class="card-text">
-                        View all reservations
-                    </p>
+            <a [routerLink]="['reservations']" class="text-decoration-none">
+                <div class="card bg-danger cursor-pointer">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Manage Reservations</h5>
+                        <p class="card-text">
+                            View all reservations
+                        </p>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
         <div class="col">
-            <div class="card bg-info cursor-pointer" (click)="goToUsers()">
-                <div class="card-body">
-                    <h5 class="card-title fw-bold">Manage Users</h5>
-                    <p class="card-text">
-                        Add, Edit or Delete users
-                    </p>
+            <a [routerLink]="['users']" class="text-decoration-none">
+                <div class="card bg-info cursor-pointer">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Manage Users</h5>
+                        <p class="card-text">
+                            Add, Edit or Delete users
+                        </p>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
     <div class="container">
