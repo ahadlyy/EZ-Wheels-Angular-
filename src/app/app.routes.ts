@@ -17,12 +17,13 @@ import { AdminUsersComponent } from './Components/admin-users/admin-users.compon
 import { UserFormComponent } from './Components/user-form/user-form.component';
 import { canloginGuard } from './guards/canlogin.guard';
 import { ManageBookingsComponent } from './Components/manage-bookings/manage-bookings.component';
+import { isAdminGuard } from './guards/is-admin.guard';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' }, 
     { path: 'home', component: HomeComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'admin', component: AdminComponent, canActivate:[canloginGuard] },
+    { path: 'admin', component: AdminComponent, canActivate:[canloginGuard, isAdminGuard] },
     { path:'car-details/:id',component:CarDetailsComponent},
     { path:'add-car',component:AddCarComponent, canActivate:[canloginGuard] },
     { path:'edit-car/:id',component:EditCarComponent, canActivate:[canloginGuard] },
