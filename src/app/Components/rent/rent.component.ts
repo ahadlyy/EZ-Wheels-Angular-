@@ -30,16 +30,19 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 @Component({
-    selector: 'app-rent',
-    standalone: true,
-    templateUrl: './rent.component.html',
-    styleUrl: './rent.component.css',
-    imports: [RouterModule, CommonModule, VehiclesComponent, RentComponent, GeolocationComponent,
-        MatButtonToggleModule, MatDatepickerModule, MatInputModule, MatNativeDateModule,
-        MatFormFieldModule, FormsModule, MatButtonModule, PaymentComponent]
+  selector: 'app-rent',
+  standalone: true,
+
+  imports: [RouterModule, CommonModule, VehiclesComponent, RentComponent, GeolocationComponent,
+            MatButtonToggleModule, MatDatepickerModule, MatInputModule, MatNativeDateModule, 
+            MatFormFieldModule,FormsModule, MatButtonModule,PaymentComponent],
+
+
+  templateUrl: './rent.component.html',
+  styleUrl: './rent.component.css'
 })
 export class RentComponent implements OnInit {
-  loggedInUser: LoginUser | any;
+  isPaid:boolean = false; 
  constructor(
   private authService: AuthenticationService,
    private rentCarService: RentCarService,
@@ -90,6 +93,13 @@ activeTab: string = 'renting';
     });
   }
 
+  cash(event:any){
+    console.log(event);
+    this.isPaid = true;
+    this.rent.isOnlinePaid = event.value;
+
+  }
+
   RentCarSelected(selectedCars: Car) {
     this.rent.model = selectedCars.model;
     this.rent.make = selectedCars.make;
@@ -105,4 +115,23 @@ activeTab: string = 'renting';
       }
     })
   }  
+
+  saveRent(){
+    this.rentCarService.Create(this.rent).subscribe({
+      next: (response) => {
+        this._snackBar.open("Alert", "Renting order has been placed Successfully",{
+          horizontalPosition:'center',
+          verticalPosition:'top',
+          duration:2000,
+        });
+      },
+      error:(err)=>{
+        this._snackBar.open("Alert", "something went wrong placing your rent order",{
+          horizontalPosition:'center',
+          verticalPosition:'top',
+          duration:2000,
+        });
+      }
+    });
+  }
 }
