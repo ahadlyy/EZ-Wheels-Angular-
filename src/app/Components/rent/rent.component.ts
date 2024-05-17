@@ -57,8 +57,8 @@ export class RentComponent implements OnInit {
 
     ngOnInit(): void {
     this.authService.User.subscribe((user) => {
-      this.rent.CustomerName = user?.userName;
-      this.rent.CustomerId = user?.id;
+      this.rent.customerName = user?.userName;
+      this.rent.customerId = user?.id;
     });
   }
 
