@@ -18,11 +18,12 @@ import { UserFormComponent } from './Components/user-form/user-form.component';
 import { canloginGuard } from './guards/canlogin.guard';
 import { ManageBookingsComponent } from './Components/manage-bookings/manage-bookings.component';
 import { isAdminGuard } from './guards/is-admin.guard';
+import { isLoggedInGuard } from './guards/is-logged-in.guard';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' }, 
     { path: 'home', component: HomeComponent },
-    { path: 'login', component: LoginComponent },
+    { path: 'login', component: LoginComponent, canActivate:[isLoggedInGuard] },
     { path: 'admin', component: AdminComponent, canActivate:[canloginGuard, isAdminGuard] ,children:[
         { path: 'vehicles/:mode',component:VehiclesComponent },
         { path: 'reservations', component: ReservationsComponent, canActivate:[canloginGuard] },

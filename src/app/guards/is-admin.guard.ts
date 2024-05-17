@@ -13,6 +13,3 @@ export const isAdminGuard: CanActivateFn = (route, state) => {
   router.navigateByUrl("home");
   return false;
 };
-
-
-// Ya adly e3mel mute!!!!!!!!!
