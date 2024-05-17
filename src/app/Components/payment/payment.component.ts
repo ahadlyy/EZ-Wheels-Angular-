@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { PayPalService } from '../../Services/paypal.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, catchError } from 'rxjs/operators';
@@ -12,6 +12,7 @@ import { Observable, of } from 'rxjs';
   styleUrl: './payment.component.css'
 })
 export class PaymentComponent implements OnInit {
+  @Output() payment:EventEmitter<any> = new EventEmitter();
   constructor(private payPalService: PayPalService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
@@ -78,6 +79,9 @@ export class PaymentComponent implements OnInit {
   }
 
   CashOnPickup(): void {
-    alert("You selected Cash on Pickup. Please pay at the store.");
+    let s=false;
+    this.payment.emit(s);
   }
+
+  
 }

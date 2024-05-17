@@ -35,14 +35,14 @@ import { HttpClientModule } from '@angular/common/http';
 
   imports: [RouterModule, CommonModule, VehiclesComponent, RentComponent, GeolocationComponent,
             MatButtonToggleModule, MatDatepickerModule, MatInputModule, MatNativeDateModule, 
-            MatFormFieldModule,FormsModule, MatButtonModule],
+            MatFormFieldModule,FormsModule, MatButtonModule,PaymentComponent],
 
 
   templateUrl: './rent.component.html',
   styleUrl: './rent.component.css'
 })
 export class RentComponent implements OnInit {
-  loggedInUser: LoginUser | any;
+  isPaid:boolean = false; 
  constructor(
   private authService: AuthenticationService,
    private rentCarService: RentCarService,
@@ -69,8 +69,8 @@ export class RentComponent implements OnInit {
 
     ngOnInit(): void {
     this.authService.User.subscribe((user) => {
-      this.rent.CustomerName = user?.userName;
-      this.rent.CustomerId = user?.id;
+      this.rent.customerName = user?.userName;
+      this.rent.customerId = user?.id;
     });
   }
 
@@ -93,6 +93,13 @@ activeTab: string = 'renting';
     });
   }
 
+  cash(event:any){
+    console.log(event);
+    this.isPaid = true;
+    this.rent.isOnlinePaid = event.value;
+
+  }
+
   RentCarSelected(selectedCars: Car) {
     this.rent.model = selectedCars.model;
     this.rent.make = selectedCars.make;
@@ -108,4 +115,23 @@ activeTab: string = 'renting';
       }
     })
   }  
+
+  saveRent(){
+    this.rentCarService.Create(this.rent).subscribe({
+      next: (response) => {
+        this._snackBar.open("Alert", "Renting order has been placed Successfully",{
+          horizontalPosition:'center',
+          verticalPosition:'top',
+          duration:2000,
+        });
+      },
+      error:(err)=>{
+        this._snackBar.open("Alert", "something went wrong placing your rent order",{
+          horizontalPosition:'center',
+          verticalPosition:'top',
+          duration:2000,
+        });
+      }
+    });
+  }
 }
