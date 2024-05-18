@@ -44,6 +44,5 @@ export class VehicleItemComponent implements OnInit{
   }
   rentCar(){
     this.rentedCar.emit(this.data);
-
   }
 }

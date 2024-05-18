@@ -1,4 +1,13 @@
-<div id="paypal-button-container" class="d-flex flex-column justify-content-center m-auto"></div>
-<div>
-    <button class="cash-on-pickup w-100" onclick="CashOnPickup()">Cash on Pickup</button>
+<div class="paydetails">
+    <h1>Payment Details</h1>
+    <p>Rental Price per Day: {{ rentalPriceDay }} EGP</p>
+    <p>Total Price: {{ totalPrice }} EGP</p>
 </div>
+
+<div class="payaction">
+    <div id="paypal-button-container" class="d-flex flex-column justify-content-center m-auto"></div>
+    <div>
+        <button class="cash-on-pickup w-100" (click)="CashOnPickup()">Cash on Pickup</button>
+    </div>
+</div>
+
