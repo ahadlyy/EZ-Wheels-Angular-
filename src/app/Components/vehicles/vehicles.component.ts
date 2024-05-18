@@ -83,7 +83,6 @@ export class VehiclesComponent implements OnInit{
 
   rentCar(car:Car){
     this.rentCarSelected.emit(car);
-    
   }
   
 

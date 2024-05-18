@@ -53,6 +53,5 @@ ngOnChanges(changes: SimpleChanges): void {
   }
   rentCar(){
     this.rentedCar.emit(this.data);
-
   }
 }

@@ -44,41 +44,24 @@
         >
           <div class="col-md-6">
             <div class="form-group">
-              <label for="pickupDate" style="margin: 10px; font-size: 21px"
-                >PickUp Date :</label
-              >
+              <label for="pickupDate" style="margin: 10px; font-size: 21px">PickUp Date:</label>
               <mat-form-field>
-                <input
-                  matInput
-                  [matDatepicker]="picker1"
-                  placeholder="PickUp Date"
-                  [(ngModel)]="rent.startingDate"
-                />
-                <mat-datepicker-toggle
-                  matSuffix
-                  [for]="picker1"
-                ></mat-datepicker-toggle>
+                <input matInput [matDatepicker]="picker1" placeholder="PickUp Date" [(ngModel)]="rent.startingDate"
+                  [matDatepickerFilter]="dateFilter" />
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
               </mat-form-field>
             </div>
             <div class="form-group">
-              <label for="returnDate" style="margin: 10px; font-size: 22px"
-                >Return Date :</label
-              >
+              <label for="returnDate" style="margin: 10px; font-size: 22px">Return Date:</label>
               <mat-form-field>
-                <input
-                  matInput
-                  [matDatepicker]="picker2"
-                  placeholder="Return Date"
-                  [(ngModel)]="rent.endingDate"
-                />
-                <mat-datepicker-toggle
-                  matSuffix
-                  [for]="picker2"
-                ></mat-datepicker-toggle>
+                <input matInput [matDatepicker]="picker2" placeholder="Return Date" [(ngModel)]="rent.endingDate"
+                  [matDatepickerFilter]="dateFilter" />
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2></mat-datepicker>
               </mat-form-field>
             </div>
+
           </div>
           <div class="col-md-6 d-flex flex-column">
             <div class="col-12 m-3 ms-1">
@@ -106,7 +89,10 @@
           ></app-geolocation>
         </div>
         <div *ngIf="activeTab === 'pay'" class="d-flex flex-column align-content-center justify-content-center">
-          <app-payment (payment)="cash($event)" class="w-50 mt-2"></app-payment>
+          <app-payment [rentalPriceDay]="rentalPriceDay"
+                       [totalPrice]="totalPrice" 
+                       (payment)="cash($event)" class="w-50 mt-2">
+          </app-payment>
           <button *ngIf="isPaid" class="btn btn-primary" (click)="saveRent()">Save</button>
         </div>
       </div>

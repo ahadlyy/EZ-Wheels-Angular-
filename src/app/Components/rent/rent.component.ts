@@ -20,10 +20,8 @@ import { LoginUser } from '../../Interfaces/login-user';
 import { RegisterUser } from '../../Interfaces/register-user';
 import { UserService } from '../../Services/user.service';
 import { RentCarService } from '../../Services/rent-car.service';
-
 import { MatButtonModule } from '@angular/material/button';
 import {MatSnackBar} from '@angular/material/snack-bar';
-
 import { PaymentComponent } from '../payment/payment.component';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -42,7 +40,9 @@ import { HttpClientModule } from '@angular/common/http';
   styleUrl: './rent.component.css'
 })
 export class RentComponent implements OnInit {
-  isPaid:boolean = false; 
+  isPaid:boolean = false;
+  rentalPriceDay: number | any;
+  totalPrice: number | any;
  constructor(
   private authService: AuthenticationService,
    private rentCarService: RentCarService,
@@ -66,6 +66,7 @@ export class RentComponent implements OnInit {
         numberOfRentDays:0,
         totalRentPrice:0
     };
+    
 
     ngOnInit(): void {
     this.authService.User.subscribe((user) => {
@@ -74,19 +75,39 @@ export class RentComponent implements OnInit {
     });
   }
 
+  dateFilter = (todayDate: Date | null): boolean => {
+    if (!todayDate) return false;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); 
+    return todayDate >= today;
+  }
+
 activeTab: string = 'renting';
   showContent(tab: string) {
     this.activeTab = tab;
   }
 
+ calculateTotalPrice(startDate: Date, endDate: Date, price:number|any): number {
+    const Day = 24 * 60 * 60 * 1000; 
+    const diffInSec = endDate.getTime() - startDate.getTime();
+    const rentingDays = Math.round(diffInSec / Day);
+    const Tprice = rentingDays * price;
+    return Tprice;
+}
+
   onLocationSelected(location: { latitude: number, longitude: number }) {
     this.rent.pickUpLatitude = location.latitude;
     this.rent.pickUpLongitude = location.longitude;
+    if(this.rent.pickUpLatitude && this.rent.pickUpLongitude){
+      this._snackBar.open("Alert", "PickUp location selected!",{
+      horizontalPosition:'center',
+      verticalPosition:'top',
+      duration:2000,
+    });
+    }
     this.rent.dropOffLatitude = location.latitude; 
     this.rent.dropOffLongitude = location.longitude;
-    console.log(location);
-    console.log(this.rent);
-    this._snackBar.open("Alert", "location selected!",{
+    this._snackBar.open("Alert", "DropOff location selected!",{
       horizontalPosition:'center',
       verticalPosition:'top',
       duration:2000,
@@ -94,26 +115,23 @@ activeTab: string = 'renting';
   }
 
   cash(event:any){
-    console.log(event);
     this.isPaid = true;
     this.rent.isOnlinePaid = event.value;
-
   }
 
   RentCarSelected(selectedCars: Car) {
     this.rent.model = selectedCars.model;
     this.rent.make = selectedCars.make;
     this.rent.plateNumber = selectedCars.plateNumber;
-    console.log(this.authService.User.value.userName);
-    console.log(this.rent);
-    this.rentCarService.Create(this.rent).subscribe({
-      next: (response) => {
-        console.log(response);
-      },
-      error: err => {
-        console.log(err);
-      }
-    })
+    this._snackBar.open("Alert", "Car selected Successfully!",{
+      horizontalPosition:'center',
+      verticalPosition:'top',
+      duration:2000,
+    });
+    let rentalPriceDay: number | any = selectedCars.rentalPrice ; 
+    let totalPrice: number | any = this.calculateTotalPrice(this.rent.startingDate, this.rent.endingDate, rentalPriceDay);
+    console.log(rentalPriceDay)
+    console.log(totalPrice)
   }  
 
   saveRent(){
@@ -122,14 +140,14 @@ activeTab: string = 'renting';
         this._snackBar.open("Alert", "Renting order has been placed Successfully",{
           horizontalPosition:'center',
           verticalPosition:'top',
-          duration:2000,
+          duration:3000,
         });
       },
       error:(err)=>{
         this._snackBar.open("Alert", "something went wrong placing your rent order",{
           horizontalPosition:'center',
           verticalPosition:'top',
-          duration:2000,
+          duration:3000,
         });
       }
     });
