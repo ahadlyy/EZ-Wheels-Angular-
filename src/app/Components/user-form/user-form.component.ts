@@ -25,6 +25,7 @@ export class UserFormComponent implements OnInit {
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
+    private router: Router,
     private _snackBar:MatSnackBar
   ) {}
   ngOnInit(): void {
@@ -45,6 +46,7 @@ export class UserFormComponent implements OnInit {
             verticalPosition:'top',
             duration:2000,
           });
+          this.router.navigate(['/admin', 'users']);
         },
         error:(err) => {
           this._snackBar.open("Error", "there was an error updating the user",{
@@ -52,7 +54,7 @@ export class UserFormComponent implements OnInit {
             verticalPosition:'top',
             duration:2000,
           });
-          console.log(err);
+          
         }
       });
       } else {
@@ -64,18 +66,19 @@ export class UserFormComponent implements OnInit {
             verticalPosition:'top',
             duration:2000,
           });
+          this.router.navigate(['/admin', 'users']);
         },
-        error:() => {
+        error:(err) => {
           this._snackBar.open("Error", "there was an error adding the user",{
             horizontalPosition:'center',
             verticalPosition:'top',
             duration:2000,
           });
+          console.log(err);
         }
       });
       }
     }
   }
-  
   
 }
