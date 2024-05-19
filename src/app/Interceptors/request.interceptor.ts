@@ -7,9 +7,5 @@ export const requestInterceptor: HttpInterceptorFn = (req, next) => {
    
     headers: req.headers.set("authorization", `Bearer ${parsedToken}`)
   }) 
-    headers: req.headers.set("authorization", `Bearer ${localStorage.getItem("token")}`)
-  })
-  console.log("authorization", `Bearer ${localStorage.getItem("token")}`)
   return next(modifiedRequest);
-
 };
