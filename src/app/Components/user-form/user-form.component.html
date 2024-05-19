@@ -6,11 +6,27 @@
         <h2 class="bg-dark text-light rounded-3 p-1">Add an Employee</h2>
     }
     <input id="userName" type="text" formControlName="userName" placeholder="Username" class="fw-bold text-color-website form-control my-1">
+    <div class="" *ngIf="userForm.get('userName')?.errors && userForm.get('userName')?.touched">
+        <p class="mb-0 text-danger" *ngIf="userForm.get('userName')?.getError('required') && userForm.get('userName')?.touched">name is required</p>
+    </div>
     <input id="email" type="text" formControlName="email" placeholder="Email" class="fw-bold text-color-website form-control my-1">
+    <div class="" *ngIf="userForm.get('email')?.errors && userForm.get('email')?.touched">
+        <p class="mb-0 text-danger" *ngIf="userForm.get('email')?.getError('required') && userForm.get('email')?.touched">email is required</p>
+        <p class="mb-0 text-danger" *ngIf="userForm.get('email')?.getError('email')" > email is invalid</p>
+    </div>
     <input id="age" type="number" formControlName="age" placeholder="Age" class="fw-bold text-color-website form-control my-1">
     <input id="phone" type="text" formControlName="phoneNumber" placeholder="Phone" class="fw-bold text-color-website form-control my-1">
     <input id="password" type="password" formControlName="password" placeholder="Password" class="fw-bold text-color-website border my-1 form-control">
-    <input id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="Confirm Password" class="fw-bold text-color-website border my-1 form-control">
     
+    <div class="" *ngIf="userForm.get('password')?.errors && userForm.get('password')?.touched">
+        <p class="mb-0 text-danger" *ngIf="userForm.get('password')?.getError('required') && userForm.get('password')?.touched">password is required</p>
+        <p class="mb-0 text-danger" *ngIf="userForm.get('password')?.getError('pattern') && userForm.get('password')?.touched"> password pattern is invalid</p>
+    </div>
+    <input id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="Confirm Password" class="fw-bold text-color-website border my-1 form-control">
+    <div class="" *ngIf="userForm.get('confirmPassword')?.errors && userForm.get('confirmPassword')?.touched">
+        <p class="mb-0 text-danger" *ngIf="userForm.get('confirmPassword')?.getError('required')">password confirmation is required</p>
+        <p class="mb-0 text-danger" *ngIf="userForm.get('confirmPassword')?.getError('pattern')"> password confirmation pattern is invalid</p>
+        <p class="mb-0 text-danger" *ngIf="userForm.get('confirmPassword') != userForm.get('password')"> password does not match</p>
+    </div>
     <button type="submit" class="btn btn-success mt-2 w-25">Submit</button>
 </form>
