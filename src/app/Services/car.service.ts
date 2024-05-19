@@ -16,7 +16,18 @@ export class CarService {
 
   getCars(pageNumber: number=1, pageSize: number=100, filter?: any): Observable<any> {
     // let params = { pageNumber: pageNumber.toString(), pageSize: pageSize.toString(), ...filter };
-    return this.http.get(`${this.baseUrl}/${pageNumber},${pageSize}`, { params:{...filter} });
+  //    let token =  `${localStorage.getItem("token")}`;
+  //    let  t = JSON.parse(token);
+  //    let Bearer = "Bearer ";
+  //    const headers = {
+  //     "authorization": `Bearer ${t}`
+  // };
+  // console.log(`Bearer ${token}`);
+  
+    return this.http.get(`${this.baseUrl}/${pageNumber},${pageSize}`, {
+      params:{...filter},
+      // headers:headers
+  });
   }
 
   getColors():Observable<any>{
