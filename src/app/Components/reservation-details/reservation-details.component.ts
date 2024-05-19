@@ -27,7 +27,7 @@ export class ReservationDetailsComponent implements OnInit, OnDestroy{
 
   deleteReservation(){
     if(this.reservation != null)
-      this.deleteSub = this.rentCarService.delete(this.reservation[0]?.reservationNumber).subscribe();
+      this.deleteSub = this.rentCarService.delete(this.reservation[0].reservationNumber).subscribe();
       this.router.navigateByUrl('/admin')
   }
   ngOnDestroy(){
