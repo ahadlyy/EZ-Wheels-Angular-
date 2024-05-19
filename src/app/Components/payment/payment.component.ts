@@ -12,15 +12,13 @@ import { CommonModule } from '@angular/common';
   templateUrl: './payment.component.html',
   styleUrl: './payment.component.css'
 })
-export class PaymentComponent implements OnInit {
+export class PaymentComponent implements OnInit , OnChanges {
   @Input() rentalPriceDay: number | any;
   @Input() totalPrice: number | any;
   @Output() payment:EventEmitter<any> = new EventEmitter();
   constructor(private payPalService: PayPalService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
-    console.log(this.rentalPriceDay+"--> from payment")
-    console.log(this.totalPrice+"--> from payment")
     this.route.queryParams.subscribe(params => {
       const paymentId = params['paymentId'];
       const payerId = params['PayerID'];
@@ -32,6 +30,12 @@ export class PaymentComponent implements OnInit {
       }
     });
   }
+   
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(this.rentalPriceDay+"--> from payment")
+    console.log(this.totalPrice+"--> from payment")
+  }
+
 
   loadPayPalScriptAndRenderButton(): void {
     this.payPalService.loadPayPalScript().then(() => {
