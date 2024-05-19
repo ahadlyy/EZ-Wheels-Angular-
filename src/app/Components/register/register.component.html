@@ -18,9 +18,29 @@
         </div>
         <form [formGroup]="registerForm" (ngSubmit)="register(registerForm)" class="d-flex flex-column justify-content-center px-5 py-3 w-75">
             <input id="username" type="text" formControlName="username" placeholder="Username" class="fw-bold text-color-website form-control my-1">
+            <div class="" *ngIf="registerForm.get('username')?.errors && registerForm.get('username')?.touched">
+                <p class="mb-0 text-danger" *ngIf="registerForm.get('username')?.getError('required') && registerForm.get('username')?.touched">name is required</p>
+            </div>
+
             <input id="email" type="text" formControlName="email" placeholder="Email" class="fw-bold text-color-website form-control my-1">
+            <div class="" *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched">
+                <p class="mb-0 text-danger" *ngIf="registerForm.get('email')?.getError('required') && registerForm.get('email')?.touched">email is required</p>
+                <p class="mb-0 text-danger" *ngIf="registerForm.get('email')?.getError('email')" > email is invalid</p>
+            </div>
+
             <input id="password" type="password" formControlName="password" placeholder="Password" class="fw-bold text-color-website border my-1 form-control">
+             <div class="" *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched">
+                <p class="mb-0 text-danger" *ngIf="registerForm.get('password')?.getError('required') && registerForm.get('password')?.touched">password is required</p>
+                <p class="mb-0 text-danger" *ngIf="registerForm.get('password')?.getError('pattern') && registerForm.get('password')?.touched"> password pattern is invalid</p>
+            </div>
+
             <input id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="Confirm Password" class="fw-bold text-color-website border my-1 form-control">
+            <div class="" *ngIf="registerForm.get('confirmPassword')?.errors && registerForm.get('confirmPassword')?.touched">
+                <p class="mb-0 text-danger" *ngIf="registerForm.get('confirmPassword')?.getError('required')">password confirmation is required</p>
+                <p class="mb-0 text-danger" *ngIf="registerForm.get('confirmPassword')?.getError('pattern')"> password confirmation pattern is invalid</p>
+                <p class="mb-0 text-danger" *ngIf="registerForm.get('confirmPassword') != registerForm.get('password')"> password does not match</p>
+            </div>
+
             <input type="submit" class="my-3 text-white fw-bold bg-color-website border border-0 p-1 rounded" value="Register" />
         </form>
         <a class="text-color-website text-decoration-none fw-bold" routerLink="/login">Having an account already? Login here</a>

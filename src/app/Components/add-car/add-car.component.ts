@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { CarService } from '../../Services/car.service';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-car',
@@ -13,37 +14,49 @@ import { CommonModule } from '@angular/common';
 export class AddCarComponent {
   carAdded:boolean = false;
   plateNumber:string="";
-  constructor(private _carService:CarService){}
+  photoUrl:string="assets/images/car-placeholder.jpg";
+  constructor(
+    private _carService:CarService,
+    private _snackBar: MatSnackBar
+  ){}
 
 
 
   newCarForm = new FormGroup({
-    plateNumber : new FormControl(''),
-    chassisNumber : new FormControl(''),
-    make : new FormControl(''),
-    color : new FormControl(''),
-    rentalPrice : new FormControl(''),
-    mileage : new FormControl(''),
-    model : new FormControl(''),
-    variant : new FormControl(''),
-    numberOfPassengers : new FormControl(''),
-    transmission : new FormControl(''),
-    type : new FormControl(''),
-    state : new FormControl('')
+    plateNumber : new FormControl('',Validators.required),
+    chassisNumber : new FormControl('',Validators.required),
+    make : new FormControl('',Validators.required),
+    color : new FormControl('',Validators.required),
+    rentalPrice : new FormControl('',Validators.required),
+    mileage : new FormControl('',Validators.required),
+    model : new FormControl('',Validators.required),
+    variant : new FormControl('',Validators.required),
+    numberOfPassengers : new FormControl('',Validators.required),
+    transmission : new FormControl('Manual'),
+    type : new FormControl('SUV'),
+    state : new FormControl('Available')
   });
 
 
   submit(form:FormGroup){
     if(form.valid){
-      //console.log(form.value);
-
       this._carService.addCar(form.value).subscribe({
         next:(res)=>{
           this.plateNumber = res.plateNumber;
-          console.log(this.plateNumber);
           this.carAdded=true;
+          this._snackBar.open("Alert", "Car Added Successfully",{
+            horizontalPosition:'center',
+            verticalPosition:'top',
+            duration:2000,
+          });
         },
-        error:(err)=>console.log(err)
+        error:(err)=>{
+          this._snackBar.open("Problem", "There was a problem adding your car please try again",{
+            horizontalPosition:'center',
+            verticalPosition:'top',
+            duration:2000,
+          });
+        }
       });
     }
   }
@@ -55,8 +68,19 @@ export class AddCarComponent {
         formData.append('photo',file);
         
         this._carService.uploadCarPhoto(this.plateNumber,formData).subscribe({
-          next:(res)=>{console.log(res)},
-          error:(err)=>{console.log(err)}
+          next:(res)=>{console.log(res)
+            this.photoUrl = res.photoUrl;
+            this._snackBar.open("Alert", "Image Added Successfully",{
+              horizontalPosition:'center',
+              verticalPosition:'top',
+              duration:2000,
+            });
+          },
+          error:(err)=>{this._snackBar.open("Problem", "There was a problem adding your car image please try again",{
+            horizontalPosition:'center',
+            verticalPosition:'top',
+            duration:2000,
+          });}
         })
       }
   }
