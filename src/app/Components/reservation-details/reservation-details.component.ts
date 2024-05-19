@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
   styleUrl: './reservation-details.component.css'
 })
 export class ReservationDetailsComponent implements OnInit, OnDestroy{
-  reservation : RentCar[] | null = null;
+  reservation : any[] | null = null;
   sub: Subscription | null = null;
   innerSub: Subscription | null = null;
   deleteSub: Subscription | null = null;

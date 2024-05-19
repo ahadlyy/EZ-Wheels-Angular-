@@ -83,7 +83,6 @@ export class VehiclesComponent implements OnInit{
 
   rentCar(car:Car){
     this.rentCarSelected.emit(car);
-    
   }
   
 
@@ -131,6 +130,4 @@ export class VehiclesComponent implements OnInit{
     this.getCarsData(this.currentPageIndex,form);
     this.currentFilterForm = form;
   }
-
 }
-

@@ -24,6 +24,11 @@ export class UserService {
     return this.http.put<any>(this.baseUrl, user);
   }
 
+  updatePassword(passwordObj: any) {
+    passwordObj.id = localStorage.getItem('userId');
+    return this.http.patch<any>(this.baseUrl, passwordObj);
+  }
+
   delete(id: number) {
     return this.http.delete(this.baseUrl + `/${id}`);
   }
