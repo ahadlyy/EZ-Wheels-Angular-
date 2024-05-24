@@ -11,7 +11,7 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 
 export const appConfig: ApplicationConfig = {providers: [provideRouter(routes),
-    provideHttpClient(withInterceptors([authInterceptor])),
+    provideHttpClient(withInterceptors([authInterceptor, requestInterceptor])),
     provideAnimations()]};
 
 
