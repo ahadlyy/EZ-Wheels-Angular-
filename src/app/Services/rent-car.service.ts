@@ -19,6 +19,7 @@ export class RentCarService {
   }
 
   Create(rent:RentCar):Observable<any>{
+    console.log(rent);
     return this._http.post(`${this.baseUrl}`,rent);
   }
 

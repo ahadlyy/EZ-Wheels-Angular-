@@ -102,7 +102,7 @@ activeTab: string = 'renting';
       this._snackBar.open("Alert", "PickUp location selected!",{
       horizontalPosition:'center',
       verticalPosition:'top',
-      duration:2000,
+      duration:4000,
     });
     }
     this.rent.dropOffLatitude = location.latitude; 
@@ -128,13 +128,12 @@ activeTab: string = 'renting';
       verticalPosition:'top',
       duration:2000,
     });
-    let rentalPriceDay: number | any = selectedCars.rentalPrice ; 
-    let totalPrice: number | any = this.calculateTotalPrice(this.rent.startingDate, this.rent.endingDate, rentalPriceDay);
-    console.log(rentalPriceDay)
-    console.log(totalPrice)
+    this.rentalPriceDay = selectedCars.rentalPrice ; 
+    this.totalPrice = this.calculateTotalPrice(this.rent.startingDate, this.rent.endingDate, this.rentalPriceDay);
   }  
 
   saveRent(){
+    console.log("i am from save");
     this.rentCarService.Create(this.rent).subscribe({
       next: (response) => {
         this._snackBar.open("Alert", "Renting order has been placed Successfully",{

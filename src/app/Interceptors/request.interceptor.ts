@@ -8,5 +8,4 @@ export const requestInterceptor: HttpInterceptorFn = (req, next) => {
     headers: req.headers.set("authorization", `Bearer ${parsedToken}`)
   }) 
   return next(modifiedRequest);
-
 };

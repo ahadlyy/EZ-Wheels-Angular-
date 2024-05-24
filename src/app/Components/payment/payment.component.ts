@@ -16,20 +16,13 @@ export class PaymentComponent implements OnInit {
   @Input() rentalPriceDay: number | any;
   @Input() totalPrice: number | any;
   @Output() payment:EventEmitter<any> = new EventEmitter();
+  paymentId:string | null="";
+  payerId:string | null="";
   constructor(private payPalService: PayPalService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
-    console.log(this.rentalPriceDay+"--> from payment")
-    console.log(this.totalPrice+"--> from payment")
     this.route.queryParams.subscribe(params => {
-      const paymentId = params['paymentId'];
-      const payerId = params['PayerID'];
-
-      if (paymentId && payerId) {
-        this.executePayment(paymentId, payerId);
-      } else {
         this.loadPayPalScriptAndRenderButton();
-      }
     });
   }
 
@@ -41,28 +34,41 @@ export class PaymentComponent implements OnInit {
     });
   }
 
-  renderPayPalButton(): void {
-    const amount = 10.00; 
+   renderPayPalButton(): void {
+    const amount = 5; // this.totalPrice
     const currency = 'USD'; 
 
     (window as any).paypal.Buttons({
       createOrder: (data: any, actions: any) => {
         return this.payPalService.createPayment(amount, currency).pipe(
-          map((response: any) => response.id),
+          map((res: any) => {
+            const approvalUrl = res.approvalUrl;
+            const token = this.getQueryParamValue(approvalUrl, 'token');
+            console.log(`Token: ${token}`);
+            return token;
+          }),
           catchError(error => {
             console.error('Error creating PayPal order:', error);
             return of(null);
           })
-        );
+        ).toPromise();
       },
       onApprove: (data: any, actions: any) => {
-        this.executePaymentSuccessAction(data.orderID, data.payerID);
+        const paymentId = data.orderID;
+        const payerId = data.payerID;
+        this.executePaymentSuccessAction(paymentId, payerId);
       },
       onError: (err: any) => {
         console.error('PayPal payment error:', err);
       }
     }).render('#paypal-button-container');
   }
+
+  getQueryParamValue(url: string, param: string): string | null {
+    const urlObj = new URL(url);
+    return urlObj.searchParams.get(param);
+  }
+
 
   executePayment(paymentId: string, payerId: string): void {
     this.payPalService.executePayment(paymentId, payerId).subscribe((payment: any) => {
@@ -80,6 +86,8 @@ export class PaymentComponent implements OnInit {
         paymentId: paymentId,
         PayerID: payerId
       }
+    }).then(() => {
+      this.executePayment(paymentId, payerId);
     });
   }
 
