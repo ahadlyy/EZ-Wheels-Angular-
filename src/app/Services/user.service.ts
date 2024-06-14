@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RegisterUser } from '../Interfaces/register-user';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +17,17 @@ export class UserService {
     return this.http.get(this.baseUrl + `/${id}`);
   }
 
-  add(user: RegisterUser) {
+  add(user: any): Observable<any> {
     return this.http.post<any>(this.baseUrl, user);
   }
 
-  update(user: RegisterUser) {
+  update(user: any): Observable<any> {
     return this.http.put<any>(this.baseUrl, user);
+  }
+
+  updatePassword(passwordObj: any) {
+    passwordObj.id = localStorage.getItem('userId');
+    return this.http.patch<any>(this.baseUrl, passwordObj);
   }
 
   delete(id: number) {

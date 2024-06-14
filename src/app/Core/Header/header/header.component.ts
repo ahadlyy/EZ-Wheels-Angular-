@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, OnChanges, SimpleChanges } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthenticationService } from '../../../Services/authentication.service';
 import { GeolocationComponent } from '../../../Components/geolocation/geolocation.component';
 
@@ -12,6 +12,24 @@ import { GeolocationComponent } from '../../../Components/geolocation/geolocatio
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  isLoggedIn: boolean = false;
+constructor(
+  public authService: AuthenticationService,
+  private _router: Router
+) {
+  authService.User.subscribe(response => {
+    console.log(response);
+    if(response != null) {
+      this.isLoggedIn = true;
+    } else {
+      this.isLoggedIn = false;
+    }
+  })
+ }
 
-constructor(public authService: AuthenticationService) { }
+
+ logOut(){
+  this.authService.logOut();
+  this._router.navigate(['/home']);
+ }
 }

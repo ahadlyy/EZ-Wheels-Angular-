@@ -1,13 +1,14 @@
 export interface Car {
     plateNumber:string,
     chassisNumber:string,
+    photoUrl:string,
     make:string,
     color:string,
-    rentalPrice?:number,
+    rentalPrice:string,
     model:string,
     variant:string,
-    mileage:number,
-    numberOfPassengers?:number,
+    mileage:string,
+    numberOfPassengers:string,
     state:StateEnum,
     transmission:TransmissionEnum,
     type:TypeEnum

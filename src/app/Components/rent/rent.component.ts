@@ -19,46 +19,67 @@ import { AuthenticationService } from '../../Services/authentication.service';
 import { LoginUser } from '../../Interfaces/login-user';
 import { RegisterUser } from '../../Interfaces/register-user';
 import { UserService } from '../../Services/user.service';
+import { RentCarService } from '../../Services/rent-car.service';
+import { MatButtonModule } from '@angular/material/button';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import { PaymentComponent } from '../payment/payment.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 @Component({
   selector: 'app-rent',
   standalone: true,
+
   imports: [RouterModule, CommonModule, VehiclesComponent, RentComponent, GeolocationComponent,
             MatButtonToggleModule, MatDatepickerModule, MatInputModule, MatNativeDateModule, 
-            MatFormFieldModule,FormsModule],
+            MatFormFieldModule,FormsModule, MatButtonModule,PaymentComponent],
+
+
   templateUrl: './rent.component.html',
   styleUrl: './rent.component.css'
 })
 export class RentComponent implements OnInit {
-  loggedInUser: LoginUser | any;
- constructor(private authService: AuthenticationService) { }
+  isPaid:boolean = false;
+  rentalPriceDay: number | any;
+  totalPrice: number | any;
+ constructor(
+  private authService: AuthenticationService,
+   private rentCarService: RentCarService,
+   private _snackBar: MatSnackBar
+  ) { }
  rent: RentCar = {
-        ReservationNumber:"",
-        StartingDate: new Date(),
-        EndingDate: new Date(),
-        PickUpLatitude:  0,
-        PickUpLongitude:  0,
-        DropOffLatitude:  0,
-        DropOffLongitude:  0,
-        CustomerName: "",
-        CustomerId: "",
-        PlateNumber: "",
-        Make: "",
-        Model: "",
-        IsOnlinePaid:true,
-        IsInProgress:true,
-        NumberOfRentDays:0,
-        TotalRentPrice:0
+        reservationNumber:"",
+        startingDate: new Date(),
+        endingDate: new Date(),
+        pickUpLatitude:  0,
+        pickUpLongitude:  0,
+        dropOffLatitude:  0,
+        dropOffLongitude:  0,
+        customerName: "",
+        customerId: "",
+        plateNumber: "",
+        make: "",
+        model: "",
+        isOnlinePaid:true,
+        isInProgress:true,
+        numberOfRentDays:0,
+        totalRentPrice:0
     };
+    
 
     ngOnInit(): void {
-    this.authService.User.subscribe((user: any) => {
-      this.rent.CustomerName = user.userName;
-      this.rent.CustomerId = user.id;
-      
-      
+    this.authService.User.subscribe((user) => {
+      this.rent.customerName = user?.userName;
+      this.rent.customerId = user?.id;
     });
+  }
+
+  dateFilter = (todayDate: Date | null): boolean => {
+    if (!todayDate) return false;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); 
+    return todayDate >= today;
   }
 
 activeTab: string = 'renting';
@@ -66,20 +87,68 @@ activeTab: string = 'renting';
     this.activeTab = tab;
   }
 
+ calculateTotalPrice(startDate: Date, endDate: Date, price:number|any): number {
+    const Day = 24 * 60 * 60 * 1000; 
+    const diffInSec = endDate.getTime() - startDate.getTime();
+    const rentingDays = Math.round(diffInSec / Day);
+    const Tprice = rentingDays * price;
+    return Tprice;
+}
+
   onLocationSelected(location: { latitude: number, longitude: number }) {
-    this.rent.PickUpLatitude = location.latitude;
-    this.rent.PickUpLongitude = location.longitude;
-    this.rent.DropOffLatitude = location.latitude; 
-    this.rent.DropOffLongitude = location.longitude;
-    //console.log(location);
+    this.rent.pickUpLatitude = location.latitude;
+    this.rent.pickUpLongitude = location.longitude;
+    if(this.rent.pickUpLatitude && this.rent.pickUpLongitude){
+      this._snackBar.open("Alert", "PickUp location selected!",{
+      horizontalPosition:'center',
+      verticalPosition:'top',
+      duration:4000,
+    });
+    }
+    this.rent.dropOffLatitude = location.latitude; 
+    this.rent.dropOffLongitude = location.longitude;
+    this._snackBar.open("Alert", "DropOff location selected!",{
+      horizontalPosition:'center',
+      verticalPosition:'top',
+      duration:2000,
+    });
+  }
+
+  cash(event:any){
+    this.isPaid = true;
+    this.rent.isOnlinePaid = event.value;
   }
 
   RentCarSelected(selectedCars: Car) {
-    this.rent.Model = selectedCars.model;
-    this.rent.Make = selectedCars.make;
-    this.rent.PlateNumber = selectedCars.plateNumber;
-    // this.rent.CustomerName = this.authService.User.value.userName;
-    // this.rent.CustomerId = this.authService.User.value.id;
-    console.log(this.authService.User.value.userName);
+    this.rent.model = selectedCars.model;
+    this.rent.make = selectedCars.make;
+    this.rent.plateNumber = selectedCars.plateNumber;
+    this._snackBar.open("Alert", "Car selected Successfully!",{
+      horizontalPosition:'center',
+      verticalPosition:'top',
+      duration:2000,
+    });
+    this.rentalPriceDay = selectedCars.rentalPrice ; 
+    this.totalPrice = this.calculateTotalPrice(this.rent.startingDate, this.rent.endingDate, this.rentalPriceDay);
+  }  
+
+  saveRent(){
+    console.log("i am from save");
+    this.rentCarService.Create(this.rent).subscribe({
+      next: (response) => {
+        this._snackBar.open("Alert", "Renting order has been placed Successfully",{
+          horizontalPosition:'center',
+          verticalPosition:'top',
+          duration:3000,
+        });
+      },
+      error:(err)=>{
+        this._snackBar.open("Alert", "something went wrong placing your rent order",{
+          horizontalPosition:'center',
+          verticalPosition:'top',
+          duration:3000,
+        });
+      }
+    });
   }
 }

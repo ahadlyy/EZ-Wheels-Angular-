@@ -1,11 +1,12 @@
 import { CarService } from './../../Services/car.service';
 import { VehicleItemComponent } from './../vehicle-item/vehicle-item.component';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Car,StateEnum,TransmissionEnum,TypeEnum } from '../../Interfaces/car';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { LoaderService } from '../../Services/loader.service';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 import { RentCar } from '../../Interfaces/rent-car';
 
@@ -15,12 +16,13 @@ let selectedCar: RentCar | any;
 @Component({
   selector: 'app-vehicles',
   standalone: true,
-  imports: [VehicleItemComponent,CommonModule,ReactiveFormsModule],
+  imports: [VehicleItemComponent,CommonModule,ReactiveFormsModule,RouterLink],
   templateUrl: './vehicles.component.html',
   styleUrl: './vehicles.component.css'
 })
 export class VehiclesComponent implements OnInit{
   @Output() rentCarSelected: EventEmitter<Car> = new EventEmitter<Car>();
+  @Input() mode:string | null ="";
   cars:Car[] = [];
   totalCount:number = 0;
   numberOfPages:number[] = [];
@@ -29,10 +31,16 @@ export class VehiclesComponent implements OnInit{
   currentFilterForm : any ;
   colors:string[] = [];
   makers:string[] = [];
-  constructor(private _carService:CarService){};
+  constructor(
+    private _carService:CarService,
+    private _router:Router,
+    private _activatedRoute:ActivatedRoute
+  ){};
 
   ngOnInit(): void {
-    
+    this._activatedRoute.paramMap.subscribe(params=>{
+      this.mode = params.get('mode');
+    });
     this.getCarsData(1);
     this._carService.getColors().subscribe({
       next:(res)=>{
@@ -50,6 +58,7 @@ export class VehiclesComponent implements OnInit{
       },
     });
   }
+
   resetFilters(){
     this.currentFilterForm = null;
     this.getCarsData(1);
@@ -74,7 +83,6 @@ export class VehiclesComponent implements OnInit{
 
   rentCar(car:Car){
     this.rentCarSelected.emit(car);
-    
   }
   
 
@@ -122,6 +130,4 @@ export class VehiclesComponent implements OnInit{
     this.getCarsData(this.currentPageIndex,form);
     this.currentFilterForm = form;
   }
-
 }
-

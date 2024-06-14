@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, Output } from '@angular/core';
 import { LoginUser } from '../Interfaces/login-user';
 import { RegisterUser } from '../Interfaces/register-user';
-import { Observable } from 'rxjs';
 import { OutputUser } from '../Interfaces/output-user';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { EventEmitter } from '@angular/core';
@@ -12,7 +11,7 @@ import { UserService } from './user.service';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  User: BehaviorSubject<any> = new BehaviorSubject<any>({});
+  User: BehaviorSubject<any> = new BehaviorSubject(null);
   baseUrl = "https://localhost:7108/api/account/";
 
   register(user: RegisterUser): Observable<any> {
@@ -25,25 +24,24 @@ export class AuthenticationService {
 
   logOut() {
     localStorage.removeItem("token");
+    localStorage.removeItem("userId");
     this.User.next(null);
   }
 
   setCredentials(token: string, user: any) {
     localStorage.setItem("token", `${token}`);
-    localStorage.setItem("user", `${this.User.value}`);
-    this.User = JSON.parse(user);
-    // console.log(this.User);
-    
+    this.User.next(JSON.parse(user));
+    localStorage.setItem("userId", this.User.value.id);
   }
 
-  
-
   constructor(public http: HttpClient,private userService:UserService) { 
-    if(localStorage.getItem("user")){
-      let localUSer:string = JSON.parse(`${localStorage.getItem("user")}`);
-      this.User.next(localUSer);
-      console.log(this.User.value);
-      
+    if(localStorage.getItem("userId")) {
+      const userId = `${localStorage.getItem("userId")}`;
+      this.userService.getById(userId).subscribe({
+        next: (response) => {
+          this.User.next(response);
+        }
+      })
     }
   }
 }
