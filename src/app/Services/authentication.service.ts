@@ -12,7 +12,11 @@ import { UserService } from './user.service';
 })
 export class AuthenticationService {
   User: BehaviorSubject<any> = new BehaviorSubject(null);
-  baseUrl = "https://localhost:7108/api/account/";
+  baseUrl = "http://localhost:5156/api/account/";
+  authGateBackendUrl = "http://localhost:3000";
+
+  readonly clientID: string = "db5edd9f-133a-47fd-ad73-1fadb9a735a3";
+  readonly clientSECRET: string = "e984c5b4-0126-4d07-9cd9-1c461992b9a7";
 
   register(user: RegisterUser): Observable<any> {
     return this.http.post<any>(this.baseUrl + "register", user);
@@ -34,8 +38,23 @@ export class AuthenticationService {
     localStorage.setItem("userId", this.User.value.id);
   }
 
-  constructor(public http: HttpClient,private userService:UserService) { 
-    if(localStorage.getItem("userId")) {
+  loginWithAuthGate(): Observable<any> {
+    const clientCredentials: any = {
+      clientID: this.clientID,
+      clientSECRET: this.clientSECRET
+    }
+    return this.http.post<any>(this.authGateBackendUrl + "/tenants/authorize-client", clientCredentials)
+  }
+
+  exchangeCodeWithToken(authCode: string): Observable<any> {
+    const authCodeObj: any = {
+      authCode: authCode
+    }
+    return this.http.post<any>(this.baseUrl + "codeWithToken", authCodeObj);
+  }
+
+  constructor(public http: HttpClient, private userService: UserService) {
+    if (localStorage.getItem("userId")) {
       const userId = `${localStorage.getItem("userId")}`;
       this.userService.getById(userId).subscribe({
         next: (response) => {

@@ -22,30 +22,33 @@ import { isLoggedInGuard } from './guards/is-logged-in.guard';
 import { UpdatePasswordComponent } from './Components/update-password/update-password.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' }, 
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
-    { path: 'login', component: LoginComponent, canActivate:[isLoggedInGuard] },
-    { path: 'admin', component: AdminComponent, canActivate:[canloginGuard, isAdminGuard] ,children:[
-        { path: 'vehicles/:mode',component:VehiclesComponent },
-        { path: 'reservations', component: ReservationsComponent, canActivate:[canloginGuard] },
-        { path: 'reservations/:reservationNumber', component: ReservationDetailsComponent, canActivate:[canloginGuard] },
-        { path: 'users', component:AdminUsersComponent, canActivate:[canloginGuard] },
-        { path: 'users/update/:id', component:UserFormComponent, canActivate:[canloginGuard] },
-        { path: 'users/add', component:UserFormComponent, canActivate:[canloginGuard] },
-    ]},
-    { path:'car-details/:id',component:CarDetailsComponent},
-    { path:'add-car',component:AddCarComponent, canActivate:[canloginGuard] },
-    { path:'edit-car/:id',component:EditCarComponent, canActivate:[canloginGuard] },
+    { path: 'login', component: LoginComponent, canActivate: [isLoggedInGuard] },
+    { path: 'login/:authCode', component: LoginComponent, canActivate: [isLoggedInGuard] },
+    {
+        path: 'admin', component: AdminComponent, canActivate: [canloginGuard, isAdminGuard], children: [
+            { path: 'vehicles/:mode', component: VehiclesComponent },
+            { path: 'reservations', component: ReservationsComponent, canActivate: [canloginGuard] },
+            { path: 'reservations/:reservationNumber', component: ReservationDetailsComponent, canActivate: [canloginGuard] },
+            { path: 'users', component: AdminUsersComponent, canActivate: [canloginGuard] },
+            { path: 'users/update/:id', component: UserFormComponent, canActivate: [canloginGuard] },
+            { path: 'users/add', component: UserFormComponent, canActivate: [canloginGuard] },
+        ]
+    },
+    { path: 'car-details/:id', component: CarDetailsComponent },
+    { path: 'add-car', component: AddCarComponent, canActivate: [canloginGuard] },
+    { path: 'edit-car/:id', component: EditCarComponent, canActivate: [canloginGuard] },
     { path: 'vehicles', component: VehiclesComponent },
     { path: 'register', component: RegisterComponent },
     // { path: 'reservations', component: ReservationsComponent, canActivate:[canloginGuard] },
     // { path: 'reservations/:reservationNumber', component: ReservationDetailsComponent, canActivate:[canloginGuard] },
-    { path:'profile', component:ProfileComponent, canActivate:[canloginGuard]},
+    { path: 'profile', component: ProfileComponent, canActivate: [canloginGuard] },
     // { path:'users', component:AdminUsersComponent },
     // { path:'users/update/:id', component:UserFormComponent },
     // { path:'users/add', component:UserFormComponent },
-    { path:'editPassword', component:UpdatePasswordComponent, canActivate:[canloginGuard]},
-    { path: 'managebookings', component:ManageBookingsComponent, canActivate:[canloginGuard]},
+    { path: 'editPassword', component: UpdatePasswordComponent, canActivate: [canloginGuard] },
+    { path: 'managebookings', component: ManageBookingsComponent, canActivate: [canloginGuard] },
     {
         path: '',
         component: RentComponent,
@@ -55,7 +58,7 @@ export const routes: Routes = [
         ]
     },
     {
-        path:"**",component:NotFoundComponent
+        path: "**", component: NotFoundComponent
     }
 ];
 

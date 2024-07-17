@@ -26,3 +26,9 @@
       width: 50%;
     }
   }
+
+
+  .svgProperties {
+    /* max-width: 50px; */
+    max-height: 50px;
+  }
