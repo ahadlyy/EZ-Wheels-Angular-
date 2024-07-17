@@ -9,5 +9,5 @@ import { RentComponent } from '../rent/rent.component';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-
+ 
 }

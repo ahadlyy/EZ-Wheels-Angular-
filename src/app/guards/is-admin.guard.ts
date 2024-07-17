@@ -6,6 +6,8 @@ export const isAdminGuard: CanActivateFn = (route, state) => {
   const token = `${localStorage.getItem("token")}`;
   const decodedToken: {role: string} = jwtDecode(token); 
   //console.log("Role = ", decodedToken.role);
+  console.log(decodedToken);
+  
   if (decodedToken.role == "SuperAdmin") {
     return true;
   }
